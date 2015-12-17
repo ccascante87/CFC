@@ -36,6 +36,52 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the piechart package.
+      google.load('visualization', '1.0', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Muestras', 'Llu', 'Saldo'],
+          ['7:00',  1000,      400],
+          ['7:10',  1170,      460],
+          ['7:15',  660,       1120],
+          ['7:20',  1030,      540],
+          ['7:25',  500,      1400],
+          ['7:30',  1030,      1540],
+          ['7:35',  100,      1420],
+          ['7:40',  1560,      2340],
+          ['7:45',  1240,      5000],
+          ['7:50',  660,      500],
+          ['7:55',  1440,      1230],
+          ['8:00',  2000,      5400],
+        ]);
+
+        var options = {
+          title: 'Comportamiento del Efectivo',
+          hAxis: {title: 'Muestras',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.AreaChart(document.getElementById('morris-area-chart1'));
+        chart.draw(data, options);
+
+        var chart2 = new google.visualization.AreaChart(document.getElementById('morris-area-chart2'));
+        chart2.draw(data, options);
+      }
+    </script>
+
 </head>
 
 <body>
@@ -64,8 +110,8 @@
                         <li>
                             <a href="#">
                                 <div>
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                    <i class="fa fa-comment fa-fw"></i> Nuevo Comentario
+                                    <span class="pull-right text-muted small">Hace 4 minutos</span>
                                 </div>
                             </a>
                         </li>
@@ -73,8 +119,8 @@
                         <li>
                             <a href="#">
                                 <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
+                                    <i class="fa fa-twitter fa-fw"></i> 3 Nuevos Seguidores
+                                    <span class="pull-right text-muted small">Hace 12 minutos</span>
                                 </div>
                             </a>
                         </li>
@@ -82,8 +128,8 @@
                         <li>
                             <a href="#">
                                 <div>
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                    <i class="fa fa-envelope fa-fw"></i> Mensaje Enviado
+                                    <span class="pull-right text-muted small">Hace 4 minutos</span>
                                 </div>
                             </a>
                         </li>
@@ -91,8 +137,8 @@
                         <li>
                             <a href="#">
                                 <div>
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                    <i class="fa fa-tasks fa-fw"></i> Nueva Tarea
+                                    <span class="pull-right text-muted small">Hace 4 minutos</span>
                                 </div>
                             </a>
                         </li>
@@ -100,15 +146,15 @@
                         <li>
                             <a href="#">
                                 <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                    <i class="fa fa-upload fa-fw"></i> Servidor Reiniciado
+                                    <span class="pull-right text-muted small">Hace 4 minutos</span>
                                 </div>
                             </a>
                         </li>
                         <li class="divider"></li>
                         <li>
                             <a class="text-center" href="#">
-                                <strong>See All Alerts</strong>
+                                <strong>Ver Todas las Alertas</strong>
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </li>
@@ -121,12 +167,12 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> Perfil de Usuario</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuración</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -151,7 +197,7 @@
                             <a href="index.html"><i class="fa fa-table fa-fw"></i> Histórico</a>
                         </li>
                         <li>
-                            <a href="login.html"><i class="fa fa-files-o fa-fw"></i> Login Pages</a>
+                            <a href="login.html"><i class="fa fa-files-o fa-fw"></i> Inicio Sesión</a>
                         </li>
                     </ul>
                 </div>
@@ -235,11 +281,11 @@
                 <div class="col-lg-8">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Detalle Gráfico 1
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Comportamiento del Efectivo
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div id="morris-area-chart"></div>
+                            <div id="morris-area-chart1"></div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -296,20 +342,24 @@
                                         <tr>
                                             <th style="text-align: center;">Hora</th>
                                             <th style="text-align: center;">Saldo</th>
+                                            <th style="text-align: center;">Tendencia</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>9:10</td>
                                             <td>&#8353; XXX,XXX.XX</td>
+                                            <td style="text-align: center;"> <i style="color: #00CC33;" class="fa fa-long-arrow-up"></i></td>
                                         </tr>
                                         <tr>
                                             <td>9:15</td>
                                             <td>&#8353; X,XXX,XXX.XX</td>
+                                            <td style="text-align: center;"> <i style="color: #00CC33;" class="fa fa-long-arrow-up"></i></td>
                                         </tr>
                                         <tr>
                                             <td>9:20</td>
                                             <td>&#8353; XXX,XXX.XX</td>
+                                            <td style="text-align: center;"> <i style="color: red;" class="fa fa-long-arrow-down"></i></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -327,7 +377,7 @@
                 <div class="col-lg-8">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Detalle Gráfico 2
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Variaciones del Efectivo
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -387,21 +437,25 @@
                                     <thead style="text-align: center;">
                                         <tr>
                                             <th style="text-align: center;">Hora</th>
-                                            <th style="text-align: center;">Saldo</th>
+                                            <th style="text-align: center;">Rm</th>
+                                            <th style="text-align: center;">Estabilidad</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>9:10</td>
                                             <td>&#8353; XXX,XXX.XX</td>
+                                            <td style="text-align: center;"> <i style="color: #00CC33;" class="fa fa-check"></i></td>
                                         </tr>
                                         <tr>
                                             <td>9:15</td>
                                             <td>&#8353; X,XXX,XXX.XX</td>
+                                            <td style="text-align: center;"> <i style="color: red;" class="fa fa-times"></i></td>
                                         </tr>
                                         <tr>
                                             <td>9:20</td>
                                             <td>&#8353; XXX,XXX.XX</td>
+                                            <td style="text-align: center;"> <i style="color: #00CC33;" class="fa fa-check"></i></td>
                                         </tr>
                                     </tbody>
                                 </table>
