@@ -17,4 +17,8 @@ public class ApplicationController {
         return "dashboard";
     }
 
+	@RequestMapping("/")
+    public String index() {
+        return "index";
+    }
 }

@@ -23,7 +23,7 @@ public class Saldo implements Serializable {
 
 	@Column(name="CODIGO_AGENCIA")
 	private BigDecimal codigoAgencia;
-
+  
 	@Column(name="CODIGO_MONEDA")
 	private String codigoMoneda;
 
