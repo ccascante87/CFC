@@ -183,7 +183,7 @@
 					<artifactId>maven-war-plugin</artifactId>
 					<version>2.4</version>
 					<configuration>
-						<outputDirectory>C:\server\tomcat\apache-tomcat-8.0.30\webapps</outputDirectory>
+						<outputDirectory>${CATALINA_HOME}\webapps</outputDirectory>
 						<warSourceDirectory>src/main/webapp</warSourceDirectory>
 						<warName>cfc</warName>
 						<failOnMissingWebXml>false</failOnMissingWebXml>

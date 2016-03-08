@@ -12,12 +12,12 @@ import com.cfc.model.Saldo;
  *
  */
 
-public interface SaldoService {
+public interface ISaldoService {
 	Saldo findById(int id);
 	
-	void saveSaldo(Saldo user);
+	void saveSaldo(Saldo saldo);
 	
-	void updateSaldo(Saldo user);
+	void updateSaldo(Saldo saldo);
 
 	List<Saldo> findAllSaldos(); 
 }

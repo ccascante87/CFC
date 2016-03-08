@@ -11,7 +11,7 @@ import com.cfc.model.Saldo;
  * @author JIO
  *
  */
-public interface SaldoDao {
+public interface ISaldoDao {
 	
 	Saldo findById(int id);
 

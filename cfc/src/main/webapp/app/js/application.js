@@ -7,7 +7,7 @@ $(document).ready(function() {
 });
 
 function loadTable() {
-	var url = '/cfc/efectivo/getSaldos';
+	var url = '/cfc/efectivo/getHistoricos';
 	$('#mainTableBody').empty();
 	$.ajax({
 		method : 'GET',
@@ -18,7 +18,7 @@ function loadTable() {
 				$.each(data, function(index, elem) {
 					
 					html+='<div class="col-md-12"><span>';
-					html+=elem.idSaldo
+					html+=elem.nomAgencia
 					html+='</span></div>';
 					
 				});

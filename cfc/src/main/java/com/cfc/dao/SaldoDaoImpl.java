@@ -15,7 +15,7 @@ import com.cfc.model.Saldo;
  *
  */
 @Repository("saldoDao")
-public class SaldoDaoImpl extends AbstractDao<Integer, Saldo> implements SaldoDao {
+public class SaldoDaoImpl extends AbstractDao<Integer, Saldo> implements ISaldoDao {
 	@Override
 	public Saldo findById(int id) {
 		// TODO Auto-generated method stub

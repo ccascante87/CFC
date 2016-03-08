@@ -9,42 +9,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cfc.dao.ISaldoDao;
-import com.cfc.model.Saldo;
+import com.cfc.dao.IHistoricoDao;
+import com.cfc.model.Historico;
 
 /**
  * @author JIO
  *
  */
-
-@Service("iSaldoService")
+@Service("iHistoricoService")
 @Transactional
-public class SaldoServiceImpl implements ISaldoService {
-	
+public class HistoricoServiceImpl implements IHistoricoService{
 	@Autowired
-	ISaldoDao dao;
-
+	IHistoricoDao dao;
 	@Override
-	public Saldo findById(int id) {
+	public Historico findById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void saveSaldo(Saldo saldo) {
+	public void saveHistorico(Historico historico) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateSaldo(Saldo saldo) {
+	public void updateHistorico(Historico historico) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<Saldo> findAllSaldos() {
-		return dao.findAllSaldos();
+	public List<Historico> findAllHistoricos() {
+		return dao.findAllHistorico();
 	}
 
 }

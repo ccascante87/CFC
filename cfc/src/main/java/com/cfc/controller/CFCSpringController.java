@@ -11,15 +11,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cfc.domain.Message;
+import com.cfc.model.Historico;
 import com.cfc.model.Saldo;
-import com.cfc.service.SaldoService;
+import com.cfc.service.IHistoricoService;
+import com.cfc.service.ISaldoService;
 
 @RestController
 @RequestMapping("/efectivo")
 public class CFCSpringController {
 	
 	@Autowired
-	SaldoService saldoService;
+	ISaldoService iSaldoService;
+	@Autowired
+	IHistoricoService iHistoricoService;
 	
 	@RequestMapping("/hello/{player}")
 	public Message message(@PathVariable String player) {
@@ -31,11 +35,21 @@ public class CFCSpringController {
 	@ResponseBody
 	@RequestMapping(value = "/getSaldos", method = RequestMethod.GET, produces = "application/json")
 	public List<Saldo> getSaldos() {
-		List<Saldo> saldos =  saldoService.findAllSaldos();
+		List<Saldo> saldos =  iSaldoService.findAllSaldos();
 		if (saldos.isEmpty())
 			return Collections.emptyList();
 		else
 			return saldos;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getHistoricos", method = RequestMethod.GET, produces = "application/json")
+	public List<Historico> getHistoricos() {
+		List<Historico> historicos =  iHistoricoService.findAllHistoricos();
+		if (historicos.isEmpty())
+			return Collections.emptyList();
+		else
+			return historicos;
 	}
 	/*@RequestMapping(method = RequestMethod.GET)
 	public String sayHello(ModelMap model) {
