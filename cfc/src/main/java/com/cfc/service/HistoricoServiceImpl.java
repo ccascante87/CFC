@@ -20,7 +20,8 @@ import com.cfc.model.Historico;
 @Transactional
 public class HistoricoServiceImpl implements IHistoricoService{
 	@Autowired
-	IHistoricoDao dao;
+	IHistoricoDao historicoDAO;
+	
 	@Override
 	public Historico findById(int id) {
 		// TODO Auto-generated method stub
@@ -41,7 +42,7 @@ public class HistoricoServiceImpl implements IHistoricoService{
 
 	@Override
 	public List<Historico> findAllHistoricos() {
-		return dao.findAllHistorico();
+		return historicoDAO.findAllHistorico();
 	}
 
 }

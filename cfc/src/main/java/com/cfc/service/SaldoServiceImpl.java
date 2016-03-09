@@ -22,7 +22,7 @@ import com.cfc.model.Saldo;
 public class SaldoServiceImpl implements ISaldoService {
 	
 	@Autowired
-	ISaldoDao dao;
+	ISaldoDao saldoDAO;
 
 	@Override
 	public Saldo findById(int id) {
@@ -44,7 +44,7 @@ public class SaldoServiceImpl implements ISaldoService {
 
 	@Override
 	public List<Saldo> findAllSaldos() {
-		return dao.findAllSaldos();
+		return saldoDAO.findAllSaldos();
 	}
 
 }
