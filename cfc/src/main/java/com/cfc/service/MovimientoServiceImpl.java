@@ -58,4 +58,9 @@ public class MovimientoServiceImpl implements IMovimientoService {
 		return movimientoDAO.findAllMovimientosByCurrency(1);
 	}
 
+	@Override
+	public List<Movimiento> findAllMovimientosByCurrency(long currency) {
+		return movimientoDAO.findAllMovimientosByCurrency(currency);
+	}
+
 }

@@ -52,10 +52,31 @@ public class CFCSpringController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "/getSaldosByCurrency/{currency}", method = RequestMethod.GET, produces = "application/json")
+	public List<Saldo> getSaldosByCurrency(@PathVariable("currency") String currency) {
+		List<Saldo> saldos =  iSaldoService.findAllSaldosByCurrency(Long.valueOf(currency));
+		if (saldos.isEmpty())
+			return Collections.emptyList();
+		else
+			return saldos;
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "/getHistoricos", method = RequestMethod.GET, produces = "application/json")
 	public List<Historico> getHistoricos() {
 		List<Historico> historicos =  iHistoricoService.findAllHistoricos();
 		logger.debug("getHistoricos.");
+		if (historicos.isEmpty())
+			return Collections.emptyList();
+		else
+			return historicos;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getHistoricosByCurrency/{currency}", method = RequestMethod.GET, produces = "application/json")
+	public List<Historico> getHistoricosByCurrency(@PathVariable("currency") String currency) {
+		List<Historico> historicos =  iHistoricoService.findAllHistoricosByCurrency(Long.valueOf(currency));
+		logger.debug("getHistoricosByCurrency.");
 		if (historicos.isEmpty())
 			return Collections.emptyList();
 		else
@@ -74,6 +95,17 @@ public class CFCSpringController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "/getMovimientosByCurrency/{currency}", method = RequestMethod.GET, produces = "application/json")
+	public List<Movimiento> getMovimientosByCurrency(@PathVariable("currency") String currency) {
+		List<Movimiento> movimientos =  iMovimientoService.findAllMovimientosByCurrency(Long.valueOf(currency));
+		logger.debug("getMovimientosByCurrency.");
+		if (movimientos.isEmpty())
+			return Collections.emptyList();
+		else
+			return movimientos;
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "/getSucursales", method = RequestMethod.GET, produces = "application/json")
 	public List<Sucursal> getSucursales() {
 		List<Sucursal> sucursales =  iSucursalService.findAllSucursales();
@@ -84,9 +116,9 @@ public class CFCSpringController {
 			return sucursales;
 	}
 	@ResponseBody
-	@RequestMapping(value = "/getSucursal", method = RequestMethod.GET, produces = "application/json")
-	public Sucursal getSucursal() {
-		Sucursal sucursal =  iSucursalService.findSucursalByName();
+	@RequestMapping(value = "/getSucursalByName/{name}", method = RequestMethod.GET, produces = "application/json")
+	public Sucursal getSucursal(@PathVariable("name") String name) {
+		Sucursal sucursal =  iSucursalService.findSucursalByName(name);
 		logger.debug("getSucursal.");
 		return sucursal;
 	}

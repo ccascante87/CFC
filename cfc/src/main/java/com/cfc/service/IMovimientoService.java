@@ -19,4 +19,6 @@ public interface IMovimientoService {
 	void updateMovimiento(Movimiento movimiento);
 
 	List<Movimiento> findAllMovimientos(); 
+	
+	List<Movimiento> findAllMovimientosByCurrency(long currency);
 }

@@ -20,5 +20,5 @@ public interface ISucursalService {
 
 	List<Sucursal> findAllSucursales(); 
 	
-	Sucursal findSucursalByName();
+	Sucursal findSucursalByName(String nameSucursal);
 }

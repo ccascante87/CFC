@@ -25,7 +25,7 @@ public class Saldo implements Serializable {
 	private BigDecimal codigoAgencia;
   
 	@Column(name="CODIGO_MONEDA")
-	private String codigoMoneda;
+	private BigDecimal codigoMoneda;
 
 	@Column(name="CODIGO_USUARIO")
 	private String codigoUsuario;
@@ -57,11 +57,11 @@ public class Saldo implements Serializable {
 		this.codigoAgencia = codigoAgencia;
 	}
 
-	public String getCodigoMoneda() {
+	public BigDecimal getCodigoMoneda() {
 		return this.codigoMoneda;
 	}
 
-	public void setCodigoMoneda(String codigoMoneda) {
+	public void setCodigoMoneda(BigDecimal codigoMoneda) {
 		this.codigoMoneda = codigoMoneda;
 	}
 

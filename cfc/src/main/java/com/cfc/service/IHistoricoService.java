@@ -20,5 +20,7 @@ public interface IHistoricoService {
 	void updateHistorico(Historico historico);
 
 	List<Historico> findAllHistoricos(); 
+	
+	List<Historico> findAllHistoricosByCurrency(long currency);
 
 }

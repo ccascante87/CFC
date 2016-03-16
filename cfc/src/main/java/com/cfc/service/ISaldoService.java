@@ -20,4 +20,6 @@ public interface ISaldoService {
 	void updateSaldo(Saldo saldo);
 
 	List<Saldo> findAllSaldos(); 
+	
+	List<Saldo> findAllSaldosByCurrency(long currency);
 }

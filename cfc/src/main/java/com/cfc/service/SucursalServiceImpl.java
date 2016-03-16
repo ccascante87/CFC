@@ -59,8 +59,8 @@ public class SucursalServiceImpl implements ISucursalService {
 		return sucursalDAO.findAllSucursales();
 	}
 
-	public Sucursal findSucursalByName() {
-		return sucursalDAO.findSucursalByName("guapiles");
+	public Sucursal findSucursalByName(String nameSucursal) {
+		return sucursalDAO.findSucursalByName(nameSucursal);
 	}
 
 }

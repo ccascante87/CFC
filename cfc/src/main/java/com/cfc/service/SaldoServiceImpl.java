@@ -47,4 +47,9 @@ public class SaldoServiceImpl implements ISaldoService {
 		return saldoDAO.findAllSaldos();
 	}
 
+	@Override
+	public List<Saldo> findAllSaldosByCurrency(long currency) {
+		return saldoDAO.findAllSaldosByCurrency(currency);
+	}
+
 }
