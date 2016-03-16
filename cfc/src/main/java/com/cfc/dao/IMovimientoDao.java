@@ -19,4 +19,6 @@ public interface IMovimientoDao {
 	void deleteById(int id);
 
 	List<Movimiento> findAllMovimientos();
+	
+	List<Movimiento> findAllMovimientosByCurrency(long currency);
 }

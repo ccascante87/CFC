@@ -3,11 +3,14 @@
  */
 package com.cfc.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import com.cfc.model.Movimiento;
 import com.cfc.model.Sucursal;
 
 /**
@@ -56,6 +59,15 @@ public class SucursalDaoImpl extends AbstractDao<Integer, Sucursal> implements I
 		List<Sucursal> sucursales = (List<Sucursal>) criteria.list();
 		
 		return sucursales;
+	}
+	
+	@Override
+	public Sucursal findSucursalByName(String name) {
+		Criteria criteria = createEntityCriteria();
+		criteria.add(Restrictions.eq("nomAgencia",name).ignoreCase());
+		Sucursal sucursal = (Sucursal) criteria.uniqueResult();
+
+		return sucursal;
 	}
 
 }

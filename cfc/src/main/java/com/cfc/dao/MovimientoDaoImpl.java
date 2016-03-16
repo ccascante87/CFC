@@ -3,9 +3,11 @@
  */
 package com.cfc.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.cfc.model.Movimiento;
@@ -17,7 +19,9 @@ import com.cfc.model.Movimiento;
 @Repository("movimientoDao")
 public class MovimientoDaoImpl extends AbstractDao<Integer, Movimiento> implements IMovimientoDao {
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.cfc.dao.IMovimientoDao#findById(int)
 	 */
 	@Override
@@ -26,7 +30,9 @@ public class MovimientoDaoImpl extends AbstractDao<Integer, Movimiento> implemen
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.cfc.dao.IMovimientoDao#save(com.cfc.model.Movimiento)
 	 */
 	@Override
@@ -35,7 +41,9 @@ public class MovimientoDaoImpl extends AbstractDao<Integer, Movimiento> implemen
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.cfc.dao.IMovimientoDao#deleteById(int)
 	 */
 	@Override
@@ -44,17 +52,30 @@ public class MovimientoDaoImpl extends AbstractDao<Integer, Movimiento> implemen
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.cfc.dao.IMovimientoDao#findAllMovimientos()
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Movimiento> findAllMovimientos() {
 		Criteria criteria = createEntityCriteria();
-		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);//To avoid duplicates.
-		
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);// To avoid
+																		// duplicates.
+
 		List<Movimiento> movimientos = (List<Movimiento>) criteria.list();
-		
+
+		return movimientos;
+	}
+
+	@SuppressWarnings({ "unchecked" })
+	@Override
+	public List<Movimiento> findAllMovimientosByCurrency(long currency) {
+		Criteria criteria = createEntityCriteria();
+		criteria.add(Restrictions.eq("codigoMoneda",BigDecimal.valueOf(currency)));
+		List<Movimiento> movimientos = (List<Movimiento>) criteria.list();
+
 		return movimientos;
 	}
 

@@ -21,4 +21,5 @@ public interface IHistoricoDao {
 
 	List<Historico> findAllHistorico();
 
+	List<Historico> findAllHistoricosByCurrency(long currency);
 }

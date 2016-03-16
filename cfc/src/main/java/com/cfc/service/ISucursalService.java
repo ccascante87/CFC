@@ -19,4 +19,6 @@ public interface ISucursalService {
 	void updateSucursal(Sucursal sucursal);
 
 	List<Sucursal> findAllSucursales(); 
+	
+	Sucursal findSucursalByName();
 }

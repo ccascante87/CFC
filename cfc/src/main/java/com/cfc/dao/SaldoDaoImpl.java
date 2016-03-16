@@ -3,11 +3,14 @@
  */
 package com.cfc.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import com.cfc.model.Movimiento;
 import com.cfc.model.Saldo;
 
 /**
@@ -41,6 +44,16 @@ public class SaldoDaoImpl extends AbstractDao<Integer, Saldo> implements ISaldoD
 		
 		List<Saldo> saldos = (List<Saldo>) criteria.list();
 		
+		return saldos;
+	}
+	
+	@SuppressWarnings({ "unchecked" })
+	@Override
+	public List<Saldo> findAllSaldosByCurrency(long currency) {
+		Criteria criteria = createEntityCriteria();
+		criteria.add(Restrictions.eq("codigoMoneda",BigDecimal.valueOf(currency)));
+		List<Saldo> saldos = (List<Saldo>) criteria.list();
+
 		return saldos;
 	}
 /*	@SuppressWarnings("unchecked")

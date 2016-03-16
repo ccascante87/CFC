@@ -55,9 +55,7 @@ public class CFCSpringController {
 	@RequestMapping(value = "/getHistoricos", method = RequestMethod.GET, produces = "application/json")
 	public List<Historico> getHistoricos() {
 		List<Historico> historicos =  iHistoricoService.findAllHistoricos();
-		boolean enable = logger.isDebugEnabled();
-		System.out.println(enable);
-		logger.debug("this is a test.");
+		logger.debug("getHistoricos.");
 		if (historicos.isEmpty())
 			return Collections.emptyList();
 		else
@@ -68,9 +66,7 @@ public class CFCSpringController {
 	@RequestMapping(value = "/getMovimientos", method = RequestMethod.GET, produces = "application/json")
 	public List<Movimiento> getMovimientos() {
 		List<Movimiento> movimientos =  iMovimientoService.findAllMovimientos();
-		boolean enable = logger.isDebugEnabled();
-		System.out.println(enable);
-		logger.debug("this is a test.");
+		logger.debug("getMovimientos.");
 		if (movimientos.isEmpty())
 			return Collections.emptyList();
 		else
@@ -81,13 +77,18 @@ public class CFCSpringController {
 	@RequestMapping(value = "/getSucursales", method = RequestMethod.GET, produces = "application/json")
 	public List<Sucursal> getSucursales() {
 		List<Sucursal> sucursales =  iSucursalService.findAllSucursales();
-		boolean enable = logger.isDebugEnabled();
-		System.out.println(enable);
-		logger.debug("this is a test.");
+		logger.debug("getSucursales.");
 		if (sucursales.isEmpty())
 			return Collections.emptyList();
 		else
 			return sucursales;
+	}
+	@ResponseBody
+	@RequestMapping(value = "/getSucursal", method = RequestMethod.GET, produces = "application/json")
+	public Sucursal getSucursal() {
+		Sucursal sucursal =  iSucursalService.findSucursalByName();
+		logger.debug("getSucursal.");
+		return sucursal;
 	}
 	/*@RequestMapping(method = RequestMethod.GET)
 	public String sayHello(ModelMap model) {

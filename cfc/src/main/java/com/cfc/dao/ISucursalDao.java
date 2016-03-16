@@ -20,4 +20,6 @@ public interface ISucursalDao {
 	void deleteById(int id);
 
 	List<Sucursal> findAllSucursales();
+	
+	Sucursal findSucursalByName(String name);
 }

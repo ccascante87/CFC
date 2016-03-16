@@ -2,10 +2,11 @@
  * 
  */
 $(document).ready(function() {
-	loadTableSaldos();
-	loadTableMovimientos();
-	loadTableHistoricos();
-	loadTableSucursales();
+	//loadTableSaldos();
+	//loadTableMovimientos();
+	//loadTableHistoricos();
+	//loadTableSucursales();
+	loadTableSucursal();
 	
 });
 
@@ -109,6 +110,34 @@ function loadTableSucursales() {
 					html+='</span></div>';
 					
 				});
+				$('#mainTableBody').append(html);
+			}).done(function(data) {
+		//alert('done' + data);
+	}).complete(function() {
+		//alert('complete');
+	}).fail(
+			function(jqXHR, textStatus, errorThrown) {
+				alert('fail: ' + textStatus + ' errorThrown: ' + errorThrown
+						+ ' jqXHR: ' + jqXHR);
+			});
+}
+
+function loadTableSucursal() {
+	var url = '/cfc/efectivo/getSucursal';
+	$('#mainTableBody').empty();
+	$.ajax({
+		method : 'GET',
+		url : url
+	}).success(
+			function(data) {
+				var html = '';
+				//$.each(data, function(index, elem) {
+					
+					html+='<div class="col-md-12"><span>';
+					html+=data.nomAgencia;
+					html+='</span></div>';
+					
+				//});
 				$('#mainTableBody').append(html);
 			}).done(function(data) {
 		//alert('done' + data);

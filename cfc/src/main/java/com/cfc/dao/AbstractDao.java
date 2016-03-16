@@ -1,8 +1,10 @@
 package com.cfc.dao;
 
 import java.io.Serializable;
-
 import java.lang.reflect.ParameterizedType;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -41,5 +43,7 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 	protected Criteria createEntityCriteria(){
 		return getSession().createCriteria(persistentClass);
 	}
+	
+	
 
 }
