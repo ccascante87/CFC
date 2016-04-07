@@ -22,5 +22,5 @@ public interface ISaldoDao {
 
 	List<Saldo> findAllSaldos();
 	
-	List<Saldo> findAllSaldosByCurrency(long currency);
+	List<Saldo> findAllSaldosByCurrency(String currency);
 }

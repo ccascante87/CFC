@@ -55,11 +55,11 @@ public class MovimientoServiceImpl implements IMovimientoService {
 	 */
 	@Override
 	public List<Movimiento> findAllMovimientos() {
-		return movimientoDAO.findAllMovimientosByCurrency(1);
+		return movimientoDAO.findAllMovimientosByCurrency("COLONES");
 	}
 
 	@Override
-	public List<Movimiento> findAllMovimientosByCurrency(long currency) {
+	public List<Movimiento> findAllMovimientosByCurrency(String currency) {
 		return movimientoDAO.findAllMovimientosByCurrency(currency);
 	}
 

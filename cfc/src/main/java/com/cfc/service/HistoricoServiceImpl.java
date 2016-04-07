@@ -46,7 +46,7 @@ public class HistoricoServiceImpl implements IHistoricoService{
 	}
 
 	@Override
-	public List<Historico> findAllHistoricosByCurrency(long currency) {
+	public List<Historico> findAllHistoricosByCurrency(String currency) {
 		return historicoDAO.findAllHistoricosByCurrency(currency);
 	}
 

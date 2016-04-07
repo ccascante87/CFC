@@ -49,9 +49,9 @@ public class SaldoDaoImpl extends AbstractDao<Integer, Saldo> implements ISaldoD
 	
 	@SuppressWarnings({ "unchecked" })
 	@Override
-	public List<Saldo> findAllSaldosByCurrency(long currency) {
+	public List<Saldo> findAllSaldosByCurrency(String currency) {
 		Criteria criteria = createEntityCriteria();
-		criteria.add(Restrictions.eq("codigoMoneda",BigDecimal.valueOf(currency)));
+		criteria.add(Restrictions.eq("codigoMoneda",currency));
 		List<Saldo> saldos = (List<Saldo>) criteria.list();
 
 		return saldos;

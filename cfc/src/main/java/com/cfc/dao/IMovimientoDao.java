@@ -20,5 +20,5 @@ public interface IMovimientoDao {
 
 	List<Movimiento> findAllMovimientos();
 	
-	List<Movimiento> findAllMovimientosByCurrency(long currency);
+	List<Movimiento> findAllMovimientosByCurrency(String currency);
 }

@@ -51,9 +51,9 @@ public class HistoricoDaoImpl extends AbstractDao<Integer, Historico> implements
 
 	@SuppressWarnings({ "unchecked" })
 	@Override
-	public List<Historico> findAllHistoricosByCurrency(long currency) {
+	public List<Historico> findAllHistoricosByCurrency(String currency) {
 		Criteria criteria = createEntityCriteria();
-		criteria.add(Restrictions.eq("codigoMoneda",BigDecimal.valueOf(currency)));
+		criteria.add(Restrictions.eq("codigoMoneda",currency));
 		List<Historico> historicos = (List<Historico>) criteria.list();
 
 		return historicos;

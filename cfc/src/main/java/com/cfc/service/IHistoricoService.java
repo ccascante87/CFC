@@ -21,6 +21,6 @@ public interface IHistoricoService {
 
 	List<Historico> findAllHistoricos(); 
 	
-	List<Historico> findAllHistoricosByCurrency(long currency);
+	List<Historico> findAllHistoricosByCurrency(String currency);
 
 }

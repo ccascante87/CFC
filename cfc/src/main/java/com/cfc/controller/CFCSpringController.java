@@ -54,7 +54,7 @@ public class CFCSpringController {
 	@ResponseBody
 	@RequestMapping(value = "/getSaldosByCurrency/{currency}", method = RequestMethod.GET, produces = "application/json")
 	public List<Saldo> getSaldosByCurrency(@PathVariable("currency") String currency) {
-		List<Saldo> saldos =  iSaldoService.findAllSaldosByCurrency(Long.valueOf(currency));
+		List<Saldo> saldos =  iSaldoService.findAllSaldosByCurrency(currency);
 		if (saldos.isEmpty())
 			return Collections.emptyList();
 		else
@@ -75,7 +75,7 @@ public class CFCSpringController {
 	@ResponseBody
 	@RequestMapping(value = "/getHistoricosByCurrency/{currency}", method = RequestMethod.GET, produces = "application/json")
 	public List<Historico> getHistoricosByCurrency(@PathVariable("currency") String currency) {
-		List<Historico> historicos =  iHistoricoService.findAllHistoricosByCurrency(Long.valueOf(currency));
+		List<Historico> historicos =  iHistoricoService.findAllHistoricosByCurrency(currency);
 		logger.debug("getHistoricosByCurrency.");
 		if (historicos.isEmpty())
 			return Collections.emptyList();
@@ -97,7 +97,7 @@ public class CFCSpringController {
 	@ResponseBody
 	@RequestMapping(value = "/getMovimientosByCurrency/{currency}", method = RequestMethod.GET, produces = "application/json")
 	public List<Movimiento> getMovimientosByCurrency(@PathVariable("currency") String currency) {
-		List<Movimiento> movimientos =  iMovimientoService.findAllMovimientosByCurrency(Long.valueOf(currency));
+		List<Movimiento> movimientos =  iMovimientoService.findAllMovimientosByCurrency(currency);
 		logger.debug("getMovimientosByCurrency.");
 		if (movimientos.isEmpty())
 			return Collections.emptyList();
@@ -115,6 +115,7 @@ public class CFCSpringController {
 		else
 			return sucursales;
 	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/getSucursalByName/{name}", method = RequestMethod.GET, produces = "application/json")
 	public Sucursal getSucursal(@PathVariable("name") String name) {
@@ -122,6 +123,39 @@ public class CFCSpringController {
 		logger.debug("getSucursal.");
 		return sucursal;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/manejo/data/colones", method = RequestMethod.GET, produces = "application/json")
+	public Sucursal getManejoDataColones(@PathVariable("name") String name) {
+		Sucursal sucursal =  iSucursalService.findSucursalByName(name);
+		logger.debug("getSucursal.");
+		return sucursal;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/manejo/grafico/colones", method = RequestMethod.GET, produces = "application/json")
+	public Sucursal getManejoGraficoColones(@PathVariable("name") String name) {
+		Sucursal sucursal =  iSucursalService.findSucursalByName(name);
+		logger.debug("getSucursal.");
+		return sucursal;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/manejo/data/dolares", method = RequestMethod.GET, produces = "application/json")
+	public Sucursal getManejoDataDolares(@PathVariable("name") String name) {
+		Sucursal sucursal =  iSucursalService.findSucursalByName(name);
+		logger.debug("getSucursal.");
+		return sucursal;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/manejo/grafico/dolares", method = RequestMethod.GET, produces = "application/json")
+	public Sucursal getManejoGraficoDolares(@PathVariable("name") String name) {
+		Sucursal sucursal =  iSucursalService.findSucursalByName(name);
+		logger.debug("getSucursal.");
+		return sucursal;
+	}
+	
 	/*@RequestMapping(method = RequestMethod.GET)
 	public String sayHello(ModelMap model) {
 		model.addAttribute("greeting", "Hello World from Spring 4 MVC");

@@ -71,9 +71,9 @@ public class MovimientoDaoImpl extends AbstractDao<Integer, Movimiento> implemen
 
 	@SuppressWarnings({ "unchecked" })
 	@Override
-	public List<Movimiento> findAllMovimientosByCurrency(long currency) {
+	public List<Movimiento> findAllMovimientosByCurrency(String currency) {
 		Criteria criteria = createEntityCriteria();
-		criteria.add(Restrictions.eq("codigoMoneda",BigDecimal.valueOf(currency)));
+		criteria.add(Restrictions.eq("codigoMoneda",currency));
 		List<Movimiento> movimientos = (List<Movimiento>) criteria.list();
 
 		return movimientos;

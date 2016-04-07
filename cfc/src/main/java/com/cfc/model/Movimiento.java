@@ -31,7 +31,7 @@ public class Movimiento implements Serializable {
 	private BigDecimal codigoEmpresa;
 
 	@Column(name="CODIGO_MONEDA")
-	private BigDecimal codigoMoneda;
+	private String codigoMoneda;
 
 	@Column(name="CODIGO_REGION")
 	private String codigoRegion;
@@ -101,11 +101,11 @@ public class Movimiento implements Serializable {
 		this.codigoEmpresa = codigoEmpresa;
 	}
 
-	public BigDecimal getCodigoMoneda() {
+	public String getCodigoMoneda() {
 		return this.codigoMoneda;
 	}
 
-	public void setCodigoMoneda(BigDecimal codigoMoneda) {
+	public void setCodigoMoneda(String codigoMoneda) {
 		this.codigoMoneda = codigoMoneda;
 	}
 

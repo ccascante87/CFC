@@ -21,5 +21,5 @@ public interface ISaldoService {
 
 	List<Saldo> findAllSaldos(); 
 	
-	List<Saldo> findAllSaldosByCurrency(long currency);
+	List<Saldo> findAllSaldosByCurrency(String currency);
 }
