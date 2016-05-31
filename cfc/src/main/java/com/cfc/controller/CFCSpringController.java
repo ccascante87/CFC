@@ -156,6 +156,14 @@ public class CFCSpringController {
 		return sucursal;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/manejo/grafico/static", method = RequestMethod.GET, produces = "application/json")
+	public List<Object[]> getManejoGraficoDolares() {
+		List<Object[]>  sucursal =  iSaldoService.getStaticData();
+		logger.debug("getSucursal.");
+		return sucursal;
+	}
+	
 	/*@RequestMapping(method = RequestMethod.GET)
 	public String sayHello(ModelMap model) {
 		model.addAttribute("greeting", "Hello World from Spring 4 MVC");
