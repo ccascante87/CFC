@@ -23,4 +23,6 @@ public interface ISaldoDao {
 	List<Saldo> findAllSaldos();
 	
 	List<Saldo> findAllSaldosByCurrency(String currency);
+
+	List<Object[]> getManejoDataColones(String currency, String codigoUsuario, String codigo);
 }

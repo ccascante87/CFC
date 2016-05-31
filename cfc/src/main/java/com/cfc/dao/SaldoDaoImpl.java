@@ -3,14 +3,16 @@
  */
 package com.cfc.dao;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.cfc.model.Movimiento;
 import com.cfc.model.Saldo;
 
 /**
@@ -54,6 +56,33 @@ public class SaldoDaoImpl extends AbstractDao<Integer, Saldo> implements ISaldoD
 		criteria.add(Restrictions.eq("codigoMoneda",currency));
 		List<Saldo> saldos = (List<Saldo>) criteria.list();
 
+		return saldos;
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	//@Transactional
+	public List getManejoDataColones(String currency, String codigoUsuario, String codigo) {
+		List saldos;
+		Session session = getSession();
+		try {
+			//session = getSession();
+			@SuppressWarnings("unused")
+			Criteria criteria = createEntityCriteria();
+			session.getTransaction().begin();
+			Query query = (Query) session
+					.createQuery("Select S " + " FROM  Saldo S, Historico h , Movimiento m ,Sucursal ss " + " WHERE "
+							+ "	h.codigoAgencia = S.codigoAgencia" + "	AND m.codigoAgencia = h.codigoAgencia"
+							+ "	AND ss.codigoAgencia = m.codigoAgencia" + " AND S.codigoUsuario= 1 "
+							+ " AND S.codigoMoneda = 'COLONES' " + " AND S.codigoAgencia =4");
+			saldos = query.list();
+			// saldos.add(criteria);
+			session.getTransaction().commit();
+		} catch (RuntimeException e) {
+			//session.getTransaction().rollback();
+			throw e;
+		}
+		// session.close();
 		return saldos;
 	}
 /*	@SuppressWarnings("unchecked")

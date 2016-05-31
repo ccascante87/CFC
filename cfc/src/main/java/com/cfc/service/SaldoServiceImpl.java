@@ -51,5 +51,10 @@ public class SaldoServiceImpl implements ISaldoService {
 	public List<Saldo> findAllSaldosByCurrency(String currency) {
 		return saldoDAO.findAllSaldosByCurrency(currency);
 	}
+	
+	@Override
+	public List<Object[]> getStaticData() {
+		return saldoDAO.getManejoDataColones("", "", "");
+	}
 
 }

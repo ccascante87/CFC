@@ -22,4 +22,6 @@ public interface ISaldoService {
 	List<Saldo> findAllSaldos(); 
 	
 	List<Saldo> findAllSaldosByCurrency(String currency);
+	
+	List<Object[]> getStaticData();
 }
