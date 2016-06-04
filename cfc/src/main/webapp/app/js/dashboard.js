@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	loadHome();
+//	loadHome();
 });
 
 $('.logo').click(function() {
@@ -35,14 +35,15 @@ function createChart() {
 	// --------------
 	// - AREA CHART -
 	// --------------
-
+console.log("Aquiiiii Columbia");
 	// Get context with jQuery - using jQuery's .get() method.
 	var areaChartCanvas = $("#areaChart").get(0).getContext("2d");
 	// This will get the first returned node in the jQuery collection.
 	var areaChart = new Chart(areaChartCanvas);
-
+	var ya = new Date();
+	var now = ya.getHours() + ":" + ya.getMinutes() + ":" + ya.getSeconds();
 	var areaChartData = {
-		labels : [ "7:00", "7:05", "7:10", "7:15", "7:20", "7:25", "7:30" ],
+		labels : [ "7:00", "7:05", "7:10", "7:15", "7:20", "7:25", "7:30" , now],
 		datasets : [ {
 			label : "Saldo",
 			fillColor : "rgba(210, 214, 222, 1)",
@@ -51,7 +52,7 @@ function createChart() {
 			pointStrokeColor : "#c1c7d1",
 			pointHighlightFill : "#fff",
 			pointHighlightStroke : "rgba(220,220,220,1)",
-			data : [ 65, 59, 80, 81, 56, 55, 40 ]
+			data : [ 65, 59, 80, 81, 56, 55, 40, ya.getSeconds() ]
 		}, {
 			label : "Ocioso",
 			fillColor : "rgba(60,141,188,0.9)",
@@ -62,7 +63,7 @@ function createChart() {
 			pointHighlightStroke : "rgba(60,141,188,1)",
 			data : [ 28, 48, 40, 19, 86, 27, 90 ]
 		}, {
-			label : "Ocioso",
+			label : "Lavado",
 			fillColor : "rgba(60,184,80,0.9)",
 			strokeColor : "rgba(60,184,80,0.8)",
 			pointColor : "#3CB850",
@@ -70,7 +71,16 @@ function createChart() {
 			pointHighlightFill : "#fff",
 			pointHighlightStroke : "rgba(60,184,80,0.8)",
 			data : [ 90, 20, 60, 50, 25, 98, 10 ]
-		} ]
+		} , {
+			label : "Del fut",
+			fillColor : "rgba(200,69,80,0.9)",
+			strokeColor : "rgba(60,184,80,0.8)",
+			pointColor : "#3CB850",
+			pointStrokeColor : "rgba(60,184,80,0.8)",
+			pointHighlightFill : "#fff",
+			pointHighlightStroke : "rgba(60,184,80,0.8)",
+			data : [ 10, 20, 60, 50, 69, 46, 8]
+		}]
 	};
 
 	var areaChartOptions = {

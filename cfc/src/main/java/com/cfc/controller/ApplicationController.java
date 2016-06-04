@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ApplicationController {
 	@RequestMapping("/dash")
     public String greeting() {
-        return "dashboard";
+        return "dashboardAng";
     }
 
 	@RequestMapping("/")

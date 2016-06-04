@@ -96,6 +96,7 @@ function loadTableMovimientos() {
 
 function loadTableSucursales() {
 	var url = '/cfc/efectivo/getSucursales';
+	alert(url);
 	$('#mainTableBody').empty();
 	$.ajax({
 		method : 'GET',
@@ -123,7 +124,7 @@ function loadTableSucursales() {
 }
 
 function loadTableSucursal() {
-	var url = '/cfc/efectivo/getSucursal';
+	var url = '/cfc/efectivo/getSucursales';
 	$('#mainTableBody').empty();
 	$.ajax({
 		method : 'GET',
@@ -131,13 +132,13 @@ function loadTableSucursal() {
 	}).success(
 			function(data) {
 				var html = '';
-				//$.each(data, function(index, elem) {
+				$.each(data, function(index, elem) {
 					
 					html+='<div class="col-md-12"><span>';
 					html+=data.nomAgencia;
 					html+='</span></div>';
 					
-				//});
+				});
 				$('#mainTableBody').append(html);
 			}).done(function(data) {
 		//alert('done' + data);
