@@ -29,14 +29,14 @@ angular.module('appCFC').factory('graphService', function(){
 		    };
 	}
 	
-	service.loadData(data){
+//	service.loadData = function(data){
 //		if (data == null || data==={}){
 //			return;
 //		}
-		
+//		
 //		valores:{
-//			typo : "efectivo" 
-//			
+//			tipo : "efectivo",
+//			datos			
 //		}
 //			
 //	}
