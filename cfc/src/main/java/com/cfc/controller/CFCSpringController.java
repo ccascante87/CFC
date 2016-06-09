@@ -1,16 +1,20 @@
 package com.cfc.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cfc.domain.GraphData;
 import com.cfc.domain.Message;
 import com.cfc.model.Historico;
 import com.cfc.model.Movimiento;
@@ -25,6 +29,7 @@ import com.cfc.service.ISucursalService;
 @RequestMapping("/efectivo")
 public class CFCSpringController {
 	final static Logger logger = Logger.getLogger(CFCSpringController.class);
+	private GraphData data = GraphData.getInstance();
 	@Autowired
 	ISaldoService iSaldoService;
 	@Autowired
@@ -175,5 +180,17 @@ public class CFCSpringController {
 		model.addAttribute("greeting", "Hello World Again, from Spring 4 MVC");
 		return "welcome";
 	}*/
+	@ResponseBody
+	@RequestMapping(value="/getGraphData", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	public GraphData getGraphData(String currency, String branch){
+		
+		data.addItem();
+//		List<String> values = Arrays.asList("1008");
+//		data.getxAxisValues().addAll(Arrays.asList("1"));
+//		data.getyAxisValues().put("Saldo", values);
+		
+//		data.getyAxisValues().put("Monedas", values);
+		return data;
+	}
 
 }

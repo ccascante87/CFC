@@ -26,17 +26,17 @@
 							<th scope="row">Monto Asegurado</th>
 							<td>{{mainData.montoAsegurado | currency : "CRC" : 2 }}</td>
 							<th scope="row">Saldo Actual</th>
-							<td>₡ XX,XXX,XXX.XX</td>
+							<td>{{mainData.montoAsegurado | currency : "CRC" : 2 }}</td>
 							<th scope="row">Ocioso</th>
-							<td>₡ XX,XXX,XXX.XX</td>
+							<td>{{mainData.montoAsegurado | currency : "CRC" : 2 }}</td>
 						</tr>
 						<tr>
 							<th scope="row">Código</th>
 							<td>Sucursal</td>
 							<th scope="row">Saldo Autorizado</th>
-							<td>₡ XX,XXXX,XXX.XX</td>
+							<td>{{mainData.montoAsegurado | currency : "CRC" : 2 }}</td>
 							<th scope="row">Punto Reorden</th>
-							<td>₡ XX,XXX,XXX.XX</td>
+							<td>{{mainData.montoAsegurado | currency : "CRC" : 2 }}</td>
 							<th scope="row">% Utilización</th>
 							<td>XX.XX%</td>
 						</tr>
@@ -53,13 +53,13 @@
 						</tr>
 						<tr>
 							<th scope="row">Por día</th>
-							<td> XX,XXX,XXX.XX</td>
-							<td> XX,XXX,XXX.XX</td>
+							<td> {{mainData.montoAsegurado | currency : "CRC" : 2 }}</td>
+							<td> {{mainData.montoAsegurado | currency : "CRC" : 2 }}</td>
 						</tr>
 						<tr>
 							<th scope="row">Por fecha</th>
-							<td>₡ XX,XXXX,XXX.XX</td>
-							<td>₡ XX,XXX,XXX.XX</td>
+							<td>{{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
+							<td>{{mainData.montoAsegurado | currency : "CRC" : 2 }}</td>
 						</tr>
 					</table>
 				</div>

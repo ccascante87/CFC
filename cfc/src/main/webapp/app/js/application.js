@@ -150,3 +150,25 @@ function loadTableSucursal() {
 						+ ' jqXHR: ' + jqXHR);
 			});
 }
+
+
+function loadGraphData() {
+	var url = '/cfc/efectivo/getGraphData';
+	var jsonData = '';
+	$.ajax({
+		method : 'GET',
+		url : url
+	}).success(
+			function(data) {
+				jsonData = data;
+				return jsonData;
+			}).done(function(data) {
+		//alert('done' + data);
+	}).complete(function() {
+		//alert('complete');
+	}).fail(
+			function(jqXHR, textStatus, errorThrown) {
+				alert('fail: ' + textStatus + ' errorThrown: ' + errorThrown
+						+ ' jqXHR: ' + jqXHR);
+			});
+}

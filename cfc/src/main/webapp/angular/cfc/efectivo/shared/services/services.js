@@ -5,7 +5,6 @@ angular.module('appCFC').factory('graphService', function(){
 
 	//configures the graphic with the default values; 
 	service.configureGraph = function(){
-		console.log('En congif')
 		this.graphOptions = {
 		        chart: {
 		            type: 'stackedAreaChart',
@@ -22,24 +21,25 @@ angular.module('appCFC').factory('graphService', function(){
 		            duration: 0,    
 		            yAxis: {
 		                tickFormat: function(d){
-		                   return d3.format('.01f')(d);
+		                   return d3.format('.0f')(d);
 		                }
 		            }
 		        }
 		    };
 	}
 	
-//	service.loadData = function(data){
-//		if (data == null || data==={}){
-//			return;
-//		}
-//		
+	service.loadData = function(data){
+		if (data == null || data==={}){
+			return;
+		}
+		
 //		valores:{
 //			tipo : "efectivo",
-//			datos			
+//			datosX: "86786876",
+//			datosY: "54530023"
 //		}
-//			
-//	}
+			
+	}
 	
 	
 	

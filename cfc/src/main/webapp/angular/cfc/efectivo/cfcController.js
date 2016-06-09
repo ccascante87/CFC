@@ -1,4 +1,4 @@
-angular.module('appCFC').controller('cfcController', ['$scope', 'graphService', function($scope,graphService){
+angular.module('appCFC').controller('cfcController', ['$scope','$http', 'graphService', function($scope,$http,graphService){
 	
 	function MainData(args) {
         this.usuario = args.usuario;//exercises || [];
@@ -37,55 +37,14 @@ angular.module('appCFC').controller('cfcController', ['$scope', 'graphService', 
 		$scope.mainData = datos;
 //		console.log("jajaj");
 	} ;
-	//////
-//	var loadHome = function loadHome() {
-//		var homepageHtml = 'graphColones';
-//		loadHTML(homepageHtml);
-//	}
-
-//	function loadHTML(htmlFile) {
-//		var wrapper = $('#content-wrapper');
-//		if (htmlFile != undefined) {
-//			console.log("adfadfadsf");
-//			var htmlSnippet = 'app/snippets/' + htmlFile + '.html';
-//			$.ajax({
-//				url : htmlSnippet,
-//				type : 'GET',
-//				cache : false,
-//				success : function(html) {
-//					wrapper.html(html);
-//				}
-//			});
-//		}
-//		$scope.$apply();
-//	}
-	////////////////////////
-	
-	//TODO Move to proper location...
-//	$scope.options = {
-//	        chart: {
-//	            type: 'stackedAreaChart',
-//	            height: 180,
-//	            margin : {
-//	                top: 20,
-//	                right: 20,
-//	                bottom: 40,
-//	                left: 55
-//	            },
-//	            x: function(d){ return d.x; },
-//	            y: function(d){ return d.y; },
-//	            useInteractiveGuideline: true,
-//	            duration: 1000,    
-//	            yAxis: {
-//	                tickFormat: function(d){
-//	                   return d3.format('.01f')(d);
-//	                }
-//	            }
-//	        }
-//	    };
 	
 	function loadData(){
-		$scope.data = [{ values: [], key: 'Random Walk' },{ values: [], key: 'Trail running' }];
+		$scope.data = [{ values: [], key: 'Saldo' },
+		               { values: [], key: 'Ocioso' },
+		               { values: [], key: 'Otrosss' }];
+		console.log("TODODODODOODODODDO")
+		
+		
 	}
 	
 	    
@@ -95,26 +54,108 @@ angular.module('appCFC').controller('cfcController', ['$scope', 'graphService', 
 		startController();
 		
 		graphService.configureGraph();
-		console.log("sdfasdfasdfasdf");
-		console.log(graphService.graphOptions);
 		$scope.options = graphService.graphOptions;
-//		$scope.$apply();
-//		loadHome();
+		
+		
+		var values =[];
+		var xAxisValues  ;//jsonData.xAxisValues;
+		var x = 0;
+		var y = 0;
+		
+		
+		var jsonData = {};//"yAxisValues":{"Efectivo":["1","2","3","4"],"Monedas":["1","2","3","4"],"Prestamos":["1","2","3","4"]},"xAxisValues":["1","2","3","4"],"labels":["Efectivo","Monedas","Prestamos"]};
+		console.log('..............................................');
+		$http({
+            method: 'GET',
+            url: '/cfc/efectivo/getGraphData',
+            //data: { applicationId: 3 }
+        }).success(function (result) {
+        	console.log("/////66666666666666666////////")
+        	console.log(result)
+        	jsonData = result;
+        	console.log(jsonData );
+        	xAxisValues = jsonData.xAxisValues;
+        	x = 0;
+	 		y = 0;
+	 		$scope.data = [];		
+	 		angular.forEach(jsonData.labels, function(item){
+	 			$scope.data.push({ values: [], key: item });
+//	 			console.log(item)
+	 			values = jsonData.yAxisValues[item];
+	 			 
+	 			for(index = 0; index < xAxisValues.length;index++){
+	 				$scope.data[x].values.push({x: xAxisValues[index], y: values[index] });
+	 				y= index;
+//	 				console.log(y)
+	 			}
+	 		    x++;
+	 		});
+//	 		$scope.$apply(); // update both chart
+	  });
+		console.log('//////////////////');
+		
+//		$scope.data = [];
+////		$scope.data = [{ values: [], key: 'Random Walk' }];		
+//		angular.forEach(jsonData.labels, function(item){
+//			$scope.data.push({ values: [], key: item });
+//			values = jsonData.yAxisValues[item];
+//			for(index = 0; index < xAxisValues.length;index++){
+//				$scope.data[x].values.push({x: xAxisValues[index], y: values[index] });
+//				y= index;
+//			}
+//		    x++;
+////			$scope.data[x].values.push({ x: x,	y: Math.random() });
+//		})
+//		console.log($scope.data);
 //		
-//		
-	    loadData();
-	    var x = 0;
+		
+		
 	    setInterval(function(){
-		    if (!$scope.run) return;
-		    $scope.data[0].values.push({ x: x,	y: Math.random() - 0.5});
-		    $scope.data[1].values.push({ x: x,	y: Math.random() + 0.5});
-	      if ($scope.data[0].values.length > 20) $scope.data[0].values.shift();
-		    x++;
-//		    console.log("por a a a a " + x)
-	      $scope.$apply(); // update both chart
-	    }, 500);        
-//        startController();
-    };
+	    	x++;
+	    	y++;    	
+	    	$http({
+	            method: 'GET',
+	            url: '/cfc/efectivo/getGraphData',
+	            //data: { applicationId: 3 }
+	        }).success(function (result) {
+	        	jsonData = result;
+	        	console.log(jsonData );
+	        	xAxisValues = jsonData.xAxisValues;
+	        	x = 0;
+		 		y = 0;
+		 		$scope.data = [];		
+		 		angular.forEach(jsonData.labels, function(item){
+		 			$scope.data.push({ values: [], key: item });
+//		 			console.log(item)
+		 			values = jsonData.yAxisValues[item];
+		 			 
+		 			for(index = 0; index < xAxisValues.length;index++){
+		 				$scope.data[x].values.push({x: xAxisValues[index], y: values[index] });
+		 				y= index;
+//		 				console.log(y)
+		 			}
+		 		    x++;
+		 		});
+		  });	      
+	    }, 5000); 
+	    	$scope.selectedCurrency = "¢";
+	};
+    
+    
+    //load currency dropdown    
+    $scope.currency = ["¢", "$", "€"];
+    
+    //load sucursales
+    //TODO: implement to extract sucursales from database and load the dropdown
+    
+    $http({
+        method: 'GET',
+        url: '/cfc/efectivo/getSucursales',
+        //data: { applicationId: 3 }
+    }).success(function (result) {
+    $scope.sucursales = result;
+    });
+    //$scope.sucursales= ["Central","Puntarenas","San Jose"]
 
     init();
 }]);//End controller

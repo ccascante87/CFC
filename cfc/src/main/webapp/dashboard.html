@@ -18,10 +18,10 @@
     
 <!-- 	HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--     WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--     [if lt IE 9]--> 
+	<!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <!-- [endif]-->
+    <![endif]-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.css"/>
   </head>
   <body class="hold-transition skin-cfc sidebar-mini" ng-controller="cfcController">
@@ -48,6 +48,21 @@
           <!-- Navbar Right Menu -->
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+            
+             <!-- Sucursales Dropdown -->
+              <li class="dropdown notifications-menu">
+               <select style="margin-top: 11px;" ng-value="selectedCurrency">
+					<option ng-repeat="x in sucursales">{{x.nomAgencia}}</option>
+				</select>
+              </li>
+            
+             <!-- Currency Dropdown -->
+              <li class="dropdown notifications-menu">
+               <select style="margin-top: 11px; ">
+					<option ng-repeat="x in currency">{{x}}</option>
+				</select>
+              </li>
+            
               <!-- Messages: style can be found in dropdown.less-->
               <li class="dropdown messages-menu">
                 <!-- Menu toggle button -->
@@ -65,6 +80,7 @@
                   <span class="label label-warning"></span>
                 </a>
               </li>
+              
               <!-- Tasks Menu -->
               <li class="dropdown tasks-menu">
                 <!-- Menu Toggle Button -->
@@ -175,15 +191,9 @@
 <!--     AdminLTE App -->
     <script src="dist/js/app.min.js"></script>
     <script src="app/js/dashboard.js"></script>
-    
+    <script src="app/js/application.js"></script>
     <script src="plugins/fastclick/fastclick.min.js"></script>
     <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
-    
-<!--     <script src="angular/vendor/angular.min.js"></script> -->
-<!--     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular-route.js"></script> -->
-<!--     <script src="angular/vendor/d3.min.js" charset="utf-8"></script> -->
-<!--     <script src="angular/vendor/nv.d3.min.js"></script> -->
-<!--     <script src="angular/vendor/angular-nvd3.min.js"></script> -->
     
     
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.js"></script>
