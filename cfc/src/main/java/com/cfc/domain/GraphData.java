@@ -26,9 +26,12 @@ public class GraphData {
 	}
 	
 	private GraphData(){
-		yAxisValues.put("Efectivo", new ArrayList<>());
-		yAxisValues.put("Monedas", new ArrayList<>());
-//		yAxisValues.put("Prestamos", new ArrayList<>());
+		yAxisValues.put("Menudo", new ArrayList<>());
+		yAxisValues.put("Reserva", new ArrayList<>());
+		yAxisValues.put("Prestamos", new ArrayList<>());
+		yAxisValues.put("LCSx", new ArrayList<>());
+		yAxisValues.put("LCx", new ArrayList<>());
+		yAxisValues.put("LClx", new ArrayList<>());
 	}
 	public Set<String> getLabels(){
 		return yAxisValues.keySet();
@@ -49,8 +52,7 @@ public class GraphData {
 		for (List<String> item : yAxisValues.values()) {  
 			
 			System.out.println(String.valueOf( 10 + new Integer((int) Math.random())));
-			item.add(String.valueOf( 10 + new Integer((int) Calendar.getInstance().get(Calendar.MILLISECOND)))
-					 );
+			item.add(String.valueOf( 10 ));
 		}
 	}
 }
