@@ -24,21 +24,21 @@
 							<th scope="row">Usuario</th>
 							<td>Usuario</td>
 							<th scope="row">Monto Asegurado</th>
-							<td>{{mainData.montoAsegurado | currency : "CRC" : 2 }}</td>
+							<td>{{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
 							<th scope="row">Saldo Actual</th>
-							<td>{{mainData.montoAsegurado | currency : "CRC" : 2 }}</td>
+							<td>{{mainData.saldoActual | currency : selectedCurrency : 2 }}</td>
 							<th scope="row">Ocioso</th>
-							<td>{{mainData.montoAsegurado | currency : "CRC" : 2 }}</td>
+							<td>{{mainData.ocioso | currency : selectedCurrency : 2 }}</td>
 						</tr>
 						<tr>
 							<th scope="row">Código</th>
 							<td>Sucursal</td>
 							<th scope="row">Saldo Autorizado</th>
-							<td>{{mainData.montoAsegurado | currency : "CRC" : 2 }}</td>
+							<td>{{mainData.saldoAutorizado | currency : selectedCurrency : 2 }}</td>
 							<th scope="row">Punto Reorden</th>
-							<td>{{mainData.montoAsegurado | currency : "CRC" : 2 }}</td>
+							<td>{{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
 							<th scope="row">% Utilización</th>
-							<td>XX.XX%</td>
+							<td>10%</td>
 						</tr>
 					</table>
 				</div>
@@ -53,13 +53,13 @@
 						</tr>
 						<tr>
 							<th scope="row">Por día</th>
-							<td> {{mainData.montoAsegurado | currency : "CRC" : 2 }}</td>
-							<td> {{mainData.montoAsegurado | currency : "CRC" : 2 }}</td>
+							<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
+							<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
 						</tr>
 						<tr>
 							<th scope="row">Por fecha</th>
 							<td>{{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
-							<td>{{mainData.montoAsegurado | currency : "CRC" : 2 }}</td>
+							<td>{{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
 						</tr>
 					</table>
 				</div>
@@ -102,27 +102,27 @@
 						<table class="table">
 							<tr>
 								<th scope="row">Menudo</th>
-								<td> XX,XXX,XXX.XX</td>
+								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
 								<td> --</td>
 							</tr>
 							<tr>
 								<th scope="row">Reserva</th>
-								<td> XX,XXX,XXX.XX</td>
+								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
 								<td> --</td>
 							</tr>
 							<tr>
 								<th scope="row">LCSx</th>
-								<td> XX,XXX,XXX.XX</td>
+								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
 								<td> --</td>
 							</tr>
 							<tr>
 								<th scope="row">LCx</th>
-								<td> XX,XXX,XXX.XX</td>
+								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
 								<td> --</td>
 							</tr>
 							<tr>
 								<th scope="row">LClx</th>
-								<td> XX,XXX,XXX.XX</td>
+								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
 								<td> --</td>
 							</tr>
 						</table>
@@ -134,22 +134,22 @@
 							</tr>
 							<tr>
 								<td> 00:00</td>
-								<td> XX,XXX,XXX.XX</td>
+								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
 								<td> --</td>
 							</tr>
 							<tr>
 								<td> 00:00</td>
-								<td> XX,XXX,XXX.XX</td>
+								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
 								<td> --</td>
 							</tr>
 							<tr>
 								<td> 00:00</td>
-								<td> XX,XXX,XXX.XX</td>
+								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
 								<td> --</td>
 							</tr>
 							<tr>
 								<td> 00:00</td>
-								<td> XX,XXX,XXX.XX</td>
+								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
 								<td> --</td>
 							</tr>
 						</table>
@@ -191,22 +191,22 @@
 						<table class="table">
 							<tr>
 								<th scope="row">Varianza</th>
-								<td> XX,XXX,XXX.XX</td>
+								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
 								<td> --</td>
 							</tr>
 							<tr>
 								<th scope="row">LCSr</th>
-								<td> XX,XXX,XXX.XX</td>
+								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
 								<td> --</td>
 							</tr>
 							<tr>
 								<th scope="row">LCr</th>
-								<td> XX,XXX,XXX.XX</td>
+								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
 								<td> --</td>
 							</tr>
 							<tr>
 								<th scope="row">LClr</th>
-								<td> XX,XXX,XXX.XX</td>
+								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
 								<td> --</td>
 							</tr>
 						</table>
@@ -218,22 +218,22 @@
 							</tr>
 							<tr>
 								<td> 00:00</td>
-								<td> XX,XXX,XXX.XX</td>
+								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
 								<td> --</td>
 							</tr>
 							<tr>
 								<td> 00:00</td>
-								<td> XX,XXX,XXX.XX</td>
+								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
 								<td> --</td>
 							</tr>
 							<tr>
 								<td> 00:00</td>
-								<td> XX,XXX,XXX.XX</td>
+								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
 								<td> --</td>
 							</tr>
 							<tr>
 								<td> 00:00</td>
-								<td> XX,XXX,XXX.XX</td>
+								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
 								<td> --</td>
 							</tr>
 						</table>

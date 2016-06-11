@@ -25,32 +25,27 @@ angular.module('appCFC').controller('cfcController', ['$scope','$http', 'graphSe
 		
 		usuario : "Jaimito",
         montoAsegurado : "1000000.00",
-        saldoActual : "C10,000,00.00",         
-        ocioso : "C10,000,00.00",
+        saldoActual : "1000000.00",         
+        ocioso : "1000000.00",
         codigoSucursal : "San Jose",
-        saldoAutorizado : "C10,000,00.00",
-        puntoReorden : "C10,000,00.00",
-        porcentajeUtilización : "%10"
+        saldoAutorizado : "1000000.00",
+        puntoReorden : "1000000.00",
+        porcentajeUtilizacion : "10"
 	});
 	
 	var startController = function(){
 		$scope.mainData = datos;
-//		console.log("jajaj");
 	} ;
 	
 	function loadData(){
 		$scope.data = [{ values: [], key: 'Saldo' },
 		               { values: [], key: 'Ocioso' },
-		               { values: [], key: 'Otrosss' }];
-		console.log("TODODODODOODODODDO")
-		
-		
+		               { values: [], key: 'Otrosss' }];		
 	}
 	
 	    
     $scope.run = true;
 	var init = function () {
-		console.log("init")
 		startController();
 		
 		graphService.configureGraph();
@@ -70,8 +65,6 @@ angular.module('appCFC').controller('cfcController', ['$scope','$http', 'graphSe
             url: '/cfc/efectivo/getGraphData',
             //data: { applicationId: 3 }
         }).success(function (result) {
-        	console.log("/////66666666666666666////////")
-        	console.log(result)
         	jsonData = result;
         	console.log(jsonData );
         	xAxisValues = jsonData.xAxisValues;
@@ -90,7 +83,7 @@ angular.module('appCFC').controller('cfcController', ['$scope','$http', 'graphSe
 	 			}
 	 		    x++;
 	 		});
-//	 		$scope.$apply(); // update both chart
+	 		$scope.$apply(); // update both chart
 	  });
 		console.log('//////////////////');
 		
@@ -137,6 +130,7 @@ angular.module('appCFC').controller('cfcController', ['$scope','$http', 'graphSe
 		 		    x++;
 		 		});
 		  });	      
+	    	console.log("Updated");
 	    }, 5000); 
 	    	$scope.selectedCurrency = "¢";
 	};

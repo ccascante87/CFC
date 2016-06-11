@@ -3,8 +3,8 @@ angular.module('appCFC', [ 'ngRoute' ,'nvd3']).config(function($routeProvider) {
 	console.log($routeProvider);
 	$routeProvider.when('/index', {
 
-		templateUrl : 'app/snippets/graphColones.html',
-		controller: 'cfcController' 
+		templateUrl : 'app/snippets/graphColones.html'
+//		controller: 'cfcController' 
 	});	
 	$routeProvider.otherwise({
 		redirectTo : '/index'

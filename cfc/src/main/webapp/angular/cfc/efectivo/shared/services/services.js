@@ -8,7 +8,7 @@ angular.module('appCFC').factory('graphService', function(){
 		this.graphOptions = {
 		        chart: {
 		            type: 'stackedAreaChart',
-		            height: 180,
+		            height: 400,
 		            margin : {
 		                top: 20,
 		                right: 20,
@@ -21,9 +21,16 @@ angular.module('appCFC').factory('graphService', function(){
 		            duration: 0,    
 		            yAxis: {
 		                tickFormat: function(d){
-		                   return d3.format('.0f')(d);
+		                   return d3.format('0.0f')(d);
 		                }
-		            }
+		            },
+		            
+		            xAxis: {
+	                    showMaxMin: false,
+	                    tickFormat: function(d) {
+	                        return d3.time.format('%x')(new Date(d))
+	                    }
+	                }
 		        }
 		    };
 	}
