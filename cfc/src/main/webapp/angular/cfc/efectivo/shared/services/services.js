@@ -18,19 +18,26 @@ angular.module('appCFC').factory('graphService', function(){
 		            x: function(d){ return d.x; },
 		            y: function(d){ return d.y; },
 		            useInteractiveGuideline: true,
-		            duration: 0,    
+		            duration: 0,
+		            xScale : d3.time.scale(),
 		            yAxis: {
+		            	
 		                tickFormat: function(d){
-		                   return d3.format('0.0f')(d);
+		                   return d;//d3.format('$,0.00f')(d);
 		                }
 		            },
 		            
 		            xAxis: {
-	                    showMaxMin: false,
+//		            	ticks : d3.time.minutes,
 	                    tickFormat: function(d) {
-	                        return d3.time.format('%x')(new Date(d))
+//	                    	;	
+	                    	if(d == 'NaN:NaN:NaN')
+	                    		return '';
+	                    	else
+	                    		return (new Date(d));
 	                    }
-	                }
+	                },
+	                showControls :false
 		        }
 		    };
 	}
@@ -38,19 +45,7 @@ angular.module('appCFC').factory('graphService', function(){
 	service.loadData = function(data){
 		if (data == null || data==={}){
 			return;
-		}
-		
-//		valores:{
-//			tipo : "efectivo",
-//			datosX: "86786876",
-//			datosY: "54530023"
-//		}
-			
+		}			
 	}
-	
-	
-	
-	return service;
-	
-	
+	return service;	
 })

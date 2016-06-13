@@ -1,51 +1,53 @@
 <section class="content-header">
-	<h1>Gráfico Colones</h1>
-	<div class="gray-line"></div>
+	<h1>Control de flujo de efectivo</h1>
 </section>
-
 <!-- Main content -->
 <section class="content">
-
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-12">
-				<div class="col-md-2"></div>
-				<div class="col-md-8 text-center">
-					<h3>Control de flujo de efectivo</h3>
-				</div>
-				<div class="col-md-2"></div>
-			</div>
-		</div>
-		<div class="row">
 			<div class="col-md-8">
-				<div class="table-responsive">
-					<table class="table table-bordered">
-						<tr>
-							<th scope="row">Usuario</th>
-							<td>Usuario</td>
-							<th scope="row">Monto Asegurado</th>
-							<td>{{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
-							<th scope="row">Saldo Actual</th>
-							<td>{{mainData.saldoActual | currency : selectedCurrency : 2 }}</td>
-							<th scope="row">Ocioso</th>
-							<td>{{mainData.ocioso | currency : selectedCurrency : 2 }}</td>
-						</tr>
-						<tr>
-							<th scope="row">Código</th>
-							<td>Sucursal</td>
-							<th scope="row">Saldo Autorizado</th>
-							<td>{{mainData.saldoAutorizado | currency : selectedCurrency : 2 }}</td>
-							<th scope="row">Punto Reorden</th>
-							<td>{{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
-							<th scope="row">% Utilización</th>
-							<td>10%</td>
-						</tr>
-					</table>
+				<div class="box box-primary">
+					<div class="box-body">
+
+						<div class="table-responsive">
+							<table class="table">
+								<tr>
+									<th scope="row">Usuario</th>
+									<td>Usuario</td>
+									<th scope="row">Monto Asegurado</th>
+									<td>{{mainData.montoAsegurado | currency :
+										selectedCurrency : 2 }}</td>
+									<th scope="row">Saldo Actual</th>
+									<td>{{mainData.saldoActual | currency : selectedCurrency :
+										2 }}</td>
+									<th scope="row">Ocioso</th>
+									<td>{{mainData.ocioso | currency : selectedCurrency : 2 }}</td>
+								</tr>
+								<tr>
+									<th scope="row">Código</th>
+									<td>Sucursal</td>
+									<th scope="row">Saldo Autorizado</th>
+									<td>{{mainData.saldoAutorizado | currency :
+										selectedCurrency : 2 }}</td>
+									<th scope="row">Punto Reorden</th>
+									<td>{{mainData.montoAsegurado | currency :
+										selectedCurrency : 2 }}</td>
+									<th scope="row">% Utilización</th>
+									<td>10%</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<!-- /.box-body -->
 				</div>
+				<!-- /.box -->
 			</div>
 			<div class="col-md-4">
-				<div class="table-responsive">
-					<table class="table table-bordered">
+							<div class="box box-primary">
+					<div class="box-body">
+
+						<div class="table-responsive">
+					<table class="table">
 						<tr>
 							<th scope="row">Pronóstico</th>
 							<th scope="row">Hoy</th>
@@ -53,16 +55,26 @@
 						</tr>
 						<tr>
 							<th scope="row">Por día</th>
-							<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
-							<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
+							<td>{{mainData.byDayToday | currency : selectedCurrency
+								: 2 }}</td>
+							<td>{{mainData.byDayTomorrow | currency : selectedCurrency
+								: 2 }}</td>
 						</tr>
 						<tr>
 							<th scope="row">Por fecha</th>
-							<td>{{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
-							<td>{{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
+							<td>{{mainData.byDateToday | currency : selectedCurrency
+								: 2 }}</td>
+							<td>{{mainData.byDateTomorrow | currency : selectedCurrency
+								: 2 }}</td>
 						</tr>
 					</table>
 				</div>
+					</div>
+					<!-- /.box-body -->
+				</div>
+				<!-- /.box -->
+				
+				
 			</div>
 		</div>
 		<div class="row">
@@ -84,7 +96,7 @@
 					</div>
 					<div class="box-body">
 						<div>
-						
+
 							<nvd3 options="options" data="data"></nvd3>
 						</div>
 					</div>
@@ -93,37 +105,17 @@
 				<!-- /.box -->
 			</div>
 			<div class="col-md-4">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Detalle del comportamiento del
-							efectivo</h3>
+				<div class="box box-primary">
+					<div class="box-header with-border">
+						<h3 class="panel-title">Detalle del comportamiento del 	efectivo</h3>
 					</div>
-					<div class="panel-body">
+					<div class="box-body">
 						<table class="table">
-							<tr>
-								<th scope="row">Menudo</th>
-								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
-								<td> --</td>
-							</tr>
-							<tr>
-								<th scope="row">Reserva</th>
-								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
-								<td> --</td>
-							</tr>
-							<tr>
-								<th scope="row">LCSx</th>
-								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
-								<td> --</td>
-							</tr>
-							<tr>
-								<th scope="row">LCx</th>
-								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
-								<td> --</td>
-							</tr>
-							<tr>
-								<th scope="row">LClx</th>
-								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
-								<td> --</td>
+							<tr ng-repeat="detail in mainData.cashBehaviorDetail">
+								<th scope="row">{{detail.label}}</th>
+								<td>{{detail.value | currency : selectedCurrency : 2 }}</td>
+								<td><span
+									class="glyphicon {{ detail | displayUpDownArrow}}"></span></td>
 							</tr>
 						</table>
 						<table class="table">
@@ -132,25 +124,12 @@
 								<th scope="row">Saldo</th>
 								<th scope="row">Tendencia</th>
 							</tr>
-							<tr>
-								<td> 00:00</td>
-								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
-								<td> --</td>
-							</tr>
-							<tr>
-								<td> 00:00</td>
-								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
-								<td> --</td>
-							</tr>
-							<tr>
-								<td> 00:00</td>
-								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
-								<td> --</td>
-							</tr>
-							<tr>
-								<td> 00:00</td>
-								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
-								<td> --</td>
+							<tr ng-repeat="curentBalance in mainData.currentBalanceHistory">
+								<td>{{ curentBalance.label}}</td>
+								<td>{{curentBalance.value | currency : selectedCurrency : 2
+									}}</td>
+								<td><span
+									class="glyphicon {{ curentBalance | displayUpDownArrow}}"></span></td>
 							</tr>
 						</table>
 					</div>
@@ -191,23 +170,27 @@
 						<table class="table">
 							<tr>
 								<th scope="row">Varianza</th>
-								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
-								<td> --</td>
+								<td>{{mainData.montoAsegurado | currency : selectedCurrency
+									: 2 }}</td>
+								<td>--</td>
 							</tr>
 							<tr>
 								<th scope="row">LCSr</th>
-								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
-								<td> --</td>
+								<td>{{mainData.montoAsegurado | currency : selectedCurrency
+									: 2 }}</td>
+								<td>--</td>
 							</tr>
 							<tr>
 								<th scope="row">LCr</th>
-								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
-								<td> --</td>
+								<td>{{mainData.montoAsegurado | currency : selectedCurrency
+									: 2 }}</td>
+								<td>--</td>
 							</tr>
 							<tr>
 								<th scope="row">LClr</th>
-								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
-								<td> --</td>
+								<td>{{mainData.montoAsegurado | currency : selectedCurrency
+									: 2 }}</td>
+								<td>--</td>
 							</tr>
 						</table>
 						<table class="table">
@@ -217,24 +200,28 @@
 								<th scope="row">Estabilidad</th>
 							</tr>
 							<tr>
-								<td> 00:00</td>
-								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
-								<td> --</td>
+								<td>00:00</td>
+								<td>{{mainData.montoAsegurado | currency : selectedCurrency
+									: 2 }}</td>
+								<td>--</td>
 							</tr>
 							<tr>
-								<td> 00:00</td>
-								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
-								<td> --</td>
+								<td>00:00</td>
+								<td>{{mainData.montoAsegurado | currency : selectedCurrency
+									: 2 }}</td>
+								<td>--</td>
 							</tr>
 							<tr>
-								<td> 00:00</td>
-								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
-								<td> --</td>
+								<td>00:00</td>
+								<td>{{mainData.montoAsegurado | currency : selectedCurrency
+									: 2 }}</td>
+								<td>--</td>
 							</tr>
 							<tr>
-								<td> 00:00</td>
-								<td> {{mainData.montoAsegurado | currency : selectedCurrency : 2 }}</td>
-								<td> --</td>
+								<td>00:00</td>
+								<td>{{mainData.montoAsegurado | currency : selectedCurrency
+									: 2 }}</td>
+								<td>--</td>
 							</tr>
 						</table>
 					</div>
@@ -242,5 +229,6 @@
 			</div>
 		</div>
 	</div>
+</section>
 
 <!-- /.content -->

@@ -1,7 +1,6 @@
 package com.cfc.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cfc.domain.GraphData;
+import com.cfc.domain.Item;
+import com.cfc.domain.MainData;
 import com.cfc.domain.Message;
 import com.cfc.model.Historico;
 import com.cfc.model.Movimiento;
@@ -182,15 +183,28 @@ public class CFCSpringController {
 	}*/
 	@ResponseBody
 	@RequestMapping(value="/getGraphData", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public GraphData getGraphData(String currency, String branch){
+	public MainData getGraphData(String currency, String branch){
 		
 		data.addItem();
-//		List<String> values = Arrays.asList("1008");
-//		data.getxAxisValues().addAll(Arrays.asList("1"));
-//		data.getyAxisValues().put("Saldo", values);
 		
-//		data.getyAxisValues().put("Monedas", values);
-		return data;
+		MainData mda = new MainData();
+		mda.setAutorizedBalance(BigDecimal.TEN.multiply(new BigDecimal(Math.random() * 10000)));
+		mda.setCurrentBalance((BigDecimal.TEN.multiply(new BigDecimal(Math.random() * 10000))));
+		mda.setInsuredAmount((BigDecimal.TEN.multiply(new BigDecimal(Math.random() * 10000))));
+		mda.setLazyAmount((BigDecimal.TEN.multiply(new BigDecimal(Math.random() * 10000))));
+		mda.setReorderPoint((BigDecimal.TEN.multiply(new BigDecimal(Math.random() * 10000))));
+		mda.setUtilizationRate(10);
+		
+		for (String label : mda.getGraphData().getLabels()) {
+			mda.getCashBehaviorDetail().add(new Item(label, new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 1000)));
+		}
+		
+		mda.getCurrentBalanceHistory().add(new Item("7:05", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 1000)));
+		mda.getCurrentBalanceHistory().add(new Item("7:05", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 1000)));
+		mda.getCurrentBalanceHistory().add(new Item("7:05", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 1000)));
+		mda.getCurrentBalanceHistory().add(new Item("7:05", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 1000)));	
+		
+		return mda;
 	}
 
 }

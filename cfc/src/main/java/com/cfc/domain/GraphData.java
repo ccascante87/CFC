@@ -46,7 +46,7 @@ public class GraphData {
 	public void addItem(){
 		x++;
 //		y++;
-		xAxisValues.add(String.valueOf(Calendar.getInstance().getTimeInMillis()));
+		xAxisValues.add(String.valueOf(Calendar.getInstance().getTime().getTime()));
 		
 		System.out.println("x: " + x + ", y: ");
 		for (List<String> item : yAxisValues.values()) {  

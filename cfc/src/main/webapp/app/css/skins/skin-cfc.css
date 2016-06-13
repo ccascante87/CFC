@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Skin: Blue
  * ----------
  */
@@ -197,4 +197,11 @@
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td {
    border: 0.5px solid #000000;
+}
+
+.color-green{
+	color: green!important;
+}
+.color-red{
+	color: red!important;
 }
