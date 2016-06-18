@@ -93,14 +93,14 @@
 							data-toggle="dropdown"> <!-- The user image in the navbar-->
 								<img src="app/img/test.jpg" class="user-image" alt="User Image">
 								<!-- hidden-xs hides the username on small devices so only the image appears. -->
-								<span class="hidden-xs">User Name</span>
+								<span class="hidden-xs">{{mainData.loggedUserName}}</span>
 						</a>
 							<ul class="dropdown-menu">
 								<!-- The user image in the menu -->
 								<li class="user-header"><img src="app/img/test.jpg"
 									class="img-circle" alt="User Image">
 									<p>
-										User Name <small>Other info...</small>
+										{{mainData.loggedUserName}} <small>Other info...</small>
 									</p></li>
 								<!-- Menu Body -->
 								<li class="user-body">
@@ -142,7 +142,7 @@
 						<img src="app/img/test.jpg" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
-						<p>User Name</p>
+						<p>{{mainData.loggedUserName}}</p>
 						<!-- Status -->
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 					</div>
@@ -150,11 +150,11 @@
 
 				<!-- Sidebar Menu -->
 				<ul class="sidebar-menu">
-					<li class="side-menu-item" data-htmlfile="graphColones"><a
-						href="#"><i class="fa fa-area-chart"></i><span>Dashboard</span></a></li>
+					<!-- <li class="side-menu-item" data-htmlfile="graphColones"><a
+						href="#"><i class="fa fa-area-chart"></i><span>Dashboard</span></a></li> -->
 					<li class="side-menu-item" data-htmlfile="graphColones"><a
 						href="#"><i class="fa fa-area-chart"></i><span>Gráfico</span></a></li>
-					<li class="side-menu-item" data-htmlfile="graphColones"><a
+					<!-- <li class="side-menu-item" data-htmlfile="graphColones"><a
 						href="#"><i class="fa fa-area-chart"></i><span>Detalles</span></a></li>
 					<li class="side-menu-item" data-htmlfile="graphColones"><a
 						href="#"><i class="fa fa-area-chart"></i><span>Transacciones</span></a></li>
@@ -163,7 +163,7 @@
 								Histórico</span></a></li>
 					<li class="side-menu-item" data-htmlfile="graphColones"><a
 						href="#"><i class="fa fa-area-chart"></i><span>Datos
-								Históricos</span></a></li>
+								Históricos</span></a></li> -->
 				</ul>
 				<!-- /.sidebar-menu -->
 			</section>
@@ -202,7 +202,6 @@
 	<script src="app/js/application.js"></script>
 	<script src="plugins/fastclick/fastclick.min.js"></script>
 	<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
-
 
 	<script
 		src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.js"></script>

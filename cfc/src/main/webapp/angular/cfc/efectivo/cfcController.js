@@ -15,6 +15,8 @@ angular.module('appCFC').controller('cfcController', ['$scope','$http', 'graphSe
         this.byDateTomorrow = args.byDateTomorrow;
         this.byDayToday = args.byDayToday;
         this.byDayTomorrow = args.byDayTomorrow;
+        
+        this.loggedUserName = args.loggedUserName;
 
 	}	
 	
@@ -22,8 +24,7 @@ angular.module('appCFC').controller('cfcController', ['$scope','$http', 'graphSe
 		loadGraphic();
 	}
 
-    function loadGraphic(){
-    	 
+    function loadGraphic(){    	 
 		x++;
     	y++;    	
     	$http({
@@ -88,6 +89,8 @@ angular.module('appCFC').controller('cfcController', ['$scope','$http', 'graphSe
 	    	loadGraphic();
 	    }, 30000); 
 	    	$scope.selectedCurrency = "¢";
+//	    	$scope.selectedBranch = $scope.sucursales[0].nomAgencia;
+	   $scope.mainData.loggedUserName = 'Bruce Wayne';
 	};
         
     //load currency dropdown    
@@ -101,9 +104,8 @@ angular.module('appCFC').controller('cfcController', ['$scope','$http', 'graphSe
         url: '/cfc/efectivo/getSucursales',
         //data: { applicationId: 3 }
     }).success(function (result) {
-    $scope.sucursales = result;
-    $scope.selectedBrach = result[0].nomAgencia;
-    console.log($scope.selectedBrach);
+    	$scope.sucursales = result;
+    	$scope.selectedBranch = $scope.sucursales[0].nomAgencia;
     });
     //$scope.sucursales= ["Central","Puntarenas","San Jose"]
 
