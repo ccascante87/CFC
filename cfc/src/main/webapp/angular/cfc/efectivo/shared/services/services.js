@@ -19,7 +19,7 @@ angular.module('appCFC').factory('graphService', function(){
 		            y: function(d){ return d.y; },
 		            useInteractiveGuideline: true,
 		            duration: 0,
-		            xScale : d3.time.scale(),
+//		            xScale : d3.time.scale(),
 		            yAxis: {
 		            	
 		                tickFormat: function(d){
@@ -27,19 +27,35 @@ angular.module('appCFC').factory('graphService', function(){
 		                }
 		            },
 		            
-		            xAxis: {
+		            
+//		            xAxis: {
 //		            	ticks : d3.time.minutes,
-	                    tickFormat: function(d) {
-//	                    	;	
-	                    	if(d == 'NaN:NaN:NaN')
-	                    		return '';
-	                    	else
-	                    		return (new Date(d));
-	                    }
-	                },
-	                showControls :false
+//	                    tickFormat: function(d) {
+//	                    	return new Date(d);
+//////	                    	;	
+////	                    	if(d == 'NaN:NaN:NaN')
+////	                    		return '';
+////	                    	else
+////	                    		return (new Date(d));
+//	                    }
+//		            	 showMaxMin: true,
+//		            	  ticks: d3.time.miliseconds
+//		            	  tickFormat: function(d) {
+//		            	    return d3.time.format('%X')(new Date(d));
+//		            	  }
+//	                },c
+//	                showControls :false,	
+		            tooltip:{
+
+		            	valueFormatter:function (d) { return 'FF';
+		            		//return d3.time.format('%X')(new Date(d));
+		            	}
+		            }
 		        }
+		
+       
 		    };
+		
 	}
 	
 	service.loadData = function(data){
