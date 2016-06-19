@@ -1,0 +1,11 @@
+//function rmbarra
+CREATE OR REPLACE FUNCTION getRmBarra (codAgencia IN NUMBER,codMoneda IN VARCHAR2 ) 
+   RETURN NUMBER as my_result NUMBER;
+   BEGIN   
+     SELECT SUM(MONTO_VALOR)  
+     INTO my_result 
+     FROM MOVIMIENTOS 
+     WHERE CODIGO_MONEDA = codMoneda
+     AND CODIGO_AGENCIA= codAgencia;
+     RETURN(my_result);
+END;
