@@ -18,11 +18,15 @@ import com.cfc.domain.Item;
 import com.cfc.domain.MainData;
 import com.cfc.domain.Message;
 import com.cfc.model.Historico;
+import com.cfc.model.Moneda;
 import com.cfc.model.Movimiento;
+import com.cfc.model.Pivot;
 import com.cfc.model.Saldo;
 import com.cfc.model.Sucursal;
 import com.cfc.service.IHistoricoService;
+import com.cfc.service.IMonedaService;
 import com.cfc.service.IMovimientoService;
+import com.cfc.service.IPivotService;
 import com.cfc.service.ISaldoService;
 import com.cfc.service.ISucursalService;
 
@@ -39,6 +43,10 @@ public class CFCSpringController {
 	IMovimientoService iMovimientoService;
 	@Autowired
 	ISucursalService iSucursalService;
+	@Autowired
+	IPivotService iPivotService;
+	@Autowired
+	IMonedaService iMonedaService;
 	
 	@RequestMapping("/hello/{player}")
 	public Message message(@PathVariable String player) {
@@ -205,6 +213,22 @@ public class CFCSpringController {
 		mda.getCurrentBalanceHistory().add(new Item("7:05", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 1000)));	
 		
 		return mda;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getPivotTable", method = RequestMethod.GET, produces = "application/json")
+	public List<Pivot> getPivotTable() {
+		List<Pivot>  pivot =  iPivotService.findAll();
+		logger.debug("getPivotTable.");
+		return pivot;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getMonedas", method = RequestMethod.GET, produces = "application/json")
+	public List<Moneda> getMonedas() {
+		List<Moneda>  moneda =  iMonedaService.findAll();
+		logger.debug("getMonedas.");
+		return moneda;
 	}
 
 }
