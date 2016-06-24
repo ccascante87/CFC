@@ -31,6 +31,8 @@ public class Saldo implements Serializable {
 	private String codigoUsuario;
 
 	private Timestamp fecha;
+	
+	private BigDecimal monto;
 
 	@Column(name="NOM_AGENCIA")
 	private String nomAgencia;
@@ -79,6 +81,14 @@ public class Saldo implements Serializable {
 
 	public void setFecha(Timestamp fecha) {
 		this.fecha = fecha;
+	}
+	
+	public BigDecimal getMonto() {
+		return this.monto;
+	}
+
+	public void setMonto(BigDecimal monto) {
+		this.monto = monto;
 	}
 
 	public String getNomAgencia() {
