@@ -3,7 +3,6 @@
  */
 package com.cfc.dao;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.hibernate.Criteria;

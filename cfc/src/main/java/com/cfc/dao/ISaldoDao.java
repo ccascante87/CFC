@@ -5,7 +5,6 @@ package com.cfc.dao;
 
 import java.util.List;
 
-import com.cfc.model.Movimiento;
 import com.cfc.model.Saldo;
 
 /**
