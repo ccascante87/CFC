@@ -228,6 +228,9 @@ public class CFCSpringController {
 	public List<Moneda> getMonedas() {
 		List<Moneda>  moneda =  iMonedaService.findAll();
 		logger.debug("getMonedas.");
+		if (moneda.isEmpty())
+			return Collections.emptyList();
+		else
 		return moneda;
 	}
 

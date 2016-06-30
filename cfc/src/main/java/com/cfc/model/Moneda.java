@@ -23,9 +23,9 @@ public class Moneda implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
-
+	@Column(name="DESCRIPCION")
 	private String descripcion;
-
+	@Column(name="SIMBOLO")
 	private String simbolo;
 
 	public Moneda() {
