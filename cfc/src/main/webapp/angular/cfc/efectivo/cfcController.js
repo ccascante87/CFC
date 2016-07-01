@@ -104,18 +104,18 @@ angular.module('appCFC').controller('cfcController', ['$scope','$http', 'graphSe
     	$scope.selectedBranch = $scope.currency[0].simbolo;
     });
     
-    //load sucursales
-    //TODO: implement to extract sucursales from database and load the dropdown
-    
+    //load sucursales    
     $http({
         method: 'GET',
         url: '/cfc/efectivo/getSucursales',
         //data: { applicationId: 3 }
     }).success(function (result) {
     	$scope.sucursales = result;
-    	$scope.selectedBranch = $scope.moneda[0].nomAgencia;
+    	$scope.selectedBranch = $scope.sucursales[0].nomAgencia;
     });
     //$scope.sucursales= ["Central","Puntarenas","San Jose"]
-
+    
+ 
+    
     init();
 }]);//End controller

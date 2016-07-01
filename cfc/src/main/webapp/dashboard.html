@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
 <!-- Skin -->
 <link rel="stylesheet" href="app/css/skins/skin-cfc.css">
+<link rel="stylesheet" href="app/css/angular-datatables.css">
 
 <!-- 	HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--     WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -155,10 +156,10 @@
 					<li class="side-menu-item" data-htmlfile="graphColones"><a
 						href="#"><i class="fa fa-area-chart"></i><span>Gráfico</span></a></li>
 					<!-- <li class="side-menu-item" data-htmlfile="graphColones"><a
-						href="#"><i class="fa fa-area-chart"></i><span>Detalles</span></a></li>
-					<li class="side-menu-item" data-htmlfile="graphColones"><a
-						href="#"><i class="fa fa-area-chart"></i><span>Transacciones</span></a></li>
-					<li class="side-menu-item" data-htmlfile="graphColones"><a
+						href="#"><i class="fa fa-area-chart"></i><span>Detalles</span></a></li>-->
+					<li class="side-menu-item" data-htmlfile="transacciones"><a
+						href="#/transac"><i class="fa fa-area-chart"></i><span>Transacciones</span></a></li>
+					<!--<li class="side-menu-item" data-htmlfile="graphColones"><a
 						href="#"><i class="fa fa-area-chart"></i><span>Gráfico
 								Histórico</span></a></li>
 					<li class="side-menu-item" data-htmlfile="graphColones"><a
@@ -215,8 +216,10 @@
 		src="https://rawgit.com/krispo/angular-nvd3/v1.0.4/dist/angular-nvd3.js"></script>
 	<script src="angular/cfc/app.js"></script>
 	<script src="angular/cfc/efectivo/cfcController.js"></script>
+	<script src="angular/cfc/efectivo/transaccionesController.js"></script>
 	<script src="angular/cfc/efectivo/shared/model.js"></script>
 	<script src="angular/cfc/efectivo/shared/services/services.js"></script>
 	<script src="angular/cfc/efectivo/cfcFilters.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.5.4/angular-datatables.js"></script>
 </body>
 </html>

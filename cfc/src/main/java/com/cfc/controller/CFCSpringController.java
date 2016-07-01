@@ -23,12 +23,14 @@ import com.cfc.model.Movimiento;
 import com.cfc.model.Pivot;
 import com.cfc.model.Saldo;
 import com.cfc.model.Sucursal;
+import com.cfc.model.Transaccion;
 import com.cfc.service.IHistoricoService;
 import com.cfc.service.IMonedaService;
 import com.cfc.service.IMovimientoService;
 import com.cfc.service.IPivotService;
 import com.cfc.service.ISaldoService;
 import com.cfc.service.ISucursalService;
+import com.cfc.service.ITransaccionService;
 
 @RestController
 @RequestMapping("/efectivo")
@@ -47,6 +49,8 @@ public class CFCSpringController {
 	IPivotService iPivotService;
 	@Autowired
 	IMonedaService iMonedaService;
+	@Autowired
+	ITransaccionService iTransaccionService;
 	
 	@RequestMapping("/hello/{player}")
 	public Message message(@PathVariable String player) {
@@ -232,6 +236,17 @@ public class CFCSpringController {
 			return Collections.emptyList();
 		else
 		return moneda;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getTransacciones", method = RequestMethod.GET, produces = "application/json")
+	public List<Transaccion> getTransacciones() {
+		List<Transaccion>  transaccion =  iTransaccionService.findAllTransacciones();
+		logger.debug("getTransacciones.");
+		if (transaccion.isEmpty())
+			return Collections.emptyList();
+		else
+		return transaccion;
 	}
 
 }

@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html>
+<div ng-controller="transaccionesController">
+ <table datatable=""  class="row-border hover"> 
+  
+        <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Codigo</th>
+            <th>Descripcion</th>
+            <th>Monto</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="transaccion in transacciones">
+            <td>{{ transaccion.fecha }}</td>
+            <td>{{ transaccion.codTransaccion }}</td>
+            <td>{{ transaccion.descTransaccion }}</td>
+            <td>{{ transaccion.monto }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

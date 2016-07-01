@@ -13,6 +13,7 @@ $('.side-menu-item').click(function() {
 
 function loadHome() {
 	var homepageHtml = 'graphColones';
+	var transaccionesHtml = 'transacciones';
 //	loadHTML(homepageHtml);
 }
 
