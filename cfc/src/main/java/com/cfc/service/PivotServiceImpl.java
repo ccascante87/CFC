@@ -20,19 +20,23 @@ import com.cfc.model.Pivot;
 @Transactional
 public class PivotServiceImpl implements IPivotService {
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.cfc.service.IPivotService#findById(int)
 	 */
 	@Autowired
 	IPivotDao pivotDao;
-	
+
 	@Override
 	public Pivot findById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.cfc.service.IPivotService#savePivot(com.cfc.model.Pivot)
 	 */
 	@Override
@@ -41,7 +45,9 @@ public class PivotServiceImpl implements IPivotService {
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.cfc.service.IPivotService#updatePivot(com.cfc.model.Pivot)
 	 */
 	@Override
@@ -50,7 +56,9 @@ public class PivotServiceImpl implements IPivotService {
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.cfc.service.IPivotService#findAll()
 	 */
 	@Override
@@ -58,4 +66,8 @@ public class PivotServiceImpl implements IPivotService {
 		return pivotDao.findAll();
 	}
 
+	@Override
+	public List<Pivot> findByMaxID(int maxId) {
+		return pivotDao.getByMaxId(maxId);
+	}
 }

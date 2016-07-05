@@ -19,6 +19,7 @@ public interface IPivotService {
 	
 	void updatePivot(Pivot pivot);
 
-	List<Pivot> findAll();
+	List<Pivot> findAll(); 
 
+	List<Pivot> findByMaxID(int maxId);
 }

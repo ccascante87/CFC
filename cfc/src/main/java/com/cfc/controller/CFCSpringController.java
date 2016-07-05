@@ -1,8 +1,13 @@
 package com.cfc.controller;
 
 import java.math.BigDecimal;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
+
+import javax.annotation.PostConstruct;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cfc.domain.GraphData;
+import com.cfc.domain.GraphicItem;
 import com.cfc.domain.Item;
 import com.cfc.domain.MainData;
 import com.cfc.domain.Message;
@@ -36,7 +42,9 @@ import com.cfc.service.ITransaccionService;
 @RequestMapping("/efectivo")
 public class CFCSpringController {
 	final static Logger logger = Logger.getLogger(CFCSpringController.class);
-	private GraphData data = GraphData.getInstance();
+	private GraphData comportamientoEfectivo = new GraphData();
+	private GraphData variacionesEfectivo = new GraphData();
+	private int maxId = 0;
 	@Autowired
 	ISaldoService iSaldoService;
 	@Autowired
@@ -196,26 +204,83 @@ public class CFCSpringController {
 	@ResponseBody
 	@RequestMapping(value="/getGraphData", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public MainData getGraphData(String currency, String branch){
-		
-		data.addItem();
-		
+//		variacionesEfectivo = new GraphData();
+//		comportamientoEfectivo = new  GraphDatCa();
+		variacionesEfectivo.getyAxisValues().clear();
+		comportamientoEfectivo.getyAxisValues().clear();
+		List<Pivot> data = iPivotService.findByMaxID(++maxId);
+		List<GraphicItem> yAxisComp = new ArrayList<GraphicItem>();
+		List<GraphicItem> yAxisVar = new ArrayList<GraphicItem>();
+		GraphicItem item = new GraphicItem();
 		MainData mda = new MainData();
-		mda.setAutorizedBalance(BigDecimal.TEN.multiply(new BigDecimal(Math.random() * 10000)));
-		mda.setCurrentBalance((BigDecimal.TEN.multiply(new BigDecimal(Math.random() * 10000))));
-		mda.setInsuredAmount((BigDecimal.TEN.multiply(new BigDecimal(Math.random() * 10000))));
-		mda.setLazyAmount((BigDecimal.TEN.multiply(new BigDecimal(Math.random() * 10000))));
-		mda.setReorderPoint((BigDecimal.TEN.multiply(new BigDecimal(Math.random() * 10000))));
+		GraphicItem lcir = new GraphicItem("Lcir", "line");
+		GraphicItem lcix = new GraphicItem("Lcix", "line");
+		GraphicItem lcr = new GraphicItem("Lcr", "line");
+		GraphicItem lcsr = new GraphicItem("Lcsr", "line");
+		GraphicItem lcsx = new GraphicItem("Lcsx", "line");
+		GraphicItem lcx = new GraphicItem("Lcx", "line");
+		GraphicItem menudo = new GraphicItem("Menudo", "area");
+		GraphicItem reserva = new GraphicItem("Reserva", "area");
+		GraphicItem varianza = new GraphicItem("Varianza", "area");
+		
+		for (Pivot pivot : data) {
+			//Graph. 1
+			System.out.println("Menudo: " + pivot.getMenudo() + ", Reserva=" + pivot.getReserva());
+			menudo.getItemValues().add(pivot.getMenudo().intValue() +"");
+			reserva.getItemValues().add(pivot.getReserva().intValue() +"");
+			lcsx.getItemValues().add(pivot.getLcsx().intValue() +"");
+			lcx.getItemValues().add(pivot.getLcx().intValue() +"");
+			lcix.getItemValues().add(pivot.getLcix().intValue() +"");
+			
+			
+			//Graph. 2
+			varianza.getItemValues().add(pivot.getReserva().toPlainString());
+			lcsr.getItemValues().add(pivot.getLcsr().toPlainString());
+			lcr.getItemValues().add(pivot.getLcr().toPlainString());
+			lcir.getItemValues().add(pivot.getLcir().toPlainString());
+		}
+		comportamientoEfectivo.getyAxisValues().add(menudo);
+		comportamientoEfectivo.getyAxisValues().add(reserva);
+		comportamientoEfectivo.getyAxisValues().add(lcsx);
+		comportamientoEfectivo.getyAxisValues().add(lcx);
+		comportamientoEfectivo.getyAxisValues().add(lcix);
+		
+		variacionesEfectivo.getyAxisValues().add(varianza);
+		variacionesEfectivo.getyAxisValues().add(lcsr);
+		variacionesEfectivo.getyAxisValues().add(lcr);
+		variacionesEfectivo.getyAxisValues().add(lcir);
+		
+		mda.setAutorizedBalance(data.get(data.size() - 1 ).getSaldoAutorizado());
+		mda.setCurrentBalance(data.get(data.size() - 1 ).getSaldo());
+		mda.setInsuredAmount(data.get(data.size() - 1 ).getSeguroMax());		
+		mda.setLazyAmount(data.get(data.size() - 1 ).getOcioso());
+		mda.setReorderPoint(data.get(data.size() -1 ).getPuntoReorden());
 		mda.setUtilizationRate(10);
 		
-		for (String label : mda.getGraphData().getLabels()) {
-			mda.getCashBehaviorDetail().add(new Item(label, new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 1000)));
-		}
+//		variacionesEfectivo.
 		
-		mda.getCurrentBalanceHistory().add(new Item("7:05", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 1000)));
-		mda.getCurrentBalanceHistory().add(new Item("7:05", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 1000)));
-		mda.getCurrentBalanceHistory().add(new Item("7:05", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 1000)));
-		mda.getCurrentBalanceHistory().add(new Item("7:05", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 1000)));	
+		mda.getCashBehaviorDetail().add(new Item("Menudo",data.get(data.size()-1).getMenudo(),data.get(data.size()-2).getMenudo()));
+		mda.getCashBehaviorDetail().add(new Item("Reserva",data.get(data.size()-1).getReserva(),data.get(data.size()-2).getReserva()));
+		mda.getCashBehaviorDetail().add(new Item("LCSX",data.get(data.size()-1).getLcsx(),data.get(data.size()-2).getLcsx()));
+		mda.getCashBehaviorDetail().add(new Item("Lcx",data.get(data.size()-1).getLcx(),data.get(data.size()-2).getLcx()));
+		mda.getCashBehaviorDetail().add(new Item("Lcix",data.get(data.size()-1).getLcix(),data.get(data.size()-2).getLcix()));
 		
+		mda.getCurrentBalanceHistory().add(new Item("7:05", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 100000)));
+		mda.getCurrentBalanceHistory().add(new Item("7:05", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 100000)));
+		mda.getCurrentBalanceHistory().add(new Item("7:05", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 100000)));
+		mda.getCurrentBalanceHistory().add(new Item("7:05", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 100000)));
+		
+		String stDate = String.valueOf(new java.util.Date().getTime());
+		System.err.println(stDate);
+		variacionesEfectivo.getxAxisValues().add(String.valueOf(Calendar.getInstance().getTime().getTime()));
+		comportamientoEfectivo.getxAxisValues().add(String.valueOf(Calendar.getInstance().getTime().getTime()));
+		
+		
+		
+		
+mda.setVarEfectivoGraph(variacionesEfectivo);
+mda.setCompEfectivoGraph( comportamientoEfectivo);
+	
 		return mda;
 	}
 	
@@ -249,4 +314,24 @@ public class CFCSpringController {
 		return transaccion;
 	}
 
+	@PostConstruct
+	public void init(){
+//		List<GraphicItem> compEfectList = new ArrayList<GraphicItem>();		
+//		compEfectList.add(new GraphicItem("Menudo", "area"));
+//		compEfectList.add(new GraphicItem("Reserva", "area"));
+//		compEfectList.add(new GraphicItem("Prestamos", "area"));
+//		compEfectList.add(new GraphicItem("LCSx", "line"));
+//		compEfectList.add(new GraphicItem("LCx", "line"));
+//		comportamientoEfectivo.setyAxisValues(compEfectList);
+		
+		
+//		List<GraphicItem> varEfectList = new ArrayList<GraphicItem>();		
+//		varEfectList.add(new GraphicItem("Menudo2", "area"));
+//		varEfectList.add(new GraphicItem("Reserva2", "area"));
+//		varEfectList.add(new GraphicItem("Prestamos2", "area"));
+//		varEfectList.add(new GraphicItem("LCSx2", "line"));
+//		varEfectList.add(new GraphicItem("LCx2", "line"));
+//		variacionesEfectivo.setyAxisValues(varEfectList);
+		
+	}
 }

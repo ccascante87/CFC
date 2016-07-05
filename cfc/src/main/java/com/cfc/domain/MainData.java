@@ -83,23 +83,35 @@ public class MainData implements Serializable {
 		this.forecast = forecast;
 	}
 
-	public GraphData getGraphData() {
-		return graphData;
+	
+
+	public GraphData getCompEfectivoGraph() {
+		return compEfectivoGraph;
 	}
 
-	public void setGraphData(GraphData graphData) {
-		this.graphData = graphData;
+	public void setCompEfectivoGraph(GraphData compEfectivoGraph) {
+		this.compEfectivoGraph = compEfectivoGraph;
 	}
+
+	public GraphData getVarEfectivoGraph() {
+		return varEfectivoGraph;
+	}
+
+	public void setVarEfectivoGraph(GraphData varEfectivoGraph) {
+		this.varEfectivoGraph = varEfectivoGraph;
+	}
+
+
 
 	private List<Item> cashBehaviorDetail = new ArrayList<Item>();
 	private List<Item> currentBalanceHistory = new ArrayList<Item>();
 	private Forecast forecast = new Forecast();
-	private GraphData graphData;
-
+	private GraphData compEfectivoGraph;
+	private GraphData varEfectivoGraph;
 	public MainData() {
 		// Linked
-		graphData = GraphData.getInstance();
-		// balanceDetail.
+		compEfectivoGraph= new GraphData();
+		compEfectivoGraph= new GraphData();
 	}
 
 	public List<Item> getCurrentBalanceHistory() {

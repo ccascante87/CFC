@@ -226,10 +226,14 @@
 	color: red !important;
 }
 
-
+/* Display all colums with the same height within a row */
 .row-eq-height {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display:         flex;
+}
+/* Angular sidebar styles */
+.show {
+    left : 0;
 }

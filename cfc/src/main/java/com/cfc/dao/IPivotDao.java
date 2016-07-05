@@ -20,5 +20,6 @@ public interface IPivotDao {
 	void deleteById(int id);
 
 	List<Pivot> findAll();
-	
+
+	List<Pivot> getByMaxId(int maxId);
 }

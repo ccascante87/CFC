@@ -20,20 +20,15 @@ angular.module('appCFC').controller('cfcController', ['$scope','$http', 'graphSe
 
 	}	
 	
-	$scope.loadDataModel = function(){
-		loadGraphic();
-	}
-
-    function loadGraphic(){    	 
+    function loadData(){    	 
 		x++;
     	y++;    	
     	$http({
             method: 'GET',
             url: '/cfc/efectivo/getGraphData'
         }).success(function (result) {
-        	jsonData = result.graphData;
-        	datos.cashBehaviorDetail = result.cashBehaviorDetail;
-        	
+        	jsonData = result.compEfectivoGraph;
+        	datos.cashBehaviorDetail = result.cashBehaviorDetail;        	
         	datos.montoAsegurado = result.insuredAmount;
         	datos.saldoActual = result.currentBalance;
         	datos.ocioso = result.lazyAmount;
@@ -50,29 +45,61 @@ angular.module('appCFC').controller('cfcController', ['$scope','$http', 'graphSe
         	x = 0;
 	 		y = 0;
 	 		$scope.data = [];		
-	 		angular.forEach(jsonData.labels, function(item){
-	 			$scope.data.push({ values: [], key: item });
+	 		angular.forEach(jsonData.yAxisValues, function(item){
 //	 			console.log(item)
-	 			values = jsonData.yAxisValues[item];
-	 			 
+	 			$scope.data.push({ values: [], key: item.label, type: item.type,yAxis: item.type == "line" ? 2:1 ,
+	 				originalKey: item.label,
+	 				seriesIndex: x });
+//	 			console.log("item:");
+//	 			console.log(item.itemValues)
+	 			
 	 			for(index = 0; index < xAxisValues.length;index++){
-	 				$scope.data[x].values.push({x: xAxisValues[index], y: Math.random()*Math.random() + 2 });
-	 				y= index;
+//	 				if(item.type == "line" ){
+//	 					$scope.data[x].values.push({x: xAxisValues[index], y: 7	 });	
+//	 				}
+//	 				else
+//	 				console.log( item.itemValues[index] )
+	 				$scope.data[x].values.push({x: xAxisValues[index], y: item.itemValues[index]});
+//	 				y= index;C
 	 			}
 	 		    x++;
 	 		});
-	  });
+	 		
+	 		jsonData = result.varEfectivoGraph;
+	 		xAxisValues = jsonData.xAxisValues;
+        	x = 0;
+	 		y = 0;
+	 		$scope.data2 = [];		
+	 		angular.forEach(jsonData.yAxisValues, function(item){
+	 			console.log(item)
+	 			$scope.data2.push({ values: [], key: item.label, type: item.type,yAxis: item.type == "line" ? 2:1 ,
+	 				originalKey: item.label,
+	 				seriesIndex: x });
+	 			for(index = 0; index < xAxisValues.length;index++){
+	 				if(item.type == "line" ){
+	 					$scope.data2[x].values.push({x: xAxisValues[index], y: 7	 });	
+	 				}
+	 				else
+	 					$scope.data2[x].values.push({x: xAxisValues[index], y: item.itemValues[index]});
+//	 				y= index;C
+	 			}
+	 		    x++;
+	 		});
+	 		});
 	};
     
 	
 	var datos = new MainData({
-		
 		
 	});
 	
 	var startController = function(){
 		$scope.mainData = datos;
 	} ;
+	
+	
+
+	
 	    
     $scope.run = true;
     var values =[];
@@ -81,16 +108,16 @@ angular.module('appCFC').controller('cfcController', ['$scope','$http', 'graphSe
 	var y = 0;
 	var init = function () {		
 		startController();		
-		graphService.configureGraph();
-		$scope.options = graphService.graphOptions;			
+		graphService.multichartConfig();
+		$scope.options = graphService.multiChartOptions;			
 		var jsonData = {};
-		loadGraphic();	
+		loadData();	
 	    setInterval(function(){
-	    	loadGraphic();
-	    }, 30000); 
+	    	loadData();
+	    }, 5000); 
 	    	$scope.selectedCurrency = "¢";
-//	    	$scope.selectedBranch = $scope.sucursales[0].nomAgencia;
 	   $scope.mainData.loggedUserName = 'Bruce Wayne';
+	   
 	};
         
     //load currency dropdown    
@@ -100,22 +127,21 @@ angular.module('appCFC').controller('cfcController', ['$scope','$http', 'graphSe
         url: '/cfc/efectivo/getMonedas',
         //data: { applicationId: 3 }
     }).success(function (resultMoneda) {
+    	console.log("resultmoneda");
+    	console.log(resultMoneda);
     	$scope.currency = resultMoneda;
-    	$scope.selectedBranch = $scope.currency[0].simbolo;
+    	$scope.selectedCurrency = $scope.currency[0];
     });
     
-    //load sucursales    
     $http({
         method: 'GET',
         url: '/cfc/efectivo/getSucursales',
         //data: { applicationId: 3 }
     }).success(function (result) {
     	$scope.sucursales = result;
-    	$scope.selectedBranch = $scope.sucursales[0].nomAgencia;
+    	$scope.selectedBranch = $scope.sucursales[0];
     });
     //$scope.sucursales= ["Central","Puntarenas","San Jose"]
-    
- 
-    
+
     init();
 }]);//End controller
