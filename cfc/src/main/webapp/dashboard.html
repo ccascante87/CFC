@@ -19,7 +19,6 @@
 <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
 <!-- Skin -->
 <link rel="stylesheet" href="app/css/skins/skin-cfc.css">
-<link rel="stylesheet" href="app/css/angular-datatables.css">
 
 <!-- 	HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--     WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -54,9 +53,9 @@
 					<ul class="nav navbar-nav">
 
 						<!-- Sucursales Dropdown -->
-						<li class="dropdown notifications-menu"><select ng-model="selectedBranch" ng-change="loadDataModel()" 
+						<li class="dropdown notifications-menu"><select ng-model="selectedBranch.codigoAgencia" ng-change="loadDataModel()" 
 							style="margin-top: 11px;" >
-								<option ng-repeat="x in sucursales" value="{{x.nomAgencia}}">{{x.nomAgencia}}</option>
+								<option ng-repeat="x in sucursales" value="{{x.codigoAgencia}}">{{x.nomAgencia}}</option>
 						</select></li>
 
 						<!-- Currency Dropdown -->
@@ -64,7 +63,6 @@
 							style="margin-top: 11px;">
 								<option ng-repeat="x in currency"  value="{{x}}">{{x.simbolo}}</option>
 						</select></li>
-
 						<!-- Messages: style can be found in dropdown.less-->
 						<li class="dropdown messages-menu">
 							<!-- Menu toggle button --> <a href="#" class="dropdown-toggle"
@@ -211,7 +209,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"
 		charset="utf-8"></script>
 	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.js"></script>
+		src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.2/nv.d3.min.js"></script>
 	<script
 		src="https://rawgit.com/krispo/angular-nvd3/v1.0.4/dist/angular-nvd3.js"></script>
 	<script src="angular/cfc/app.js"></script>
