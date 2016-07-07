@@ -11,7 +11,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="transaccion in transacciones">
-            <td>{{ transaccion.fecha }}</td>
+            <td>{{ transaccion.fecha | date: "dd-mm-yyyy HH:mm:ss"}}</td>
             <td>{{ transaccion.codTransaccion }}</td>
             <td>{{ transaccion.descTransaccion }}</td>
             <td>{{ transaccion.monto }}</td>
