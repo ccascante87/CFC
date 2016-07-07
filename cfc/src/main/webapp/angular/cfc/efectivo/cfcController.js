@@ -59,8 +59,15 @@ angular.module('appCFC').controller('cfcController', ['$scope','$http', 'graphSe
 //	 				}
 //	 				else
 //	 				console.log( item.itemValues[index] )
-	 				$scope.data[x].values.push({x: xAxisValues[index], y: item.itemValues[index]});
-//	 				y= index;C
+	 				$scope.data[x].values.push({x: xAxisValues[index], y: Number( item.itemValues[index])});
+////	 				y= index;C
+	 				
+//	 				if(item.type == "line" ){
+//	 					$scope.data[x].values.push({x: xAxisValues[index], y: 7	 });	
+//	 				}
+//	 				else
+//	 					$scope.data[x].values.push({x: xAxisValues[index], y: Math.random()   * 100000000});
+	 				
 	 			}
 	 		    x++;
 	 		});
@@ -76,11 +83,11 @@ angular.module('appCFC').controller('cfcController', ['$scope','$http', 'graphSe
 	 				originalKey: item.label,
 	 				seriesIndex: x });
 	 			for(index = 0; index < xAxisValues.length;index++){
-	 				if(item.type == "line" ){
-	 					$scope.data2[x].values.push({x: xAxisValues[index], y: 7	 });	
-	 				}
-	 				else
-	 					$scope.data2[x].values.push({x: xAxisValues[index], y: item.itemValues[index]});
+//	 				if(item.type == "line" ){
+//	 					$scope.data2[x].values.push({x: xAxisValues[index], y: 7	 });	
+//	 				}
+//	 				else
+	 					$scope.data2[x].values.push({x: xAxisValues[index], y:Number( item.itemValues[index])});
 //	 				y= index;C
 	 			}
 	 		    x++;
@@ -108,8 +115,14 @@ angular.module('appCFC').controller('cfcController', ['$scope','$http', 'graphSe
 	var y = 0;
 	var init = function () {		
 		startController();		
-		graphService.multichartConfig();
-		$scope.options = graphService.multiChartOptions;			
+		graphService.cashFlowOptionsConfig();
+		graphService.cashVarOptionsConfig();		
+		$scope.cashFlowOptions = graphService.cashFlowOptions;
+		$scope.cashVarOptions = graphService.cashVarOptions;
+		
+		
+		
+		
 		var jsonData = {};
 		loadData();	
 	    setInterval(function(){

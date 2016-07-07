@@ -225,12 +225,12 @@ public class CFCSpringController {
 		
 		for (Pivot pivot : data) {
 			//Graph. 1
-			System.out.println("Menudo: " + pivot.getMenudo() + ", Reserva=" + pivot.getReserva());
-			menudo.getItemValues().add(pivot.getMenudo().intValue() +"");
-			reserva.getItemValues().add(pivot.getReserva().intValue() +"");
-			lcsx.getItemValues().add(pivot.getLcsx().intValue() +"");
-			lcx.getItemValues().add(pivot.getLcx().intValue() +"");
-			lcix.getItemValues().add(pivot.getLcix().intValue() +"");
+//			System.out.println("Menudo: " + pivot.getMenudo() + ", Reserva=" + pivot.getReserva());
+			menudo.getItemValues().add(pivot.getMenudo().doubleValue() +"");
+			reserva.getItemValues().add(pivot.getReserva().doubleValue()+"");
+			lcsx.getItemValues().add(pivot.getLcsx().doubleValue() +"");
+			lcx.getItemValues().add(pivot.getLcx().doubleValue() +"");
+			lcix.getItemValues().add(pivot.getLcix().doubleValue() +"");
 			
 			
 			//Graph. 2
