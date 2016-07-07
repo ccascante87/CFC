@@ -18,6 +18,8 @@ angular.module('appCFC').controller('cfcController', ['$scope','$http', 'graphSe
         
         this.loggedUserName = args.loggedUserName;
 
+        this.cashVariations = {};
+        this.cashValHistory = {};
 	}	
 	
     function loadData(){    	 
@@ -40,6 +42,9 @@ angular.module('appCFC').controller('cfcController', ['$scope','$http', 'graphSe
         	datos.byDateTomorrow = result.forecast.byDateTomorrow;
         	datos.byDayToday = result.forecast.byDayToday;
         	datos.byDayTomorrow = result.forecast.byDayTomorrow;
+        	
+        	datos.cashVariations = result.cashVariations;
+        	datos.cashValHistory = result.cashValHistory;
             
         	xAxisValues = jsonData.xAxisValues;
         	x = 0;

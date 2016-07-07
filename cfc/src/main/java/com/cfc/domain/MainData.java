@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
@@ -18,6 +17,21 @@ public class MainData implements Serializable {
 	private BigDecimal autorizedBalance = BigDecimal.ZERO;
 	private BigDecimal reorderPoint = BigDecimal.ZERO;
 	private int utilizationRate;
+
+	private List<Item> cashBehaviorDetail = new ArrayList<Item>();
+	private List<Item> currentBalanceHistory = new ArrayList<Item>();
+	private Forecast forecast = new Forecast();
+	private GraphData compEfectivoGraph;
+	private GraphData varEfectivoGraph;
+
+	private List<Item> cashVariations = new ArrayList<Item>();
+	private List<Item> cashValHistory = new ArrayList<Item>();
+	
+	public MainData() {
+		// Linked
+		compEfectivoGraph = new GraphData();
+		compEfectivoGraph = new GraphData();
+	}
 
 	public BigDecimal getInsuredAmount() {
 		return insuredAmount;
@@ -83,8 +97,6 @@ public class MainData implements Serializable {
 		this.forecast = forecast;
 	}
 
-	
-
 	public GraphData getCompEfectivoGraph() {
 		return compEfectivoGraph;
 	}
@@ -101,24 +113,25 @@ public class MainData implements Serializable {
 		this.varEfectivoGraph = varEfectivoGraph;
 	}
 
-
-
-	private List<Item> cashBehaviorDetail = new ArrayList<Item>();
-	private List<Item> currentBalanceHistory = new ArrayList<Item>();
-	private Forecast forecast = new Forecast();
-	private GraphData compEfectivoGraph;
-	private GraphData varEfectivoGraph;
-	public MainData() {
-		// Linked
-		compEfectivoGraph= new GraphData();
-		compEfectivoGraph= new GraphData();
-	}
-
 	public List<Item> getCurrentBalanceHistory() {
 		return currentBalanceHistory;
 	}
 
 	public void setCurrentBalanceHistory(List<Item> currentBalanceHistory) {
 		this.currentBalanceHistory = currentBalanceHistory;
+	}
+
+	public List<Item> getCashVariations() {
+		return cashVariations;
+	}
+
+	public void setCashVariations(List<Item> cashVariations) {
+		this.cashVariations = cashVariations;
+	}
+	public List<Item> getCashValHistory() {
+		return cashValHistory;
+	}
+	public void setCashValHistory(List<Item> cashValHistory) {
+		this.cashValHistory = cashValHistory;
 	}
 }

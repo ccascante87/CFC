@@ -140,8 +140,8 @@ angular.module('appCFC').factory('graphService', function() {
 
 				
 				,
-				yDomain1 : [0, 25000000],
-				yDomain2 : [0, 25000000],
+				yDomain1 : [0, 20000000],
+				yDomain2 : [0, 20000000],
 				legendRightAxisHint : ''
 			}
 		}

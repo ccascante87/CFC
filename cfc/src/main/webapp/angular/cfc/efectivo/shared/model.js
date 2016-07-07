@@ -17,6 +17,9 @@ angular.module('appCFC').factory('MainData', function() {
         this.byDateTomorrow = args.byDateTomorrow;
         this.byDayToday = args.byDayToday;
         this.byDayTomorrow = args.byDayTomorrow;
+        
+        this.cashVariations = {};
+        this.cashValHistory = {};
 
 	}
 	;

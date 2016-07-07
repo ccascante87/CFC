@@ -165,60 +165,26 @@
 					</div>
 					<div class="panel-body">
 						<table class="table">
-							<tr>
-								<th scope="row">Varianza</th>
-								<td>{{mainData.montoAsegurado | currency : selectedCurrency.simbolo
-									: 2 }}</td>
-								<td>--</td>
-							</tr>
-							<tr>
-								<th scope="row">LCSr</th>
-								<td>{{mainData.montoAsegurado | currency : selectedCurrency.simbolo
-									: 2 }}</td>
-								<td>--</td>
-							</tr>
-							<tr>
-								<th scope="row">LCr</th>
-								<td>{{mainData.montoAsegurado | currency : selectedCurrency.simbolo
-									: 2 }}</td>
-								<td>--</td>
-							</tr>
-							<tr>
-								<th scope="row">LClr</th>
-								<td>{{mainData.montoAsegurado | currency : selectedCurrency.simbolo
-									: 2 }}</td>
-								<td>--</td>
+							<tr ng-repeat="detail in mainData.cashVariations">
+								<th scope="row">{{detail.label}}</th>
+								<td class="text-right">{{detail.value | currency :
+									selectedCurrency.simbolo : 2 }}</td>
+
 							</tr>
 						</table>
 						<table class="table">
 							<tr>
-								<th scope="row">Hora</th>
-								<th scope="row">Saldo</th>
-								<th scope="row">Estabilidad</th>
+								<th scope="row" class="text-center col-md-3">Hora</th>
+								<th scope="row" class="text-center col-md-3">Saldo</th>
+								<th scope="row" class="text-center col-md-3">Estabilidad</th>
 							</tr>
-							<tr>
-								<td>00:00</td>
-								<td>{{mainData.montoAsegurado | currency : selectedCurrency.simbolo
-									: 2 }}</td>
-								<td>--</td>
-							</tr>
-							<tr>
-								<td>00:00</td>
-								<td>{{mainData.montoAsegurado | currency : selectedCurrency.simbolo
-									: 2 }}</td>
-								<td>--</td>
-							</tr>
-							<tr>
-								<td>00:00</td>
-								<td>{{mainData.montoAsegurado | currency : selectedCurrency.simbolo
-									: 2 }}</td>
-								<td>--</td>
-							</tr>
-							<tr>
-								<td>00:00</td>
-								<td>{{mainData.montoAsegurado | currency : selectedCurrency.simbolo
-									: 2 }}</td>
-								<td>--</td>
+							<tr ng-repeat="curentBalance in mainData.cashValHistory">
+								<td>{{ curentBalance.label}}</td>
+								<td class="text-right">{{curentBalance.value | currency :
+									selectedCurrency.simbolo : 2}}</td>
+								<td class="text-center"><span
+									class="glyphicon {{ curentBalance | displayUpDownArrow}}"></span>
+								</td>
 							</tr>
 						</table>
 					</div>

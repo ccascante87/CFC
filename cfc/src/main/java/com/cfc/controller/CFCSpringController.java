@@ -265,10 +265,23 @@ public class CFCSpringController {
 		mda.getCashBehaviorDetail().add(new Item("Lcx",data.get(data.size()-1).getLcx(),data.get(data.size()-2).getLcx()));
 		mda.getCashBehaviorDetail().add(new Item("Lcix",data.get(data.size()-1).getLcix(),data.get(data.size()-2).getLcix()));
 		
-		mda.getCurrentBalanceHistory().add(new Item("7:05", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 100000)));
-		mda.getCurrentBalanceHistory().add(new Item("7:05", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 100000)));
-		mda.getCurrentBalanceHistory().add(new Item("7:05", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 100000)));
-		mda.getCurrentBalanceHistory().add(new Item("7:05", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 100000)));
+		
+		mda.getCashVariations().add(new Item("Varianza" ,data.get(data.size()-1).getReserva(),data.get(data.size()-2).getReserva()));
+		mda.getCashVariations().add(new Item("LCSr" ,data.get(data.size()-1).getLcsr(),data.get(data.size()-2).getLcsr()	));
+		mda.getCashVariations().add(new Item("LCr" ,data.get(data.size()-1).getLcr(),data.get(data.size()-2).getLcr()));
+		mda.getCashVariations().add(new Item("LClr" ,data.get(data.size()-1).getLcir(),data.get(data.size()-2).getLcir()));
+		
+		
+		mda.getCurrentBalanceHistory().add(new Item("7:00", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 100000)));
+		mda.getCurrentBalanceHistory().add(new Item("7:15", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 100000)));
+		mda.getCurrentBalanceHistory().add(new Item("7:30", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 100000)));
+		mda.getCurrentBalanceHistory().add(new Item("7:45", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 100000)));
+		
+		
+		mda.getCashValHistory().add(new Item("7:00", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 100000)));
+		mda.getCashValHistory().add(new Item("7:15", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 100000)));
+		mda.getCashValHistory().add(new Item("7:30", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 100000)));
+		mda.getCashValHistory().add(new Item("7:45", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 100000)));
 		
 		String stDate = String.valueOf(new java.util.Date().getTime());
 		System.err.println(stDate);
