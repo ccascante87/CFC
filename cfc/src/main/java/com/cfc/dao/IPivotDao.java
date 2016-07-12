@@ -21,5 +21,5 @@ public interface IPivotDao {
 
 	List<Pivot> findAll();
 
-	List<Pivot> getByMaxId(int maxId);
+	List<Pivot> getByMaxId(int maxId, int brachId, int currencyId);
 }

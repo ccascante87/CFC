@@ -1,21 +1,30 @@
 <div ng-controller="transaccionesController">
- <table datatable=""  class="row-border hover"> 
-  
-        <thead>
-        <tr>
-            <th>Fecha</th>
-            <th>Codigo</th>
-            <th>Descripcion</th>
-            <th>Monto</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="transaccion in transacciones">
-            <td>{{ transaccion.fecha }}</td>
-            <td>{{ transaccion.codTransaccion }}</td>
-            <td>{{ transaccion.descTransaccion }}</td>
-            <td>{{ transaccion.monto }}</td>
-        </tr>
-        </tbody>
-    </table>
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+			<h3>Detalle del comportamiento del efectivo</h3>
+
+
+			<table  class="table table-hover  row-border hover	"
+				ng-show="showTable">
+				<thead>
+					<tr>
+						<th scope="row" class="text-center col-md-3">Fecha</th>
+						<th scope="row" class="text-center col-md-3">Codigo</th>
+						<th scope="row" class="text-center col-md-3">Descripcion</th>
+						<th scope="row" class="text-center col-md-3">Monto</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="transaccion in transacciones">
+						<td>{{ transaccion.fecha }}</td>
+						<td>{{ transaccion.codTransaccion }}</td>
+						<td>{{ transaccion.descTransaccion }}</td>
+						<td class="text-right">{{ transaccion.monto }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
 </div>

@@ -18,7 +18,8 @@ import java.sql.Timestamp;
  */
 @Entity
 @NamedQueries({ @NamedQuery(name = "Pivot.findAll", query = "SELECT p FROM Pivot p") ,
-		@NamedQuery(name="Pivot.findByMaxId", query="SELECT p FROM Pivot p WHERE p.id <= :maxId")})
+		@NamedQuery(name="Pivot.findByMaxId", query="SELECT p FROM Pivot p WHERE p.id <= :maxId AND "
+				+ " p.codAgencia = :codAgencia AND p.codMoneda = :codMoneda")})
 public class Pivot implements Serializable {
 	private static final long serialVersionUID = 1L;
 

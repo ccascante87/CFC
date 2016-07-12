@@ -21,5 +21,5 @@ public interface IPivotService {
 
 	List<Pivot> findAll(); 
 
-	List<Pivot> findByMaxID(int maxId);
+	List<Pivot> findByMaxID(int maxId,int brachId, int currencyId);
 }

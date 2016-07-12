@@ -67,7 +67,7 @@ public class PivotServiceImpl implements IPivotService {
 	}
 
 	@Override
-	public List<Pivot> findByMaxID(int maxId) {
-		return pivotDao.getByMaxId(maxId);
+	public List<Pivot> findByMaxID(int maxId, int brachId, int currencyId) {
+		return pivotDao.getByMaxId(maxId, brachId, currencyId);
 	}
 }
