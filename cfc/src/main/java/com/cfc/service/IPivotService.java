@@ -5,6 +5,7 @@ package com.cfc.service;
 
 import java.util.List;
 
+import com.cfc.domain.Detalle;
 import com.cfc.model.Pivot;
 
 /**
@@ -21,5 +22,7 @@ public interface IPivotService {
 
 	List<Pivot> findAll(); 
 
+	List<Detalle> getDetalles();
+	
 	List<Pivot> findByMaxID(int maxId,int brachId, int currencyId);
 }

@@ -1,0 +1,34 @@
+<div ng-controller="detalleController">
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+			<h3>Detalle del comportamiento del efectivo</h3>
+
+
+			<table  datatable="" class="table table-hover  row-border hover	"
+				ng-show="showTable">
+				<thead>
+					<tr>
+						<th scope="row" class="text-center col-md-2">Fecha</th>
+						<th scope="row" class="text-center col-md-2">Saldo</th>
+						<th scope="row" class="text-center col-md-2">RM</th>
+						<th scope="row" class="text-center col-md-2">Ocioso</th>
+						<th scope="row" class="text-center col-md-2">Reserva</th>
+						<th scope="row" class="text-center col-md-2">Menudo</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="detalle in detalles">
+						<td>{{ detalle.fecha | date: "dd-MMM-yyyy HH:mm:ss"}}</td>
+						<td class="text-right">{{ detalle.saldo }}</td>
+						<td class="text-right">{{ detalle.rm }}</td>
+						<td class="text-right">{{ detalle.ocioso }}</td>
+						<td class="text-right">{{ detalle.reserva }}</td>
+						<td class="text-right">{{ detalle.menudo }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+</div>

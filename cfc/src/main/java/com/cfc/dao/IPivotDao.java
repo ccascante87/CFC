@@ -5,6 +5,7 @@ package com.cfc.dao;
 
 import java.util.List;
 
+import com.cfc.domain.Detalle;
 import com.cfc.model.Pivot;
 
 /**
@@ -20,6 +21,8 @@ public interface IPivotDao {
 	void deleteById(int id);
 
 	List<Pivot> findAll();
+	
+	List<Detalle> getDetalles();
 
 	List<Pivot> getByMaxId(int maxId, int brachId, int currencyId);
 }

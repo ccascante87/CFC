@@ -8,8 +8,10 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
+import com.cfc.domain.Detalle;
 import com.cfc.model.Pivot;
 
 /**
@@ -80,5 +82,37 @@ public class PivotDaoImpl extends AbstractDao<Integer, Pivot> implements IPivotD
 		
 		
 		
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	//@Transactional
+	public List<Detalle> getDetalles() {
+		List<Detalle> detalles;
+		Session session = getSession();
+		try {
+			//session = getSession();
+			@SuppressWarnings("unused")
+			Criteria criteria = createEntityCriteria();
+			session.getTransaction().begin();
+			
+		/*	fecha
+			saldo_autorizado
+			rm
+			ocioso
+			reserva
+			menudo*/
+			Query query = (Query) session
+					.createQuery("Select P " +
+							" FROM  Pivot P ") ;
+			detalles = query.list();
+			// saldos.add(criteria);
+			session.getTransaction().commit();
+		} catch (RuntimeException e) {
+			//session.getTransaction().rollback();
+			throw e;
+		}
+		// session.close();
+		return detalles;
 	}
 }

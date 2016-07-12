@@ -1,8 +1,6 @@
 package com.cfc.controller;
 
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
@@ -13,13 +11,12 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cfc.domain.Detalle;
 import com.cfc.domain.GraphData;
 import com.cfc.domain.GraphicItem;
 import com.cfc.domain.Item;
@@ -335,6 +332,17 @@ mda.setCompEfectivoGraph( comportamientoEfectivo);
 			return Collections.emptyList();
 		else
 		return transaccion;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getDetalles", method = RequestMethod.GET, produces = "application/json")
+	public List<Detalle> getDetalles() {
+		List<Detalle>  detalle =  iPivotService.getDetalles();
+		logger.debug("getDetalles.");
+		if (detalle.isEmpty())
+			return Collections.emptyList();
+		else
+		return detalle;
 	}
 
 	@PostConstruct
