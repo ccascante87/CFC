@@ -13,8 +13,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,6 +46,7 @@ public class CFCSpringController {
 	final static Logger logger = Logger.getLogger(CFCSpringController.class);
 	private GraphData comportamientoEfectivo = new GraphData();
 	private GraphData variacionesEfectivo = new GraphData();
+	private MainData mda = new MainData();
 	private int maxId = 0;
 	@Autowired
 	ISaldoService iSaldoService;
@@ -202,17 +205,24 @@ public class CFCSpringController {
 		return "welcome";
 	}*/
 	@ResponseBody
-	@RequestMapping(value="/getGraphData", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public MainData getGraphData(String currency, String branch){
+	@RequestMapping(value="/getGraphData/{branch}/{currency}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	public MainData getGraphData(@PathVariable String branch,@PathVariable String currency){
 //		variacionesEfectivo = new GraphData();
 //		comportamientoEfectivo = new  GraphDatCa();
+		
+		System.out.println("currency: " + currency);
+		System.out.println("Branch: " + branch);
+		
+		List<Pivot> data = iPivotService.findByMaxID(++maxId, 1150,1);
+			if(data.size() == variacionesEfectivo.getyAxisValues().size() && maxId > 3)
+				return mda;
 		variacionesEfectivo.getyAxisValues().clear();
 		comportamientoEfectivo.getyAxisValues().clear();
-		List<Pivot> data = iPivotService.findByMaxID(++maxId);
-		List<GraphicItem> yAxisComp = new ArrayList<GraphicItem>();
-		List<GraphicItem> yAxisVar = new ArrayList<GraphicItem>();
-		GraphicItem item = new GraphicItem();
-		MainData mda = new MainData();
+		mda = new MainData();
+		
+//		List<GraphicItem> yAxisComp = new ArrayList<GraphicItem>();
+//		List<GraphicItem> yAxisVar = new ArrayList<GraphicItem>();
+//		GraphicItem item = new GraphicItem();
 		GraphicItem lcir = new GraphicItem("Lcir", "line");
 		GraphicItem lcix = new GraphicItem("Lcix", "line");
 		GraphicItem lcr = new GraphicItem("Lcr", "line");

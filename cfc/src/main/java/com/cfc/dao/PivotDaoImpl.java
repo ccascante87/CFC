@@ -3,6 +3,7 @@
  */
 package com.cfc.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -70,8 +71,10 @@ public class PivotDaoImpl extends AbstractDao<Integer, Pivot> implements IPivotD
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Pivot> getByMaxId(int maxId) {
-		Query query = getSession().getNamedQuery("Pivot.findByMaxId").setInteger("maxId", maxId);
+	public List<Pivot> getByMaxId(int maxId,int brachId, int currencyId) {
+		Query query = getSession().getNamedQuery("Pivot.findByMaxId").setInteger("maxId", maxId).
+				setBigDecimal("codAgencia", BigDecimal.valueOf(brachId)).
+				setBigDecimal("codMoneda", BigDecimal.valueOf(currencyId));
 		return  (List<Pivot>) query.list();
 		
 		

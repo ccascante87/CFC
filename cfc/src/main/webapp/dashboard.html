@@ -32,7 +32,6 @@
 <body class="hold-transition skin-cfc sidebar-mini"
 	ng-controller="cfcController">
 	<div class="wrapper">
-
 		<!-- Main Header -->
 		<header class="main-header">
 
@@ -50,18 +49,25 @@
 				</a>
 				<!-- Navbar Right Menu -->
 				<div class="navbar-custom-menu">
+				
 					<ul class="nav navbar-nav">
 
+	
+
 						<!-- Sucursales Dropdown -->
-						<li class="dropdown notifications-menu"><select ng-model="selectedBranch.codigoAgencia" ng-change="loadDataModel()" 
-							style="margin-top: 11px;" >
-								<option ng-repeat="x in sucursales" value="{{x.codigoAgencia}}">{{x.nomAgencia}}</option>
+						<li class="dropdown notifications-menu"><select
+							ng-model="selectedBranch"
+							ng-change="loadDataModel()" style="margin-top: 11px;"
+							data-ng-options="branch as branch.nomAgencia for branch in sucursales">
 						</select></li>
 
 						<!-- Currency Dropdown -->
-						<li class="dropdown notifications-menu"><select ng-model="selectedCurrency" ng-change="loadDataModel()"
+						<li class="dropdown notifications-menu"><select
+							ng-model="selectedCurrency" ng-change="loadDataModel()"
+							
+							data-ng-options="currency as currency.simbolo for currency in currency"
+							
 							style="margin-top: 11px;">
-								<option ng-repeat="x in currency"  value="{{x}}">{{x.simbolo}}</option>
 						</select></li>
 						<!-- Messages: style can be found in dropdown.less-->
 						<li class="dropdown messages-menu">
@@ -155,7 +161,7 @@
 						href="#"><i class="fa fa-area-chart"></i><span>Gráfico</span></a></li>
 					<!-- <li class="side-menu-item" data-htmlfile="graphColones"><a
 						href="#"><i class="fa fa-area-chart"></i><span>Detalles</span></a></li>-->
-					<li class="side-menu-item" data-htmlfile="transacciones"><a
+					<li class="side-menu-item" ><a
 						href="#/transac"><i class="fa fa-area-chart"></i><span>Transacciones</span></a></li>
 					<!--<li class="side-menu-item" data-htmlfile="graphColones"><a
 						href="#"><i class="fa fa-area-chart"></i><span>Gráfico
@@ -201,23 +207,25 @@
 	<script src="app/js/application.js"></script>
 	<script src="plugins/fastclick/fastclick.min.js"></script>
 	<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
-
-	<script
-		src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.js"></script>
-	<script
-		src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular-route.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"
-		charset="utf-8"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.2/nv.d3.min.js"></script>
-	<script
-		src="https://rawgit.com/krispo/angular-nvd3/v1.0.4/dist/angular-nvd3.js"></script>
+	<script src="plugins/jquery.dataTables.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular-route.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.2/nv.d3.min.js"></script>
+	<script src="https://rawgit.com/krispo/angular-nvd3/v1.0.4/dist/angular-nvd3.js"></script>
+	<script src="angular/vendor/angular-spinner.min.js"></script>
 	<script src="angular/cfc/app.js"></script>
 	<script src="angular/cfc/efectivo/cfcController.js"></script>
+	<script src="angular/cfc/efectivo/graphController.js"></script>
 	<script src="angular/cfc/efectivo/transaccionesController.js"></script>
 	<script src="angular/cfc/efectivo/shared/model.js"></script>
 	<script src="angular/cfc/efectivo/shared/services/services.js"></script>
+	<script src="angular/cfc/efectivo/shared/services/httpServices.js"></script>
 	<script src="angular/cfc/efectivo/cfcFilters.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.5.4/angular-datatables.js"></script>
+
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.5.4/angular-datatables.js"></script>
+	<script src="plugins/dataTables.bootstrap.min.js"></script>
+
 </body>
 </html>

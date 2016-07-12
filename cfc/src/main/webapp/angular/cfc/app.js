@@ -1,10 +1,11 @@
-angular.module('appCFC', [ 'ngRoute' ,'nvd3']).config(function($routeProvider) {
-	console.log("route provider")
-	console.log($routeProvider);
-	$routeProvider.
-		when('/index', {templateUrl : 'app/snippets/graphColones.html'/*controller: 'cfcController'*/}).
-		when('/transac', {templateUrl : 'app/snippets/transacciones.html'/*controller: 'cfcController'*/})
-	;	
+angular.module('appCFC', [ 'ngRoute', 'nvd3'/*, 'datatables'*/ ]).config(
+function($routeProvider) {
+	$routeProvider.when('/index', {
+		templateUrl : 'app/snippets/graphColones.html',
+		
+	}).when('/transac', {
+		templateUrl : 'app/snippets/transacciones.html'
+	});
 	$routeProvider.otherwise({
 		redirectTo : '/index'
 	});

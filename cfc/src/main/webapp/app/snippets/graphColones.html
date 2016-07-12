@@ -3,7 +3,7 @@
 </section>
 <!-- Main content -->
 <section class="content">
-	<div class="container-fluid">
+	<div class="container-fluid"  ng-controller="graphController">
 		<div class="row row-eq-height ">
 			<div class="col-md-8 row-eq-height">
 				<div class="box box-primary">
@@ -139,8 +139,8 @@
 					</div>
 				</div>
 			</div>
-			</div>
-			<div class="row row-eq-height">
+		</div>
+		<div class="row row-eq-height">
 			<div class="col-md-8 row-eq-height">
 				<!-- LINE CHART -->
 				<div class="box box-info">
@@ -158,18 +158,16 @@
 				<!-- /.box -->
 			</div>
 			<div class="col-md-4 row-eq-height">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Detalle del comportamiento del
-							efectivo</h3>
+				<div class="box box-primary">
+					<div class="box-header with-border">
+						<h3 class="panel-title">Detalle del comportamiento del efectivo</h3>
 					</div>
-					<div class="panel-body">
-						<table class="table">
+					<div class="box-body">
+						<table class="table table-hover	">
 							<tr ng-repeat="detail in mainData.cashVariations">
 								<th scope="row">{{detail.label}}</th>
 								<td class="text-right">{{detail.value | currency :
 									selectedCurrency.simbolo : 2 }}</td>
-
 							</tr>
 						</table>
 						<table class="table">
@@ -193,5 +191,3 @@
 		</div>
 	</div>
 </section>
-
-<!-- /.content -->
