@@ -84,7 +84,7 @@ public class PivotDaoImpl extends AbstractDao<Integer, Pivot> implements IPivotD
 		
 	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked" })
 	@Override
 	//@Transactional
 	public List<Detalle> getDetalles() {
@@ -95,13 +95,6 @@ public class PivotDaoImpl extends AbstractDao<Integer, Pivot> implements IPivotD
 			@SuppressWarnings("unused")
 			Criteria criteria = createEntityCriteria();
 			session.getTransaction().begin();
-			
-		/*	fecha
-			saldo_autorizado
-			rm
-			ocioso
-			reserva
-			menudo*/
 			Query query = (Query) session
 					.createQuery("Select P " +
 							" FROM  Pivot P ") ;
