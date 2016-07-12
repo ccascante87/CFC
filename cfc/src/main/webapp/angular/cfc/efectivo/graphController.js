@@ -23,8 +23,19 @@ angular.module('appCFC').controller('graphController', ['$scope','$http', 'graph
         this.cashValHistory = {};
 	}	
 	
+	
+	/*
+	 * Updates the graph data according to the selected options.
+	 */
+	
+	$scope.$on('someEvent', function(event, args) {
+		
+		console.log(' another ')
+	});
+	  // another controller or even directive
+	
     function loadData(){    	 
-		x++;
+    	x++;
     	y++;
     	//TODO get this data from dropdown
 //    	var promise = httpService.getGraphData($scope.selectedBranch.idSucursal, $scope.selectedCurrency.id);
@@ -101,7 +112,8 @@ angular.module('appCFC').controller('graphController', ['$scope','$http', 'graph
 	var xAxisValues  ;//jsonData.xAxisValues;
 	var x = 0;
 	var y = 0;
-	var init = function () {		
+	var init = function () {	
+		
 		startController();		
 		graphService.cashFlowOptionsConfig(	''	);
 		graphService.cashVarOptionsConfig();		
@@ -118,7 +130,6 @@ angular.module('appCFC').controller('graphController', ['$scope','$http', 'graph
 	    setInterval(function(){
 	    	loadData();
 	    }, 5000); 
-//	    $scope.selectedCurrency = "¢";
 	   $scope.mainData.loggedUserName = 'Bruce Wayne';
 	   
 	};

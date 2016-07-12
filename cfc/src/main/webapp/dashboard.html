@@ -49,24 +49,19 @@
 				</a>
 				<!-- Navbar Right Menu -->
 				<div class="navbar-custom-menu">
-				
+
 					<ul class="nav navbar-nav">
-
-	
-
 						<!-- Sucursales Dropdown -->
 						<li class="dropdown notifications-menu"><select
-							ng-model="selectedBranch"
-							ng-change="loadDataModel()" style="margin-top: 11px;"
+							ng-model="selectedBranch" ng-change="updateModel()"
+							style="margin-top: 11px;"
 							data-ng-options="branch as branch.nomAgencia for branch in sucursales">
 						</select></li>
 
 						<!-- Currency Dropdown -->
 						<li class="dropdown notifications-menu"><select
-							ng-model="selectedCurrency" ng-change="loadDataModel()"
-							
+							ng-model="selectedCurrency" ng-change="updateModel()"
 							data-ng-options="currency as currency.simbolo for currency in currency"
-							
 							style="margin-top: 11px;">
 						</select></li>
 						<!-- Messages: style can be found in dropdown.less-->
@@ -161,8 +156,8 @@
 						href="#"><i class="fa fa-area-chart"></i><span>Gráfico</span></a></li>
 					<!-- <li class="side-menu-item" data-htmlfile="graphColones"><a
 						href="#"><i class="fa fa-area-chart"></i><span>Detalles</span></a></li>-->
-					<li class="side-menu-item" ><a
-						href="#/transac"><i class="fa fa-area-chart"></i><span>Transacciones</span></a></li>
+					<li class="side-menu-item"><a href="#/transac"><i
+							class="fa fa-area-chart"></i><span>Transacciones</span></a></li>
 					<!--<li class="side-menu-item" data-htmlfile="graphColones"><a
 						href="#"><i class="fa fa-area-chart"></i><span>Gráfico
 								Histórico</span></a></li>
@@ -208,11 +203,16 @@
 	<script src="plugins/fastclick/fastclick.min.js"></script>
 	<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
 	<script src="plugins/jquery.dataTables.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular-route.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.2/nv.d3.min.js"></script>
-	<script src="https://rawgit.com/krispo/angular-nvd3/v1.0.4/dist/angular-nvd3.js"></script>
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.js"></script>
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular-route.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"
+		charset="utf-8"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.2/nv.d3.min.js"></script>
+	<script
+		src="https://rawgit.com/krispo/angular-nvd3/v1.0.4/dist/angular-nvd3.js"></script>
 	<script src="angular/vendor/angular-spinner.min.js"></script>
 	<script src="angular/cfc/app.js"></script>
 	<script src="angular/cfc/efectivo/cfcController.js"></script>

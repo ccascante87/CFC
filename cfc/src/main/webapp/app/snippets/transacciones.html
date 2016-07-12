@@ -5,8 +5,8 @@
 			<h3>Detalle del comportamiento del efectivo</h3>
 
 
-			<table  class="table table-hover  row-border hover	"
-				ng-show="showTable">
+			<table datatable="ng" class="table table-hover  row-border hover	" dt-options="outerDefaults"
+			>
 				<thead>
 					<tr>
 						<th scope="row" class="text-center col-md-3">Fecha</th>
@@ -14,13 +14,13 @@
 						<th scope="row" class="text-center col-md-3">Descripcion</th>
 						<th scope="row" class="text-center col-md-3">Monto</th>
 					</tr>
-				</thead>
+				</thead>	
 				<tbody>
 					<tr ng-repeat="transaccion in transacciones">
-						<td>{{ transaccion.fecha }}</td>
+						<td>{{ transaccion.fecha | date}}</td>
 						<td>{{ transaccion.codTransaccion }}</td>
 						<td>{{ transaccion.descTransaccion }}</td>
-						<td class="text-right">{{ transaccion.monto }}</td>
+						<td class="text-right">{{ transaccion.monto | currency }}</td>
 					</tr>
 				</tbody>
 			</table>

@@ -1,4 +1,4 @@
-angular.module('appCFC', [ 'ngRoute', 'nvd3'/*, 'datatables'*/ ]).config(
+angular.module('appCFC', [ 'ngRoute', 'nvd3', 'datatables' ]).config(
 function($routeProvider) {
 	$routeProvider.when('/index', {
 		templateUrl : 'app/snippets/graphColones.html',
