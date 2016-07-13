@@ -14,5 +14,11 @@ angular.module('appCFC').controller('cfcController',['$scope','$http','graphServ
 			 $scope.selectedBranch = $scope.sucursales[0];
 		 });	 
 	};
+	
+	
+	$scope.updateModel = function(){
+		 $scope.$emit('someEvent', this);
+    	console.log('initin.............')
+	}
 	init();
 }]);// End controller
