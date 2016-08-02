@@ -119,7 +119,7 @@ angular.module('appCFC').controller('graphController', ['$scope','$http', 'cfcCo
 		$scope.cashVarOptions = cfcConfigurationService.cashVarOptionsConfig();		
 		 
 		$scope.cashFlowOptions.chart.yAxis1.tickFormat = currencyFormat;
-		$scope.cashVarOptions.chart.yAxis1.tickFormat = currencyFormat;
+		$scope.cashVarOptions.chart.yAxis1.tickFormat = currencyForma;
 		
 		var jsonData = {};
 		loadData();	
