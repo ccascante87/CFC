@@ -217,41 +217,55 @@ public class CFCSpringController {
 		comportamientoEfectivo.getyAxisValues().clear();
 		mda = new MainData();
 		
-//		List<GraphicItem> yAxisComp = new ArrayList<GraphicItem>();
-//		List<GraphicItem> yAxisVar = new ArrayList<GraphicItem>();
-//		GraphicItem item = new GraphicItem();
-		GraphicItem lcir = new GraphicItem("Lcir", "line");
-		GraphicItem lcix = new GraphicItem("Lcix", "line");
-		GraphicItem lcr = new GraphicItem("Lcr", "line");
-		GraphicItem lcsr = new GraphicItem("Lcsr", "line");
-		GraphicItem lcsx = new GraphicItem("Lcsx", "line");
-		GraphicItem lcx = new GraphicItem("Lcx", "line");
+		//Data for the first graph
+		GraphicItem ocioso = new GraphicItem("Ocioso", "area");
+		GraphicItem rm = new GraphicItem("rm", "area");
 		GraphicItem menudo = new GraphicItem("Menudo", "area");
 		GraphicItem reserva = new GraphicItem("Reserva", "area");
+		GraphicItem seguro = new GraphicItem("Seguro max", "line");
+		GraphicItem saldoAutorizado = new GraphicItem("Saldo Autorizado", "line");
+		GraphicItem lcix = new GraphicItem("Lcix", "line");
+		GraphicItem lcx = new GraphicItem("Lcx", "line");
+		GraphicItem lcsx = new GraphicItem("Lcsx", "line");
+		GraphicItem ptoReorden = new GraphicItem("Punto reorden", "line");
+		
+		//Data 2nd graph		
+		GraphicItem lcir = new GraphicItem("Lcir", "line");
+		GraphicItem lcr = new GraphicItem("Lcr", "line");
+		GraphicItem lcsr = new GraphicItem("Lcsr", "line");
 		GraphicItem varianza = new GraphicItem("Varianza", "area");
 		
 		for (Pivot pivot : data) {
 			//Graph. 1
-//			System.out.println("Menudo: " + pivot.getMenudo() + ", Reserva=" + pivot.getReserva());
-			menudo.getItemValues().add(pivot.getMenudo().doubleValue() +"");
-			reserva.getItemValues().add(pivot.getReserva().doubleValue()+"");
-			lcsx.getItemValues().add(pivot.getLcsx().doubleValue() +"");
-			lcx.getItemValues().add(pivot.getLcx().doubleValue() +"");
-			lcix.getItemValues().add(pivot.getLcix().doubleValue() +"");
-			
-			
+			ocioso.getItemValues().add(pivot.getOcioso().toPlainString());
+			rm.getItemValues().add(pivot.getLcix().toPlainString());
+			menudo.getItemValues().add(pivot.getMenudo().toPlainString());
+			reserva.getItemValues().add(pivot.getReserva().toPlainString());
+			seguro.getItemValues().add(pivot.getSeguroMax().toPlainString());
+			saldoAutorizado.getItemValues().add(pivot.getSaldoAutorizado().toPlainString());
+			lcix.getItemValues().add(pivot.getLcix().toPlainString());
+			lcx.getItemValues().add(pivot.getLcx().toPlainString());
+			lcsx.getItemValues().add(pivot.getLcsx().toPlainString());
+			ptoReorden.getItemValues().add(pivot.getPuntoReorden().toPlainString());
+						
 			//Graph. 2
 			varianza.getItemValues().add(pivot.getReserva().toPlainString());
 			lcsr.getItemValues().add(pivot.getLcsr().toPlainString());
 			lcr.getItemValues().add(pivot.getLcr().toPlainString());
 			lcir.getItemValues().add(pivot.getLcir().toPlainString());
 		}
+		
+		comportamientoEfectivo.getyAxisValues().add(ocioso);
+		comportamientoEfectivo.getyAxisValues().add(rm);
 		comportamientoEfectivo.getyAxisValues().add(menudo);
 		comportamientoEfectivo.getyAxisValues().add(reserva);
-		comportamientoEfectivo.getyAxisValues().add(lcsx);
-		comportamientoEfectivo.getyAxisValues().add(lcx);
+		comportamientoEfectivo.getyAxisValues().add(seguro);
+		comportamientoEfectivo.getyAxisValues().add(saldoAutorizado);
 		comportamientoEfectivo.getyAxisValues().add(lcix);
-		
+		comportamientoEfectivo.getyAxisValues().add(lcx);
+		comportamientoEfectivo.getyAxisValues().add(lcsx);
+		comportamientoEfectivo.getyAxisValues().add(ptoReorden);
+				
 		variacionesEfectivo.getyAxisValues().add(varianza);
 		variacionesEfectivo.getyAxisValues().add(lcsr);
 		variacionesEfectivo.getyAxisValues().add(lcr);

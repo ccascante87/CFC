@@ -1,5 +1,6 @@
 'use strict'
-angular.module('appCFC').controller('graphController', ['$scope','$http', 'cfcConfigurationService', 'httpService', function($scope,$http,cfcConfigurationService,httpService){
+angular.module('appCFC').controller('graphController', ['$scope','$http', 'cfcConfigurationService', 'httpService', 
+                                                        function($scope,$http,cfcConfigurationService,httpService){
 	function MainData(args) {
 		this.usuario = args.usuario;;
 		this.montoAsegurado = args.montoAsegurado;
@@ -86,10 +87,6 @@ angular.module('appCFC').controller('graphController', ['$scope','$http', 'cfcCo
 	 			}
 	 		    x++;
 	 		});
-//          }
-//	          , 
-//	          function(errorPayload) {
-//	        	  console.log(errorPayload);
           });
 	
 	};
@@ -98,28 +95,24 @@ angular.module('appCFC').controller('graphController', ['$scope','$http', 'cfcCo
 	var datos = new MainData({
 		
 	});
-	
-	var startController = function(){
-		$scope.mainData = datos;
-	} ;
-	
+	/*Utility function to create the currency format for the graphs*/	
 	var currencyFormat = function(d){
 		return $scope.selectedCurrency.simbolo + d3.format(',.2f')(new Number(d));
 	}
 	    
     $scope.run = true;
     var values =[];
-	var xAxisValues  ;//jsonData.xAxisValues;
+	var xAxisValues;
 	var x = 0;
 	var y = 0;
 	var init = function () {	
 		
-		startController();		
+		$scope.mainData = datos;
 		$scope.cashFlowOptions = cfcConfigurationService.cashFlowOptionsConfig();
 		$scope.cashVarOptions = cfcConfigurationService.cashVarOptionsConfig();		
 		 
 		$scope.cashFlowOptions.chart.yAxis1.tickFormat = currencyFormat;
-		$scope.cashVarOptions.chart.yAxis1.tickFormat = currencyForma;
+		$scope.cashVarOptions.chart.yAxis1.tickFormat = currencyFormat;
 		
 		var jsonData = {};
 		loadData();	
@@ -127,7 +120,6 @@ angular.module('appCFC').controller('graphController', ['$scope','$http', 'cfcCo
 	    	loadData();
 	    }, 5000); 
 	   $scope.mainData.loggedUserName = 'Bruce Wayne';
-	   
 	};
     init();
 }]);//End controller

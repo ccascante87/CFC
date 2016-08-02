@@ -26,7 +26,7 @@ angular.module('appCFC').factory('cfcConfigurationService', function() {
 				},
 				yAxis1 : {
 					tickFormat : function(d) {
-						return d3.format(currencyFormat)(d);
+						return d;
 					}
 				},
 				interactiveLayer : {
@@ -40,7 +40,7 @@ angular.module('appCFC').factory('cfcConfigurationService', function() {
 					useInteractiveGuideline : true
 					
 				},
-				yDomain1 : [ 0, 50000000 ],
+				yDomain1 : [ 0, 100000000 ],
 				legendRightAxisHint : ''
 			}
 		}; 
@@ -67,12 +67,7 @@ angular.module('appCFC').factory('cfcConfigurationService', function() {
 				},
 				yAxis1 : {
 					tickFormat : function(d) {
-						return d3.format(',.1f')(d);
-					}
-				},
-				yAxis2 : {
-					tickFormat : function(d) {
-						return d3.format(',.1f')(d);
+						return d;
 					}
 				},
 				interactiveLayer : {
