@@ -5,21 +5,21 @@
 			<h3>Detalle del comportamiento del efectivo</h3>
 
 
-			<table datatable="ng" class="table table-hover  row-border hover	" dt-options="outerDefaults">
+			<table datatable="ng" class="table table-hover  row-border hover" dt-options="dtOptions">
 				<thead>
 					<tr>
 						<th scope="row" class="text-center col-md-3">Fecha</th>
-						<th scope="row" class="text-center col-md-3">Codigo</th>
-						<th scope="row" class="text-center col-md-3">Descripcion</th>
+						<th scope="row" class="text-center col-md-3">C&oacute;digo</th>
+						<th scope="row" class="text-center col-md-3">Descripci&oacute;n</th>
 						<th scope="row" class="text-center col-md-3">Monto</th>
 					</tr>
-				</thead>	
+				</thead>
 				<tbody>
 					<tr ng-repeat="transaccion in transacciones">
-						<td>{{ transaccion.fecha | date: "dd-mm-yyyy HH:mm:ss"}}</td>
+						<td>{{ transaccion.fecha | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
 						<td>{{ transaccion.codTransaccion }}</td>
 						<td>{{ transaccion.descTransaccion }}</td>
-						<td class="text-right">{{ transaccion.monto | currency }}</td>
+						<td class="text-right">{{ transaccion.monto | currency : selectedCurrency.simbolo : 2 }}</td>
 					</tr>
 				</tbody>
 			</table>

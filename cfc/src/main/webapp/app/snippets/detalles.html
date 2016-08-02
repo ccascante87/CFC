@@ -5,8 +5,7 @@
 			<h3>Detalle del comportamiento del efectivo</h3>
 
 
-			<table  datatable="ng" class="table table-hover  row-border hover	"
-				ng-show="showTable">
+			<table datatable="ng" class="table table-hover  row-border hover" dt-options="dtOptions">
 				<thead>
 					<tr>
 						<th scope="row" class="text-center col-md-2">Fecha</th>
@@ -19,12 +18,12 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="detalle in detalles">
-						<td>{{ detalle.fecha | date: "dd-MMM-yyyy HH:mm:ss"}}</td>
-						<td class="text-right">{{ detalle.saldo }}</td>
-						<td class="text-right">{{ detalle.rm }}</td>
-						<td class="text-right">{{ detalle.ocioso }}</td>
-						<td class="text-right">{{ detalle.reserva }}</td>
-						<td class="text-right">{{ detalle.menudo }}</td>
+						<td>{{ detalle.fecha | date: "dd/MM/yyyy HH:mm:ss"}}</td>
+						<td class="text-right">{{ detalle.saldo| currency : selectedCurrency.simbolo : 2}}</td>
+						<td class="text-right">{{ detalle.rm | currency : selectedCurrency.simbolo : 2 }}</td>
+						<td class="text-right">{{ detalle.ocioso | currency : selectedCurrency.simbolo : 2 }}</td>
+						<td class="text-right">{{ detalle.reserva | currency : selectedCurrency.simbolo : 2 }}</td>
+						<td class="text-right">{{ detalle.menudo | currency : selectedCurrency.simbolo : 2 }}</td>
 					</tr>
 				</tbody>
 			</table>

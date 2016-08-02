@@ -1,5 +1,5 @@
 'use strict'
-angular.module('appCFC').controller('graphController', ['$scope','$http', 'graphService', 'httpService', function($scope,$http,graphService,httpService){
+angular.module('appCFC').controller('graphController', ['$scope','$http', 'cfcConfigurationService', 'httpService', function($scope,$http,cfcConfigurationService,httpService){
 	function MainData(args) {
 		this.usuario = args.usuario;;
 		this.montoAsegurado = args.montoAsegurado;
@@ -63,7 +63,7 @@ angular.module('appCFC').controller('graphController', ['$scope','$http', 'graph
 	 		y = 0;
 	 		$scope.data = [];		
 	 		angular.forEach(jsonData.yAxisValues, function(item){
-	 			$scope.data.push({ values: [], key: item.label, type: item.type,yAxis: item.type == "line" ? 2:1 ,
+	 			$scope.data.push({ values: [], key: item.label, type: item.type,yAxis: 1 ,
 	 		 		originalKey: item.label,  seriesIndex: x });
 
 	 			for(var index = 0; index < xAxisValues.length;index++){
@@ -78,7 +78,7 @@ angular.module('appCFC').controller('graphController', ['$scope','$http', 'graph
 	 		y = 0;
 	 		$scope.data2 = [];		
 	 		angular.forEach(jsonData.yAxisValues, function(item){
-	 			$scope.data2.push({ values: [], key: item.label, type: item.type,yAxis: item.type == "line" ? 2:1 ,
+	 			$scope.data2.push({ values: [], key: item.label, type: item.type,yAxis: 1 ,
 	 				originalKey: item.label,
 	 				seriesIndex: x });
 	 			for(var index = 0; index < xAxisValues.length;index++){

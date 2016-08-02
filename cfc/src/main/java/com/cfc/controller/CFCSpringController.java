@@ -211,7 +211,7 @@ public class CFCSpringController {
 		System.out.println("Branch: " + branch);
 		
 		List<Pivot> data = iPivotService.findByMaxID(++maxId, 1150,1);
-			if(data.size() == variacionesEfectivo.getyAxisValues().size() && maxId > 3)
+			if( maxId > 125)
 				return mda;
 		variacionesEfectivo.getyAxisValues().clear();
 		comportamientoEfectivo.getyAxisValues().clear();

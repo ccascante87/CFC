@@ -1,13 +1,12 @@
-angular.module('appCFC').factory('graphService', function() {
+angular.module('appCFC').factory('cfcConfigurationService', function() {
 	var cashFlowOptions = {};
 	var cashVarOptions = {};
 	var service = {};
-	var currencyFormat = '';
+	var tableOptions = {};
 
 	// TODO Find out how to make this more reusable and not one variable per
 	// graph
-	service.cashFlowOptionsConfig = function(currency) {
-		currencyFormat = '' + currency + ',.1f';
+	service.cashFlowOptionsConfig = function() {
 		this.cashFlowOptions = {
 			chart : {
 				useInteractiveGuideline : true,
@@ -15,16 +14,14 @@ angular.module('appCFC').factory('graphService', function() {
 				height : 450,
 				margin : {
 					top : 20,
-					right : 90,
+					right : 20,
 					bottom : 40,
 					left : 90
 				},
-				color : [ 'red', 'green', 'yellow', 'pink', 'black' ],
-				legendColor : [ 'red', 'green', 'yellow', 'pink', 'black' ],
 				duration : 0,
 				xAxis : {
 					tickFormat : function(d) {
-						return d3.time.format('%X')(new Date(d));
+						return d3.time.format('%H:%M')(new Date(d));
 					}
 				},
 				yAxis1 : {
@@ -32,26 +29,18 @@ angular.module('appCFC').factory('graphService', function() {
 						return d3.format(currencyFormat)(d);
 					}
 				},
-				yAxis2 : {
-					tickFormat : function(d) {
-						return d3.format(',.1f')(d);
-					}
-				},
 				interactiveLayer : {
 					tooltip : {
 						headerFormatter : function(d) {
-							return d3.time.format('%X')(new Date(Number(d)));
+							return d3.time.format('%H:%M')(new Date(Number(d)));
 						}
 					}
 				},
 				tooltip : {
-					useInteractiveGuideline : true,
-					headerFormatter : function(d) {
-						return d3.time.format('%x')(new Date(d));
-					}
+					useInteractiveGuideline : true
+					
 				},
 				yDomain1 : [ 0, 50000000 ],
-				yDomain2 : [ 0, 50000000 ],
 				legendRightAxisHint : ''
 			}
 		}
@@ -65,15 +54,14 @@ angular.module('appCFC').factory('graphService', function() {
 				height : 450,
 				margin : {
 					top : 20,
-					right : 90,
+					right : 20,
 					bottom : 40,
 					left : 90
 				},
-				color : [ 'red', 'green', 'yellow', 'pink', 'black' ],
 				duration : 0,
 				xAxis : {
 					tickFormat : function(d) {
-						return d3.time.format('%X')(new Date(d));
+						return d3.time.format('%H:%M')(new Date(d));
 					}
 				},
 				yAxis1 : {
@@ -89,21 +77,50 @@ angular.module('appCFC').factory('graphService', function() {
 				interactiveLayer : {
 					tooltip : {
 						headerFormatter : function(d) {
-							return d3.time.format('%X')(new Date(Number(d)));
+							return d3.time.format('%H:%M')(new Date(Number(d)));
 						}
 					}
 				},
 				tooltip : {
-					useInteractiveGuideline : true,
-					headerFormatter : function(d) {
-						return d3.time.format('%x')(new Date(d));
-					}
+					useInteractiveGuideline : true
+					
 				},
 				yDomain1 : [ 0, 20000000 ],
-				yDomain2 : [ 0, 20000000 ],
 				legendRightAxisHint : ''
 			}
 		}
 	};
+	
+	service.tableOptionsConfig = function (){
+		this.tableOptions = {
+			
+		    oAria: {
+		        sSortAscending:  ": activate to sort column ascending",
+		        sSortDescending: ": activate to sort column descending"
+		    }
+		    , searching: false
+		    
+		    ,language: { // not withLanguage wich is from DTOptionsBuilder
+		    	sEmptyTable:     'No se encontraron datos',
+			    sInfo:           "Mostrando _START_ a _END_ de _TOTAL_ rgistros",
+			    sInfoEmpty:      "Mostrando 0 a 0 de 0 registros",
+			    sInfoFiltered:   "(filtrado de _MAX_ registros)",
+			    sInfoPostFix:    "",
+			    sInfoThousands:  ",",
+			    sLengthMenu:     'Mostrar _MENU_ filas',
+			    sLoadingRecords: "Cargando...",
+			    sProcessing:     "Procesando...",
+			    sSearch:         "Buscar:",
+			    sZeroRecords:    "No se encontraron registros",
+			    oPaginate: {
+			        sFirst:    "Primero",
+			        sLast:     "&Uacute;ltimo ",
+			        sNext:     "Siguiente",
+			        sPrevious: "Anterior"
+			    }
+	        }
+		}
+		return this.tableOptions;
+	}
 	return service;
 })

@@ -1,23 +1,17 @@
 'use strict'
-angular.module('appCFC').controller('detalleController', ['$scope', '$http', function($scope, $http) {
-	$scope.showTable = false;
+angular.module('appCFC').controller('detalleController',['$scope', '$http', 'cfcConfigurationService', 'DTOptionsBuilder', 'DTColumnBuilder', 
+                                                         function($scope, $http,cfcConfigurationService, DTOptionsBuilder,DTColumnBuilder){
+
 	function init() {
-//		usSpinnerService.spin('spinner-1');
-		console.log('Init detalleController nonononononononono');
-		// load transacciones datatable
+		$scope.dtOptions =cfcConfigurationService.tableOptionsConfig();
+		// load the details data talble
+		// TODO Move the rest call to a service
 		$http({
 			method : 'GET',
 			url : '/cfc/efectivo/getDetalles',
-		// data: { applicationId: 3 }
 		}).success(function(result) {
-			console.log('desde la');
-			console.log(result);
 			$scope.detalles = result;
-//			$scope.$apply();
-			$scope.showTable = true;
-//				usSpinnerService.stop('spinner-1');
 		});
 	}
-
 	init();
 } ]);// End controller
