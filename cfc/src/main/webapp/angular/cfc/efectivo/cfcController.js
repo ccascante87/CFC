@@ -1,5 +1,5 @@
 'useS strict'
-angular.module('appCFC').controller('cfcController',['$scope','$http','graphService','httpService',function($scope, $http, graphService, httpService) {
+angular.module('appCFC').controller('cfcController',['$scope','$http','httpService',function($scope, $http, httpService) {
 	
 	var init = function() {
 		var promise = httpService.getCurrencies();
@@ -18,7 +18,6 @@ angular.module('appCFC').controller('cfcController',['$scope','$http','graphServ
 	
 	$scope.updateModel = function(){
 		 $scope.$emit('someEvent', this);
-    	console.log('initin.............')
 	}
 	init();
 }]);// End controller
