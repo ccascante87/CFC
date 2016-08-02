@@ -43,7 +43,8 @@ angular.module('appCFC').factory('cfcConfigurationService', function() {
 				yDomain1 : [ 0, 50000000 ],
 				legendRightAxisHint : ''
 			}
-		}
+		}; 
+		return this.cashFlowOptions;
 	};
 
 	service.cashVarOptionsConfig = function() {
@@ -88,7 +89,8 @@ angular.module('appCFC').factory('cfcConfigurationService', function() {
 				yDomain1 : [ 0, 20000000 ],
 				legendRightAxisHint : ''
 			}
-		}
+		};
+		return this.cashVarOptions;
 	};
 	
 	service.tableOptionsConfig = function (){
@@ -119,7 +121,7 @@ angular.module('appCFC').factory('cfcConfigurationService', function() {
 			        sPrevious: "Anterior"
 			    }
 	        }
-		}
+		};
 		return this.tableOptions;
 	}
 	return service;

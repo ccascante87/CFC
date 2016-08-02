@@ -3,7 +3,7 @@
 </section>
 <!-- Main content -->
 <section class="content">
-	<div class="container-fluid"  ng-controller="graphController">
+	<div class="container-fluid" ng-controller="graphController">
 		<div class="row row-eq-height ">
 			<div class="col-md-8 row-eq-height">
 				<div class="box box-primary">
@@ -14,24 +14,20 @@
 									<th scope="row">Usuario</th>
 									<td>{{mainData.loggedUserName}}</td>
 									<th scope="row">Monto Asegurado</th>
-									<td>{{mainData.montoAsegurado | currency :
-										selectedCurrency.simbolo : 2 }}</td>
+									<td>{{mainData.montoAsegurado | currency : selectedCurrency.simbolo : 2 }}</td>
 									<th scope="row">Saldo Actual</th>
-									<td>{{mainData.saldoActual | currency : selectedCurrency.simbolo :
-										2 }}</td>
+									<td>{{mainData.saldoActual | currency : selectedCurrency.simbolo : 2 }}</td>
 									<th scope="row">Ocioso</th>
 									<td>{{mainData.ocioso | currency : selectedCurrency.simbolo : 2 }}</td>
 								</tr>
 								<tr>
-									<th scope="row">Código</th>
+									<th scope="row">C&oacute;digo</th>
 									<td>{{selectedBranch.codigoAgencia}}</td>
 									<th scope="row">Saldo Autorizado</th>
-									<td>{{mainData.saldoAutorizado | currency :
-										selectedCurrency.simbolo : 2 }}</td>
+									<td>{{mainData.saldoAutorizado | currency : selectedCurrency.simbolo : 2 }}</td>
 									<th scope="row">Punto Reorden</th>
-									<td>{{mainData.montoAsegurado | currency :
-										selectedCurrency.simbolo : 2 }}</td>
-									<th scope="row">% Utilización</th>
+									<td>{{mainData.montoAsegurado | currency : selectedCurrency.simbolo : 2 }}</td>
+									<th scope="row">% Utilizaci&oacute;n</th>
 									<td>10%</td>
 								</tr>
 
@@ -60,23 +56,19 @@
 						<div class="table-responsive">
 							<table class="table">
 								<tr>
-									<th scope="row">Pronóstico</th>
+									<th scope="row">Pron&oacute;stico</th>
 									<th scope="row">Hoy</th>
-									<th scope="row">Mañana</th>
+									<th scope="row">Ma&ntilde;ana</th>
 								</tr>
 								<tr>
-									<th scope="row">Por día</th>
-									<td>{{mainData.byDayToday | currency : selectedCurrency.simbolo :
-										2 }}</td>
-									<td>{{mainData.byDayTomorrow | currency : selectedCurrency.simbolo
-										: 2 }}</td>
+									<th scope="row">Por d&iacute;a</th>
+									<td>{{mainData.byDayToday | currency : selectedCurrency.simbolo : 2 }}</td>
+									<td>{{mainData.byDayTomorrow | currency : selectedCurrency.simbolo : 2 }}</td>
 								</tr>
 								<tr>
 									<th scope="row">Por fecha</th>
-									<td>{{mainData.byDateToday | currency : selectedCurrency.simbolo :
-										2 }}</td>
-									<td>{{mainData.byDateTomorrow | currency :
-										selectedCurrency.simbolo : 2 }}</td>
+									<td>{{mainData.byDateToday | currency : selectedCurrency.simbolo : 2 }}</td>
+									<td>{{mainData.byDateTomorrow | currency : selectedCurrency.simbolo : 2 }}</td>
 								</tr>
 							</table>
 						</div>
@@ -106,15 +98,13 @@
 			<div class="col-md-4 row-eq-height">
 				<div class="box box-primary">
 					<div class="box-header with-border">
-						<h3 class="panel-title">Detalle del comportamiento del
-							efectivo</h3>
+						<h3 class="panel-title">Detalle del comportamiento del efectivo</h3>
 					</div>
 					<div class="box-body">
 						<table class="table">
 							<tr ng-repeat="detail in mainData.cashBehaviorDetail">
 								<th scope="row">{{detail.label}}</th>
-								<td class="text-right">{{detail.value | currency :
-									selectedCurrency.simbolo : 2 }}</td>
+								<td class="text-right">{{detail.value | currency : selectedCurrency.simbolo : 2 }}</td>
 
 							</tr>
 						</table>
@@ -129,11 +119,8 @@
 							</thead>
 							<tr ng-repeat="curentBalance in mainData.currentBalanceHistory">
 								<td>{{ curentBalance.label}}</td>
-								<td class="text-right">{{curentBalance.value | currency :
-									selectedCurrency.simbolo : 2}}</td>
-								<td class="text-center"><span
-									class="glyphicon {{ curentBalance | displayUpDownArrow}}"></span>
-								</td>
+								<td class="text-right">{{curentBalance.value | currency : selectedCurrency.simbolo : 2}}</td>
+								<td class="text-center"><span class="glyphicon {{ curentBalance | displayUpDownArrow}}"></span></td>
 							</tr>
 						</table>
 					</div>
@@ -149,7 +136,7 @@
 						<div class="box-tools pull-right"></div>
 					</div>
 					<div class="box-body">
-						<div class="chart">						
+						<div class="chart">
 							<nvd3 options=cashVarOptions data="data2"></nvd3>
 						</div>
 					</div>
@@ -166,8 +153,7 @@
 						<table class="table table-hover	">
 							<tr ng-repeat="detail in mainData.cashVariations">
 								<th scope="row">{{detail.label}}</th>
-								<td class="text-right">{{detail.value | currency :
-									selectedCurrency.simbolo : 2 }}</td>
+								<td class="text-right">{{detail.value | currency : selectedCurrency.simbolo : 2 }}</td>
 							</tr>
 						</table>
 						<table class="table">
@@ -178,11 +164,8 @@
 							</tr>
 							<tr ng-repeat="curentBalance in mainData.cashValHistory">
 								<td>{{ curentBalance.label}}</td>
-								<td class="text-right">{{curentBalance.value | currency :
-									selectedCurrency.simbolo : 2}}</td>
-								<td class="text-center"><span
-									class="glyphicon {{ curentBalance | displayUpDownArrow}}"></span>
-								</td>
+								<td class="text-right">{{curentBalance.value | currency : selectedCurrency.simbolo : 2}}</td>
+								<td class="text-center"><span class="glyphicon {{ curentBalance | displayUpDownArrow}}"></span></td>
 							</tr>
 						</table>
 					</div>
