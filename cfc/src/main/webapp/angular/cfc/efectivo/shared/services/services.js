@@ -12,6 +12,7 @@ angular.module('appCFC').factory('cfcConfigurationService', function() {
 				useInteractiveGuideline : true,
 				type : 'multiChart',
 				height : 450,
+				showLegend: false,
 				margin : {
 					top : 20,
 					right : 20,
@@ -53,6 +54,7 @@ angular.module('appCFC').factory('cfcConfigurationService', function() {
 				useInteractiveGuideline : true,
 				type : 'multiChart',
 				height : 450,
+				showLegend: false,
 				margin : {
 					top : 20,
 					right : 20,

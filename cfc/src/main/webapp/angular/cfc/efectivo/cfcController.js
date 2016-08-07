@@ -1,5 +1,5 @@
 'useS strict'
-angular.module('appCFC').controller('cfcController',['$scope','$http','httpService',function($scope, $http, httpService) {
+angular.module('appCFC').controller('cfcController',['$scope','httpService',function($scope, httpService) {
 	
 	var init = function() {
 		var promise = httpService.getCurrencies();
@@ -14,10 +14,9 @@ angular.module('appCFC').controller('cfcController',['$scope','$http','httpServi
 			 $scope.selectedBranch = $scope.sucursales[0];
 		 });	 
 	};
-	
-	
+		
 	$scope.updateModel = function(){
-		 $scope.$emit('someEvent', this);
+		$scope.$broadcast('someEvent');
 	}
 	init();
 }]);// End controller

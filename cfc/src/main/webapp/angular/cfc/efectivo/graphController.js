@@ -1,6 +1,6 @@
 'use strict'
-angular.module('appCFC').controller('graphController', ['$scope','$http', 'cfcConfigurationService', 'httpService', 
-                                                        function($scope,$http,cfcConfigurationService,httpService){
+angular.module('appCFC').controller('graphController', ['$scope','$interval', 'cfcConfigurationService', 'httpService', 
+                                                        function($scope,$interval,cfcConfigurationService,httpService){
 	function MainData(args) {
 		this.usuario = args.usuario;;
 		this.montoAsegurado = args.montoAsegurado;
@@ -24,23 +24,17 @@ angular.module('appCFC').controller('graphController', ['$scope','$http', 'cfcCo
         this.cashValHistory = {};
 	}	
 	
-	
-	/*
-	 * Updates the graph data according to the selected options.
-	 */
-	
-	$scope.$on('someEvent', function(event, args) {
-		
-		console.log(' another ')
-	});
-	  // another controller or even directive
-	
+	/** Variable used to hold the promise returned by the $interval service*/
+	var intervalPromise;
     function loadData(){    	 
     	x++;
     	y++;
-    	//TODO get this data from dropdown
+    	var brach = $scope.selectedBranch == undefined ? '1150' : $scope.selectedBranch.idSucursal;
+    	var currency = $scope.selectedCurrency == undefined ? '1' : $scope.selectedCurrency.id;
+    	console.log($scope.selectedBranch );
+     	//TODO get this data from dropdown
 //    	var promise = httpService.getGraphData($scope.selectedBranch.idSucursal, $scope.selectedCurrency.id);
-    	var promise = httpService.getGraphData(1150,1);
+    	var promise = httpService.getGraphData(brach,currency);
 	    promise.then(function(result) { 
             var jsonData = result.compEfectivoGraph;
           	datos.cashBehaviorDetail = result.cashBehaviorDetail;        	
@@ -99,14 +93,29 @@ angular.module('appCFC').controller('graphController', ['$scope','$http', 'cfcCo
 	var currencyFormat = function(d){
 		return $scope.selectedCurrency.simbolo + d3.format(',.2f')(new Number(d));
 	}
+	
+	 $scope.$on('someEvent', function(e) {
+	        //loadData();
+		 console.log('Broadcasted evente caoruted by graphdcongtoller');
+	    });
+	 
 	    
+	 
+	 /**
+	  * Cancel the interval whenever navigate away from the graph page
+	  */
+	 $scope.$on('$destroy', function() {
+         $interval.cancel(intervalPromise);
+         intervalPromise =  undefined;
+       });
+	 
+	 
     $scope.run = true;
     var values =[];
 	var xAxisValues;
 	var x = 0;
 	var y = 0;
 	var init = function () {	
-		
 		$scope.mainData = datos;
 		$scope.cashFlowOptions = cfcConfigurationService.cashFlowOptionsConfig();
 		$scope.cashVarOptions = cfcConfigurationService.cashVarOptionsConfig();		
@@ -116,9 +125,15 @@ angular.module('appCFC').controller('graphController', ['$scope','$http', 'cfcCo
 		
 		var jsonData = {};
 		loadData();	
-	    setInterval(function(){
-	    	loadData();
-	    }, 5000); 
+		intervalPromise = $interval(
+				function (){
+					console.log('new interval');
+					loadData();
+				}, 5000);
+//	    /*setInterval(function(){
+//	    	loadData();
+//			console.log($scope.selectedBranch );
+//	    */}, 5000); 
 	   $scope.mainData.loggedUserName = 'Bruce Wayne';
 	};
     init();

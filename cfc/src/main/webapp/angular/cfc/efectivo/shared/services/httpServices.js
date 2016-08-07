@@ -35,8 +35,31 @@ angular.module('appCFC').factory('httpService', function($http, $q) {
 		    }).error(function(msg, code){
 		    	deferred.reject(msg);
 		    });
+			return deferred.promise;		    
+		},
+		getTransactions : function(branch, currency){
+			var deferred = $q.defer();
+			$http({
+				method : 'GET',
+				url: '/cfc/efectivo/getTransacciones'
+			}).success(function (resultTransaction){
+				deferred.resolve(resultTransaction);
+			}).error(function (msg, code){
+				deferred.reject(msg);
+			});
 			return deferred.promise;
-		    
+		},
+		getDetails : function(branch, currency){
+			var deferred = $q.defer();
+			$http({
+				method : 'GET',
+				url: '/cfc/efectivo/getDetalles'
+			}).success(function (rsltDetail){
+				deferred.resolve(rsltDetail);
+			}).error(function (msg, code){
+				deferred.reject(msg);
+			});
+			return deferred.promise;
 		}
 	}
 })

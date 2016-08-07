@@ -37,6 +37,8 @@ import com.cfc.service.ISaldoService;
 import com.cfc.service.ISucursalService;
 import com.cfc.service.ITransaccionService;
 
+import antlr.collections.Stack;
+
 @RestController
 @RequestMapping("/efectivo")
 public class CFCSpringController {
@@ -206,13 +208,13 @@ public class CFCSpringController {
 	public MainData getGraphData(@PathVariable String branch,@PathVariable String currency){
 //		variacionesEfectivo = new GraphData();
 //		comportamientoEfectivo = new  GraphDatCa();
-		
-		System.out.println("currency: " + currency);
-		System.out.println("Branch: " + branch);
+//		
+		System.err.println("currency: " + currency);
+		System.err.println("Branch: " + branch);
 		
 		List<Pivot> data = iPivotService.findByMaxID(++maxId, 1150,1);
-			if( maxId > 125)
-				return mda;
+		if( maxId > 125)
+			return mda;
 		variacionesEfectivo.getyAxisValues().clear();
 		comportamientoEfectivo.getyAxisValues().clear();
 		mda = new MainData();
@@ -292,7 +294,11 @@ public class CFCSpringController {
 		mda.getCashVariations().add(new Item("LCr" ,data.get(data.size()-1).getLcr(),data.get(data.size()-2).getLcr()));
 		mda.getCashVariations().add(new Item("LClr" ,data.get(data.size()-1).getLcir(),data.get(data.size()-2).getLcir()));
 		
-		
+		Pivot item;
+		if(data.size() == 1){
+			item = data.get(0);
+			mda.getCurrentBalanceHistory().add(new Item(item.getFecha().toString(),item.getSaldo() ,BigDecimal.ZERO));
+		}
 		mda.getCurrentBalanceHistory().add(new Item("7:00", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 100000)));
 		mda.getCurrentBalanceHistory().add(new Item("7:15", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 100000)));
 		mda.getCurrentBalanceHistory().add(new Item("7:30", new BigDecimal(Math.random() * 1000),new BigDecimal(Math.random() * 100000)));
