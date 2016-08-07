@@ -20,8 +20,8 @@ public interface IPivotService {
 	void updatePivot(Pivot pivot);
 
 	List<Pivot> findAll(); 
-
-	List<Pivot> getDetalles();
 	
 	List<Pivot> findByMaxID(int maxId,int brachId, int currencyId);
+	
+	List<Pivot> getDetailsByBranchAndCurrency(int branchId, int currencyId);
 }

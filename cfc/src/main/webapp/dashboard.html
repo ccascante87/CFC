@@ -7,14 +7,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>CFC</title>
 <!-- Tell the browser to be responsive to screen width -->
-<meta
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-	name="viewport">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <!-- Bootstrap 3.3.5 -->
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 <!-- Font Awesome -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
 <!-- Skin -->
@@ -26,78 +23,66 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.css" />
 </head>
-<body class="hold-transition skin-cfc sidebar-mini"	>
+<body class="hold-transition skin-cfc sidebar-mini">
 	<div class="wrapper" ng-controller="cfcController">
 		<!-- Main Header -->
 		<header class="main-header">
 
 			<!-- Logo -->
-			<a href="#" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
-				<span class="logo-mini">CFC</span> <!-- logo for regular state and mobile devices -->
+			<a href="#" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels --> <span class="logo-mini">CFC</span> <!-- logo for regular state and mobile devices -->
 				<span class="logo-lg">Manejo de Efectivo </span>
 			</a>
 
 			<!-- Header Navbar -->
 			<nav class="navbar navbar-static-top" role="navigation">
 				<!-- Sidebar toggle button-->
-				<a href="#" class="sidebar-toggle" data-toggle="offcanvas"
-					role="button"> <span class="sr-only">Toggle navigation</span>
+				<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"> <span class="sr-only">Toggle
+						navigation</span>
 				</a>
 				<!-- Navbar Right Menu -->
 				<div class="navbar-custom-menu">
 
 					<ul class="nav navbar-nav">
 						<!-- Sucursales Dropdown -->
-						<li class="dropdown notifications-menu"><select
-							ng-model="selectedBranch" ng-change="updateModel()"
-							style="margin-top: 11px;"
-							data-ng-options="branch as branch.nomAgencia for branch in sucursales">
+						<li class="dropdown notifications-menu"><select ng-model="selectedBranch" ng-change="updateModel()"
+							style="margin-top: 11px;" data-ng-options="branch as branch.nomAgencia for branch in sucursales">
 						</select></li>
 
 						<!-- Currency Dropdown -->
-						<li class="dropdown notifications-menu"><select
-							ng-model="selectedCurrency" ng-change="updateModel()"
-							data-ng-options="currency as currency.simbolo for currency in currency"
-							style="margin-top: 11px;">
+						<li class="dropdown notifications-menu"><select ng-model="selectedCurrency" ng-change="updateModel()"
+							data-ng-options="currency as currency.simbolo for currency in currency" style="margin-top: 11px;">
 						</select></li>
 						<!-- Messages: style can be found in dropdown.less-->
 						<li class="dropdown messages-menu">
-							<!-- Menu toggle button --> <a href="#" class="dropdown-toggle"
-							data-toggle="dropdown"> <i class="fa fa-envelope-o"></i> <span
-								class="label label-success"></span>
+							<!-- Menu toggle button --> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i
+								class="fa fa-envelope-o"></i> <span class="label label-success"></span>
 						</a>
 						</li>
 
 						<!-- Notifications Menu -->
 						<li class="dropdown notifications-menu">
-							<!-- Menu toggle button --> <a href="#" class="dropdown-toggle"
-							data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <span
-								class="label label-warning"></span>
+							<!-- Menu toggle button --> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i
+								class="fa fa-bell-o"></i> <span class="label label-warning"></span>
 						</a>
 						</li>
 
 						<!-- Tasks Menu -->
 						<li class="dropdown tasks-menu">
-							<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
-							data-toggle="dropdown"> <i class="fa fa-comment-o"></i> <span
-								class="label label-danger"></span>
+							<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i
+								class="fa fa-comment-o"></i> <span class="label label-danger"></span>
 						</a>
 						</li>
 						<!-- User Account Menu -->
 						<li class="dropdown user user-menu">
-							<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
-							data-toggle="dropdown"> <!-- The user image in the navbar-->
-								<img src="app/img/test.jpg" class="user-image" alt="User Image">
-								<!-- hidden-xs hides the username on small devices so only the image appears. -->
+							<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <!-- The user image in the navbar-->
+								<img src="app/img/test.jpg" class="user-image" alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
 								<span class="hidden-xs">{{mainData.loggedUserName}}</span>
 						</a>
 							<ul class="dropdown-menu">
 								<!-- The user image in the menu -->
-								<li class="user-header"><img src="app/img/test.jpg"
-									class="img-circle" alt="User Image">
+								<li class="user-header"><img src="app/img/test.jpg" class="img-circle" alt="User Image">
 									<p>
 										{{mainData.loggedUserName}} <small>Other info...</small>
 									</p></li>
@@ -119,8 +104,7 @@
 										<a href="#" class="btn btn-default btn-flat">Profile</a>
 									</div>
 									<div class="pull-right">
-										<a id="sign-out-button" href="#"
-											class="btn btn-default btn-flat">Sign out</a>
+										<a id="sign-out-button" href="#" class="btn btn-default btn-flat">Sign out</a>
 									</div>
 								</li>
 							</ul>
@@ -151,14 +135,11 @@
 				<ul class="sidebar-menu">
 					<!-- <li class="side-menu-item" data-htmlfile="graphColones"><a
 						href="#"><i class="fa fa-area-chart"></i><span>Dashboard</span></a></li> -->
-					<li class="side-menu-item" data-htmlfile="graphColones"><a
-						href="#"><i class="fa fa-area-chart"></i><span>Gráfico</span></a></li>
+					<li class="side-menu-item" data-htmlfile="graphColones"><a href="#"><i class="fa fa-area-chart"></i><span>Gráfico</span></a></li>
 					<!-- <li class="side-menu-item" data-htmlfile="graphColones"><a
 						href="#"><i class="fa fa-area-chart"></i><span>Detalles</span></a></li>-->
-					<li class="side-menu-item" ><a
-						href="#/transac"><i class="fa fa-area-chart"></i><span>Transacciones</span></a></li>
-					<li class="side-menu-item" ><a
-						href="#/detalles"><i class="fa fa-area-chart"></i><span>Detalles</span></a></li>
+					<li class="side-menu-item"><a href="#/transac"><i class="fa fa-area-chart"></i><span>Transacciones</span></a></li>
+					<li class="side-menu-item"><a href="#/detalles"><i class="fa fa-area-chart"></i><span>Detalles</span></a></li>
 					<!-- <li class="side-menu-item" data-htmlfile="graphColones"><a
 					<li class="side-menu-item"><a href="#/transac"><i
 							class="fa fa-area-chart"></i><span>Transacciones</span></a></li>
@@ -185,8 +166,7 @@
 			<div class="gray-line"></div>
 			<!-- Default to the right -->
 			<div class="pull-right hidden-xs">
-				<strong>Copyright &copy; 2016 <a target="_blank" href="#">CFC
-				</a>.
+				<strong>Copyright &copy; 2016 <a target="_blank" href="#">CFC </a>.
 				</strong> All rights reserved.
 			</div>
 		</footer>
@@ -207,16 +187,11 @@
 	<script src="plugins/fastclick/fastclick.min.js"></script>
 	<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
 	<script src="plugins/jquery.dataTables.min.js"></script>
-	<script
-		src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.js"></script>
-	<script
-		src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular-route.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"
-		charset="utf-8"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.2/nv.d3.min.js"></script>
-	<script
-		src="https://rawgit.com/krispo/angular-nvd3/v1.0.4/dist/angular-nvd3.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular-route.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.2/nv.d3.min.js"></script>
+	<script src="https://rawgit.com/krispo/angular-nvd3/v1.0.4/dist/angular-nvd3.js"></script>
 	<script src="angular/vendor/angular-spinner.min.js"></script>
 	<script src="angular/cfc/app.js"></script>
 	<script src="angular/cfc/efectivo/cfcController.js"></script>

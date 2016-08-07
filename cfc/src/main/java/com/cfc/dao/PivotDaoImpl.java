@@ -92,11 +92,13 @@ public class PivotDaoImpl extends AbstractDao<Integer, Pivot> implements IPivotD
 		return (List<Pivot>) query.list();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	// @Transactional
-	public List<Pivot> getDetalles() {
+	public List<Pivot> getDetailsByBranchAndCurrency(int branchId, int currencyId) {
 		List<Pivot> detalles;
-		Query query = (Query) getSession().createQuery("Select P " + " FROM  Pivot P ");
+		Query query = getSession().getNamedQuery("Pivot.findByMaxDateBranchAndCurrency")
+				.setInteger("branchId", branchId)
+				.setInteger("currId", currencyId);
 		detalles = query.list();
 		return detalles;
 	}

@@ -13,7 +13,7 @@ angular.module('appCFC').controller('detalleController',['$scope', 'httpService'
 	}
 	function init() {
 		$scope.dtOptions =cfcConfigurationService.tableOptionsConfig();
-		loadData(1,2);
+		loadData(-1,-1);
 	}
 	
 	/**

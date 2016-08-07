@@ -72,7 +72,7 @@ public class PivotServiceImpl implements IPivotService {
 	}
 	
 	@Override
-	public List<Pivot> getDetalles() {
-		return pivotDao.getDetalles();
+	public List<Pivot> getDetailsByBranchAndCurrency(int branchId, int currencyId){
+		return pivotDao.getDetailsByBranchAndCurrency(branchId, currencyId);
 	}
 }

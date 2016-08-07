@@ -20,8 +20,13 @@ public interface IPivotDao {
 	void deleteById(int id);
 
 	List<Pivot> findAll();
-	
-	List<Pivot> getDetalles();
+	/**
+	 * Get the details list (Pivot data) for the given branch and currency
+	 * @param branchId Id of the selected branch, -1 to get all branches
+	 * @param currencyId Id of the selected currency, -1 to get all currencies
+	 * @return
+	 */
+	List<Pivot> getDetailsByBranchAndCurrency(int branchId, int currencyId);
 	
 	/**
 	 * 

@@ -1,29 +1,41 @@
+
+
 <div ng-controller="transaccionesController">
-	<div class="row">
-		<div class="col-md-1"></div>
-		<div class="col-md-10">
-			<h3>Detalle del comportamiento del efectivo</h3>
+	<section class="content-header">
+		<h1>Listado del transacciones del dia de hoy</h1>
+	</section>
+	<section class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
 
+					<div class="box box-primary">
+						<div class="box-body">
+							<div class="table-responsive">
 
-			<table datatable="ng" class="table table-hover  row-border hover" dt-options="dtOptions">
-				<thead>
-					<tr>
-						<th scope="row" class="text-center col-md-3">Fecha</th>
-						<th scope="row" class="text-center col-md-3">C&oacute;digo</th>
-						<th scope="row" class="text-center col-md-3">Descripci&oacute;n</th>
-						<th scope="row" class="text-center col-md-3">Monto</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="transaccion in transacciones">
-						<td>{{ transaccion.fecha | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
-						<td>{{ transaccion.codTransaccion }}</td>
-						<td>{{ transaccion.descTransaccion }}</td>
-						<td class="text-right">{{ transaccion.monto | currency : selectedCurrency.simbolo : 2 }}</td>
-					</tr>
-				</tbody>
-			</table>
+								<table datatable="ng" class="table table-hover  row-border hover" dt-options="dtOptions">
+									<thead>
+										<tr>
+											<th scope="row" class="text-center col-md-3">Fecha</th>
+											<th scope="row" class="text-center col-md-3">C&oacute;digo</th>
+											<th scope="row" class="text-center col-md-3">Descripci&oacute;n</th>
+											<th scope="row" class="text-center col-md-3">Monto</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="transaccion in transacciones">
+											<td>{{ transaccion.fecha | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+											<td>{{ transaccion.codTransaccion }}</td>
+											<td>{{ transaccion.descTransaccion }}</td>
+											<td class="text-right">{{ transaccion.monto | currency : selectedCurrency.simbolo : 2 }}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="col-md-1"></div>
-	</div>
+	</section>
 </div>

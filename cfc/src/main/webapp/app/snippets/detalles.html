@@ -1,33 +1,43 @@
 <div ng-controller="detalleController">
-	<div class="row">
-		<div class="col-md-1"></div>
-		<div class="col-md-10">
-			<h3>Detalle del comportamiento del efectivo</h3>
+	<section class="content-header">
+		<h1>Detalle del comportamiento del efectivo</h1>
+	</section>
+	<section class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
 
+					<div class="box box-primary">
+						<div class="box-body">
+							<div class="table-responsive">
 
-			<table datatable="ng" class="table table-hover  row-border hover" dt-options="dtOptions">
-				<thead>
-					<tr>
-						<th scope="row" class="text-center col-md-2">Fecha</th>
-						<th scope="row" class="text-center col-md-2">Saldo</th>
-						<th scope="row" class="text-center col-md-2">RM</th>
-						<th scope="row" class="text-center col-md-2">Ocioso</th>
-						<th scope="row" class="text-center col-md-2">Reserva</th>
-						<th scope="row" class="text-center col-md-2">Menudo</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="detalle in detalles">
-						<td>{{ detalle.fecha | date: "dd/MM/yyyy HH:mm:ss"}}</td>
-						<td class="text-right">{{ detalle.saldo| currency : selectedCurrency.simbolo : 2}}</td>
-						<td class="text-right">{{ detalle.rm | currency : selectedCurrency.simbolo : 2 }}</td>
-						<td class="text-right">{{ detalle.ocioso | currency : selectedCurrency.simbolo : 2 }}</td>
-						<td class="text-right">{{ detalle.reserva | currency : selectedCurrency.simbolo : 2 }}</td>
-						<td class="text-right">{{ detalle.menudo | currency : selectedCurrency.simbolo : 2 }}</td>
-					</tr>
-				</tbody>
-			</table>
+								<table datatable="ng" class="table table-hover  row-border hover" dt-options="dtOptions">
+									<thead>
+										<tr>
+											<th scope="row" class="text-center col-md-2">Fecha</th>
+											<th scope="row" class="text-center col-md-2">Saldo</th>
+											<th scope="row" class="text-center col-md-2">RM</th>
+											<th scope="row" class="text-center col-md-2">Ocioso</th>
+											<th scope="row" class="text-center col-md-2">Reserva</th>
+											<th scope="row" class="text-center col-md-2">Menudo</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="detalle in detalles">
+											<td>{{ detalle.fecha | date: "dd/MM/yyyy HH:mm:ss"}}</td>
+											<td class="text-right">{{ detalle.saldo| currency : selectedCurrency.simbolo : 2}}</td>
+											<td class="text-right">{{ detalle.rm | currency : selectedCurrency.simbolo : 2 }}</td>
+											<td class="text-right">{{ detalle.ocioso | currency : selectedCurrency.simbolo : 2 }}</td>
+											<td class="text-right">{{ detalle.reserva | currency : selectedCurrency.simbolo : 2 }}</td>
+											<td class="text-right">{{ detalle.menudo | currency : selectedCurrency.simbolo : 2 }}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="col-md-1"></div>
-	</div>
+	</section>
 </div>

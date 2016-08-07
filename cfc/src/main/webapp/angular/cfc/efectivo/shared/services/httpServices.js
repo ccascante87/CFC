@@ -53,7 +53,7 @@ angular.module('appCFC').factory('httpService', function($http, $q) {
 			var deferred = $q.defer();
 			$http({
 				method : 'GET',
-				url: '/cfc/efectivo/getDetalles'
+				url: '/cfc/efectivo/getDetalles/' + branch + '/' + currency
 			}).success(function (rsltDetail){
 				deferred.resolve(rsltDetail);
 			}).error(function (msg, code){

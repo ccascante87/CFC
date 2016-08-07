@@ -17,9 +17,11 @@ import java.sql.Timestamp;
  * 
  */
 @Entity
-@NamedQueries({ @NamedQuery(name = "Pivot.findAll", query = "SELECT p FROM Pivot p") ,
-		@NamedQuery(name="Pivot.findByMaxId", query="SELECT p FROM Pivot p WHERE p.id <= :maxId AND "
-				+ " p.codAgencia = :codAgencia AND p.codMoneda = :codMoneda")})
+@NamedQueries({ @NamedQuery(name = "Pivot.findAll", query = "SELECT p FROM Pivot p"),
+		@NamedQuery(name = "Pivot.findByMaxId", query = "SELECT p FROM Pivot p WHERE p.id <= :maxId AND "
+				+ " p.codAgencia = :codAgencia AND p.codMoneda = :codMoneda"),
+		@NamedQuery(name="Pivot.findByMaxDateBranchAndCurrency", query="FROM Pivot p where p.fecha <= current_date AND"
+				+ " (codAgencia = :branchId OR :branchId = -1) AND (codMoneda = :currId OR :currId = -1)")})
 public class Pivot implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -80,7 +82,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getCodAgencia() {
-		return this.codAgencia != null ? this.codAgencia : BigDecimal.ZERO ;
+		return this.codAgencia != null ? this.codAgencia : BigDecimal.ZERO;
 	}
 
 	public void setCodAgencia(BigDecimal codAgencia) {
@@ -104,7 +106,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getLcir() {
-		return this.lcir!= null ? this.lcir : BigDecimal.ZERO ;
+		return this.lcir != null ? this.lcir : BigDecimal.ZERO;
 	}
 
 	public void setLcir(BigDecimal lcir) {
@@ -112,7 +114,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getLcix() {
-		return this.lcix!= null ? this.lcix: BigDecimal.ZERO ;
+		return this.lcix != null ? this.lcix : BigDecimal.ZERO;
 	}
 
 	public void setLcix(BigDecimal lcix) {
@@ -120,7 +122,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getLcr() {
-		return this.lcr!= null ? this.lcr: BigDecimal.ZERO ;
+		return this.lcr != null ? this.lcr : BigDecimal.ZERO;
 	}
 
 	public void setLcr(BigDecimal lcr) {
@@ -128,7 +130,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getLcsr() {
-		return this.lcsr!= null ? this.lcsr : BigDecimal.ZERO ;
+		return this.lcsr != null ? this.lcsr : BigDecimal.ZERO;
 	}
 
 	public void setLcsr(BigDecimal lcsr) {
@@ -136,7 +138,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getLcsx() {
-		return this.lcsx!= null ? this.lcsx : BigDecimal.ZERO ;
+		return this.lcsx != null ? this.lcsx : BigDecimal.ZERO;
 	}
 
 	public void setLcsx(BigDecimal lcsx) {
@@ -144,7 +146,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getLcx() {
-		return this.lcx!= null ? this.lcx : BigDecimal.ZERO ;
+		return this.lcx != null ? this.lcx : BigDecimal.ZERO;
 	}
 
 	public void setLcx(BigDecimal lcx) {
@@ -152,7 +154,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getMenudo() {
-		return this.menudo!= null ? this.menudo : BigDecimal.ZERO ;
+		return this.menudo != null ? this.menudo : BigDecimal.ZERO;
 	}
 
 	public void setMenudo(BigDecimal menudo) {
@@ -160,7 +162,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getOcioso() {
-		return this.ocioso!= null ? this.ocioso : BigDecimal.ZERO ;
+		return this.ocioso != null ? this.ocioso : BigDecimal.ZERO;
 	}
 
 	public void setOcioso(BigDecimal ocioso) {
@@ -168,7 +170,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getPuntoReorden() {
-		return this.puntoReorden!= null ? this.puntoReorden : BigDecimal.ZERO ;
+		return this.puntoReorden != null ? this.puntoReorden : BigDecimal.ZERO;
 	}
 
 	public void setPuntoReorden(BigDecimal puntoReorden) {
@@ -176,7 +178,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getReserva() {
-		return this.reserva!= null ? this.reserva: BigDecimal.ZERO ;
+		return this.reserva != null ? this.reserva : BigDecimal.ZERO;
 	}
 
 	public void setReserva(BigDecimal reserva) {
@@ -184,7 +186,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getRm() {
-		return this.rm!= null ? this.rm : BigDecimal.ZERO ;
+		return this.rm != null ? this.rm : BigDecimal.ZERO;
 	}
 
 	public void setRm(BigDecimal rm) {
@@ -192,7 +194,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getSaldo() {
-		return this.saldo!= null ? this.saldo: BigDecimal.ZERO ;
+		return this.saldo != null ? this.saldo : BigDecimal.ZERO;
 	}
 
 	public void setSaldo(BigDecimal saldo) {
@@ -200,7 +202,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getSaldoAutorizado() {
-		return this.saldoAutorizado!= null ? this.saldoAutorizado: BigDecimal.ZERO ;
+		return this.saldoAutorizado != null ? this.saldoAutorizado : BigDecimal.ZERO;
 	}
 
 	public void setSaldoAutorizado(BigDecimal saldoAutorizado) {
@@ -208,7 +210,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getSeguroMax() {
-		return this.seguroMax!= null ? this.seguroMax : BigDecimal.ZERO ;
+		return this.seguroMax != null ? this.seguroMax : BigDecimal.ZERO;
 	}
 
 	public void setSeguroMax(BigDecimal seguroMax) {
@@ -216,7 +218,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getUtilizacion() {
-		return this.utilizacion!= null ? this.utilizacion : BigDecimal.ZERO ;
+		return this.utilizacion != null ? this.utilizacion : BigDecimal.ZERO;
 	}
 
 	public void setUtilizacion(BigDecimal utilizacion) {

@@ -4,7 +4,6 @@
 package com.cfc.service;
 
 import java.util.List;
-
 import com.cfc.model.Sucursal;
 
 /**

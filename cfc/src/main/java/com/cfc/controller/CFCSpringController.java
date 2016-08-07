@@ -51,8 +51,14 @@ public class CFCSpringController {
 		logger.debug("getSucursales.");
 		if (sucursales.isEmpty())
 			return Collections.emptyList();
-		else
+		else{
+			Sucursal all = new Sucursal();
+			all.setCodigoAgencia(new BigDecimal(-1));
+			all.setIdSucursal(-1);
+			all.setNomAgencia("TODAS");
+			sucursales.add(0,all);
 			return sucursales;
+		}
 	}
 
 	@ResponseBody
@@ -211,9 +217,9 @@ public class CFCSpringController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/getDetalles", method = RequestMethod.GET, produces = "application/json")
-	public List<Pivot> getDetalles() {
-		List<Pivot> detalle = iPivotService.getDetalles();
+	@RequestMapping(value = "/getDetalles/{branchId}/{currencyId}", method = RequestMethod.GET, produces = "application/json")
+	public List<Pivot> getDetalles(@PathVariable int branchId, @PathVariable int currencyId) {
+		List<Pivot> detalle = iPivotService.getDetailsByBranchAndCurrency(branchId, currencyId);
 		logger.debug("getDetalles.");
 		if (detalle.isEmpty())
 			return Collections.emptyList();
