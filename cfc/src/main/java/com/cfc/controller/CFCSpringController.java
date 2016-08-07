@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cfc.domain.Detalle;
 import com.cfc.domain.GraphData;
 import com.cfc.domain.GraphicItem;
 import com.cfc.domain.Item;
@@ -190,14 +189,6 @@ public class CFCSpringController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/getPivotTable", method = RequestMethod.GET, produces = "application/json")
-	public List<Pivot> getPivotTable() {
-		List<Pivot> pivot = iPivotService.findAll();
-		logger.debug("getPivotTable.");
-		return pivot;
-	}
-
-	@ResponseBody
 	@RequestMapping(value = "/getMonedas", method = RequestMethod.GET, produces = "application/json")
 	public List<Moneda> getMonedas() {
 		List<Moneda> moneda = iMonedaService.findAll();
@@ -221,8 +212,8 @@ public class CFCSpringController {
 
 	@ResponseBody
 	@RequestMapping(value = "/getDetalles", method = RequestMethod.GET, produces = "application/json")
-	public List<Detalle> getDetalles() {
-		List<Detalle> detalle = iPivotService.getDetalles();
+	public List<Pivot> getDetalles() {
+		List<Pivot> detalle = iPivotService.getDetalles();
 		logger.debug("getDetalles.");
 		if (detalle.isEmpty())
 			return Collections.emptyList();

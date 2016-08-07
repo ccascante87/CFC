@@ -8,10 +8,8 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
-import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
-import com.cfc.domain.Detalle;
 import com.cfc.model.Pivot;
 
 /**
@@ -73,39 +71,33 @@ public class PivotDaoImpl extends AbstractDao<Integer, Pivot> implements IPivotD
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Pivot> getByMaxId(int maxId,int brachId, int currencyId) {
-		Query query = getSession().getNamedQuery("Pivot.findByMaxId").setInteger("maxId", maxId).
-				setBigDecimal("codAgencia", BigDecimal.valueOf(brachId)).
-				setBigDecimal("codMoneda", BigDecimal.valueOf(currencyId));
-		return  (List<Pivot>) query.list();
-		
-		
-		
-		
+	public List<Pivot> getByMaxId(int maxId, int brachId, int currencyId) {
+		Query query = null;
+		if (brachId > 0 && currencyId > 0)
+			query = getSession().getNamedQuery("Pivot.findByMaxId").setInteger("maxId", maxId)
+					.setBigDecimal("codAgencia", BigDecimal.valueOf(brachId))
+					.setBigDecimal("codMoneda", BigDecimal.valueOf(currencyId));
+		else if (brachId > 0 && currencyId <= 0)
+			query = getSession().getNamedQuery("Pivot.findByMaxId").setInteger("maxId", maxId)
+					.setBigDecimal("codAgencia", BigDecimal.valueOf(brachId))
+					.setBigDecimal("codMoneda", BigDecimal.valueOf(currencyId));
+		else if (brachId <= 0 && currencyId > 0)
+			query = getSession().getNamedQuery("Pivot.findByMaxId").setInteger("maxId", maxId)
+					.setBigDecimal("codAgencia", BigDecimal.valueOf(brachId))
+					.setBigDecimal("codMoneda", BigDecimal.valueOf(currencyId));
+		else
+			query = getSession().getNamedQuery("Pivot.findByMaxId").setInteger("maxId", maxId)
+					.setBigDecimal("codAgencia", BigDecimal.valueOf(brachId))
+					.setBigDecimal("codMoneda", BigDecimal.valueOf(currencyId));
+		return (List<Pivot>) query.list();
 	}
-	
-	@SuppressWarnings({ "unchecked" })
+
 	@Override
-	//@Transactional
-	public List<Detalle> getDetalles() {
-		List<Detalle> detalles;
-		Session session = getSession();
-		try {
-			//session = getSession();
-			@SuppressWarnings("unused")
-			Criteria criteria = createEntityCriteria();
-			session.getTransaction().begin();
-			Query query = (Query) session
-					.createQuery("Select P " +
-							" FROM  Pivot P ") ;
-			detalles = query.list();
-			// saldos.add(criteria);
-			session.getTransaction().commit();
-		} catch (RuntimeException e) {
-			//session.getTransaction().rollback();
-			throw e;
-		}
-		// session.close();
+	// @Transactional
+	public List<Pivot> getDetalles() {
+		List<Pivot> detalles;
+		Query query = (Query) getSession().createQuery("Select P " + " FROM  Pivot P ");
+		detalles = query.list();
 		return detalles;
 	}
 }

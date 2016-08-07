@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cfc.dao.IPivotDao;
-import com.cfc.domain.Detalle;
 import com.cfc.model.Pivot;
 
 /**
@@ -73,7 +72,7 @@ public class PivotServiceImpl implements IPivotService {
 	}
 	
 	@Override
-	public List<Detalle> getDetalles() {
+	public List<Pivot> getDetalles() {
 		return pivotDao.getDetalles();
 	}
 }

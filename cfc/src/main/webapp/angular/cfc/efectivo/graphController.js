@@ -60,7 +60,7 @@ angular.module('appCFC').controller('graphController', ['$scope','$interval', 'c
 	 		angular.forEach(jsonData.yAxisValues, function(item){
 	 			$scope.data.push({ values: [], key: item.label, type: item.type,yAxis: 1 ,
 	 		 		originalKey: item.label,  seriesIndex: x });
-
+console.log(item);
 	 			for(var index = 0; index < xAxisValues.length;index++){
 	 				$scope.data[x].values.push({x: xAxisValues[index], y: Number( item.itemValues[index])});
 	 			}
