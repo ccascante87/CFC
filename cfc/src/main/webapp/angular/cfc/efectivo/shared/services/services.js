@@ -101,7 +101,7 @@ angular.module('appCFC').factory('cfcConfigurationService', function() {
 		    
 		    ,language: { // not withLanguage wich is from DTOptionsBuilder
 		    	sEmptyTable:     'No se encontraron datos',
-			    sInfo:           "Mostrando _START_ a _END_ de _TOTAL_ rgistros",
+			    sInfo:           "Mostrando _START_ a _END_ de _TOTAL_ registros",
 			    sInfoEmpty:      "Mostrando 0 a 0 de 0 registros",
 			    sInfoFiltered:   "(filtrado de _MAX_ registros)",
 			    sInfoPostFix:    "",
