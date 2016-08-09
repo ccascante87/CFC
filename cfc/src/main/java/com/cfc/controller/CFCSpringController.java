@@ -140,48 +140,31 @@ public class CFCSpringController {
 
 		// variacionesEfectivo.
 
-		mda.getCashBehaviorDetail()
-				.add(new Item("Menudo", data.get(data.size() - 1).getMenudo(), data.get(data.size() - 2).getMenudo()));
-		mda.getCashBehaviorDetail().add(
-				new Item("Reserva", data.get(data.size() - 1).getReserva(), data.get(data.size() - 2).getReserva()));
-		mda.getCashBehaviorDetail()
-				.add(new Item("LCSX", data.get(data.size() - 1).getLcsx(), data.get(data.size() - 2).getLcsx()));
-		mda.getCashBehaviorDetail()
-				.add(new Item("Lcx", data.get(data.size() - 1).getLcx(), data.get(data.size() - 2).getLcx()));
-		mda.getCashBehaviorDetail()
-				.add(new Item("Lcix", data.get(data.size() - 1).getLcix(), data.get(data.size() - 2).getLcix()));
+		mda.getCashBehaviorDetail().add(new Item("Menudo", data.get(data.size() - 1).getMenudo(), data.get(data.size() - 2).getMenudo()));
+		mda.getCashBehaviorDetail().add(new Item("Reserva", data.get(data.size() - 1).getReserva(), data.get(data.size() - 2).getReserva()));
+		mda.getCashBehaviorDetail().add(new Item("LCSX", data.get(data.size() - 1).getLcsx(), data.get(data.size() - 2).getLcsx()));
+		mda.getCashBehaviorDetail().add(new Item("Lcx", data.get(data.size() - 1).getLcx(), data.get(data.size() - 2).getLcx()));
+		mda.getCashBehaviorDetail().add(new Item("Lcix", data.get(data.size() - 1).getLcix(), data.get(data.size() - 2).getLcix()));
 
-		mda.getCashVariations().add(
-				new Item("Varianza", data.get(data.size() - 1).getReserva(), data.get(data.size() - 2).getReserva()));
-		mda.getCashVariations()
-				.add(new Item("LCSr", data.get(data.size() - 1).getLcsr(), data.get(data.size() - 2).getLcsr()));
-		mda.getCashVariations()
-				.add(new Item("LCr", data.get(data.size() - 1).getLcr(), data.get(data.size() - 2).getLcr()));
-		mda.getCashVariations()
-				.add(new Item("LClr", data.get(data.size() - 1).getLcir(), data.get(data.size() - 2).getLcir()));
+		mda.getCashVariations().add(new Item("Varianza", data.get(data.size() - 1).getReserva(), data.get(data.size() - 2).getReserva()));
+		mda.getCashVariations().add(new Item("LCSr", data.get(data.size() - 1).getLcsr(), data.get(data.size() - 2).getLcsr()));
+		mda.getCashVariations().add(new Item("LCr", data.get(data.size() - 1).getLcr(), data.get(data.size() - 2).getLcr()));
+		mda.getCashVariations().add(new Item("LClr", data.get(data.size() - 1).getLcir(), data.get(data.size() - 2).getLcir()));
 
 		Pivot item;
 		if (data.size() == 1) {
 			item = data.get(0);
 			mda.getCurrentBalanceHistory().add(new Item(item.getFecha().toString(), item.getSaldo(), BigDecimal.ZERO));
 		}
-		mda.getCurrentBalanceHistory()
-				.add(new Item("7:00", new BigDecimal(Math.random() * 1000), new BigDecimal(Math.random() * 100000)));
-		mda.getCurrentBalanceHistory()
-				.add(new Item("7:15", new BigDecimal(Math.random() * 1000), new BigDecimal(Math.random() * 100000)));
-		mda.getCurrentBalanceHistory()
-				.add(new Item("7:30", new BigDecimal(Math.random() * 1000), new BigDecimal(Math.random() * 100000)));
-		mda.getCurrentBalanceHistory()
-				.add(new Item("7:45", new BigDecimal(Math.random() * 1000), new BigDecimal(Math.random() * 100000)));
+		mda.getCurrentBalanceHistory().add(new Item("7:00", new BigDecimal(Math.random() * 1000), new BigDecimal(Math.random() * 100000)));
+		mda.getCurrentBalanceHistory().add(new Item("7:15", new BigDecimal(Math.random() * 1000), new BigDecimal(Math.random() * 100000)));
+		mda.getCurrentBalanceHistory().add(new Item("7:30", new BigDecimal(Math.random() * 1000), new BigDecimal(Math.random() * 100000)));
+		mda.getCurrentBalanceHistory().add(new Item("7:45", new BigDecimal(Math.random() * 1000), new BigDecimal(Math.random() * 100000)));
 
-		mda.getCashValHistory()
-				.add(new Item("7:00", new BigDecimal(Math.random() * 1000), new BigDecimal(Math.random() * 100000)));
-		mda.getCashValHistory()
-				.add(new Item("7:15", new BigDecimal(Math.random() * 1000), new BigDecimal(Math.random() * 100000)));
-		mda.getCashValHistory()
-				.add(new Item("7:30", new BigDecimal(Math.random() * 1000), new BigDecimal(Math.random() * 100000)));
-		mda.getCashValHistory()
-				.add(new Item("7:45", new BigDecimal(Math.random() * 1000), new BigDecimal(Math.random() * 100000)));
+		mda.getCashValHistory().add(new Item("7:00", new BigDecimal(Math.random() * 1000), new BigDecimal(Math.random() * 100000)));
+		mda.getCashValHistory().add(new Item("7:15", new BigDecimal(Math.random() * 1000), new BigDecimal(Math.random() * 100000)));
+		mda.getCashValHistory().add(new Item("7:30", new BigDecimal(Math.random() * 1000), new BigDecimal(Math.random() * 100000)));
+		mda.getCashValHistory().add(new Item("7:45", new BigDecimal(Math.random() * 1000), new BigDecimal(Math.random() * 100000)));
 
 		String stDate = String.valueOf(new java.util.Date().getTime());
 		System.err.println(stDate);
@@ -206,8 +189,8 @@ public class CFCSpringController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/getTransacciones", method = RequestMethod.GET, produces = "application/json")
-	public List<Transaccion> getTransacciones() {
+	@RequestMapping(value = "/getTransacciones/{branchId}/{currencyId}", method = RequestMethod.GET, produces = "application/json")
+	public List<Transaccion> getTransacciones(@PathVariable int branchId, @PathVariable int currencyId) {
 		List<Transaccion> transaccion = iTransaccionService.findAllTransacciones();
 		logger.debug("getTransacciones.");
 		if (transaccion.isEmpty())

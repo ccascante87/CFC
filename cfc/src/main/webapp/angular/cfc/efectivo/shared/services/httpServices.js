@@ -41,7 +41,7 @@ angular.module('appCFC').factory('httpService', function($http, $q) {
 			var deferred = $q.defer();
 			$http({
 				method : 'GET',
-				url: '/cfc/efectivo/getTransacciones'
+				url: '/cfc/efectivo/getTransacciones/' + branch + '/' + currency
 			}).success(function (resultTransaction){
 				deferred.resolve(resultTransaction);
 			}).error(function (msg, code){
