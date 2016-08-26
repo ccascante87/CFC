@@ -13,18 +13,6 @@ angular.module('appCFC').factory('httpService', function($http, $q) {
 			});
 			return deferred.promise;
 		},
-		getBranches : function() {
-			var deferred = $q.defer();
-			$http({
-				method : 'GET',
-				url : '/cfc/efectivo/getSucursales',
-			}).success(function(result) {
-				deferred.resolve(result);
-			}).error(function(msg, code){
-				deferred.reject(msg);
-			});
-			return deferred.promise;
-		},
 		getCurrencies : function() {
 			var deferred = $q.defer();
 			$http({

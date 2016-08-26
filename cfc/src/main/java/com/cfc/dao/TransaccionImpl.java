@@ -6,6 +6,7 @@ package com.cfc.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import com.cfc.model.Transaccion;
@@ -16,9 +17,10 @@ import com.cfc.model.Transaccion;
  */
 @Repository("transaccionDao")
 public class TransaccionImpl extends AbstractDao<Integer, Transaccion> implements ITransaccionDao {
-	
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.cfc.dao.ITransaccionDao#findById(int)
 	 */
 	@Override
@@ -27,7 +29,9 @@ public class TransaccionImpl extends AbstractDao<Integer, Transaccion> implement
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.cfc.dao.ITransaccionDao#save(com.cfc.model.Transaccion)
 	 */
 	@Override
@@ -36,7 +40,9 @@ public class TransaccionImpl extends AbstractDao<Integer, Transaccion> implement
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.cfc.dao.ITransaccionDao#deleteById(int)
 	 */
 	@Override
@@ -45,18 +51,27 @@ public class TransaccionImpl extends AbstractDao<Integer, Transaccion> implement
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.cfc.dao.ITransaccionDao#findAllTransacciones()
 	 */
 	@Override
 	public List<Transaccion> findAllTransacciones() {
 		Criteria criteria = createEntityCriteria();
-		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);//To avoid duplicates.
-		
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);// To avoid
+																		// duplicates.
+
 		@SuppressWarnings("unchecked")
 		List<Transaccion> transaccion = (List<Transaccion>) criteria.list();
-		
+
 		return transaccion;
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Transaccion> findByCurrencyAndBranch(int currencyId, int branchId) {
+		Query q = getSession().getNamedQuery("Transaccion.findByCurrencyAndBranch").setInteger("idSucursal", branchId)
+				.setInteger("idMoneda", currencyId);
+		return (List<Transaccion>) q.list();
+	}
 }

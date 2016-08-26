@@ -29,7 +29,7 @@ angular.module('appCFC').controller('graphController', ['$scope','$interval', 'c
     function loadData(){    	 
     	x++;
     	y++;
-    	var brach = $scope.selectedBranch == undefined ? '1150' : $scope.selectedBranch.idSucursal;
+    	var brach = $scope.selectedBranch == undefined ? '1' : $scope.selectedBranch.idSucursal;
     	var currency = $scope.selectedCurrency == undefined ? '1' : $scope.selectedCurrency.id;
     	console.log($scope.selectedBranch );
      	//TODO get this data from dropdown
@@ -60,8 +60,9 @@ angular.module('appCFC').controller('graphController', ['$scope','$interval', 'c
 	 		angular.forEach(jsonData.yAxisValues, function(item){
 	 			$scope.data.push({ values: [], key: item.label, type: item.type,yAxis: 1 ,
 	 		 		originalKey: item.label,  seriesIndex: x });
-console.log(item);
+
 	 			for(var index = 0; index < xAxisValues.length;index++){
+	 				console.log(xAxisValues[index]);
 	 				$scope.data[x].values.push({x: xAxisValues[index], y: Number( item.itemValues[index])});
 	 			}
 	 		    x++;
@@ -94,7 +95,7 @@ console.log(item);
 		return $scope.selectedCurrency.simbolo + d3.format(',.2f')(new Number(d));
 	}
 	
-	 $scope.$on('someEvent', function(e) {
+	 $scope.$on('parametersChange', function(e) {
 	        //loadData();
 		 console.log('Broadcasted evente caoruted by graphdcongtoller');
 	    });
@@ -127,14 +128,10 @@ console.log(item);
 		loadData();	
 		intervalPromise = $interval(
 				function (){
-					console.log('new interval');
 					loadData();
-				}, 5000);
-//	    /*setInterval(function(){
-//	    	loadData();
-//			console.log($scope.selectedBranch );
-//	    */}, 5000); 
-	   $scope.mainData.loggedUserName = 'Bruce Wayne';
+				}, 300000);
+		//TODO Pull this from active directory
+		$scope.mainData.loggedUserName = 'Bruce Wayne';
 	};
     init();
 }]);//End controller

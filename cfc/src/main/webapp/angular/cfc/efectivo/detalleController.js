@@ -13,16 +13,19 @@ angular.module('appCFC').controller('detalleController',['$scope', 'httpService'
 	}
 	function init() {
 		$scope.dtOptions =cfcConfigurationService.tableOptionsConfig();
-		loadData(-1,-1);
+		var brach = $scope.selectedBranch == undefined ? '1' : $scope.selectedBranch.idSucursal;
+		var currency = $scope.selectedCurrency == undefined ? '1': $scope.selectedCurrency.id;
+		loadData(brach, currency);
 	}
 	
 	/**
 	 * Captures the broadcasted event to update the page data with the new selected data.
 	 */
-	 $scope.$on('someEvent', function(e) {
-	        //loadData();
-		 console.log('Broadcasted evente caoruted by transacciones');
-	    });
+	 $scope.$on('parametersChange', function(e) {
+		var brach = $scope.selectedBranch == undefined ? '1' : $scope.selectedBranch.idSucursal;
+		var currency = $scope.selectedCurrency == undefined ? '1': $scope.selectedCurrency.id;
+		loadData(brach, currency);
+	});
 	 
 	init();
 } ]);// End controller

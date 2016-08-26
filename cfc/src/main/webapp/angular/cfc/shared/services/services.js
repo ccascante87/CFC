@@ -4,8 +4,6 @@ angular.module('appCFC').factory('cfcConfigurationService', function() {
 	var service = {};
 	var tableOptions = {};
 
-	// TODO Find out how to make this more reusable and not one variable per
-	// graph
 	service.cashFlowOptionsConfig = function() {
 		this.cashFlowOptions = {
 			chart : {
@@ -22,7 +20,7 @@ angular.module('appCFC').factory('cfcConfigurationService', function() {
 				duration : 0,
 				xAxis : {
 					tickFormat : function(d) {
-						return d3.time.format('%H:%M')(new Date(d));
+						return d;//3.time.format('%X')(new Date(d));
 					}
 				},
 				yAxis1 : {
@@ -33,7 +31,7 @@ angular.module('appCFC').factory('cfcConfigurationService', function() {
 				interactiveLayer : {
 					tooltip : {
 						headerFormatter : function(d) {
-							return d3.time.format('%H:%M')(new Date(Number(d)));
+							return d;//3.time.format('%H:%M')(new Date(Number(d)));
 						}
 					}
 				},

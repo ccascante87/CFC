@@ -19,4 +19,6 @@ public interface ITransaccionDao {
 	void deleteById(int id);
 
 	List<Transaccion> findAllTransacciones();
+	
+	List<Transaccion> findByCurrencyAndBranch(int currencyId, int branchId);
 }

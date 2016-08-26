@@ -45,5 +45,9 @@ public class TransaccionServiceImpl implements ITransaccionService {
 	public List<Transaccion> findAllTransacciones() {
 		return transaccionDAO.findAllTransacciones();
 	}
+	
+	public List<Transaccion> findByCurrencyAndBranch(int currencyId, int branchId){
+		return transaccionDAO.findByCurrencyAndBranch(currencyId, branchId);
+	}
 
 }

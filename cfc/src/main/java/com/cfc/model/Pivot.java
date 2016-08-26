@@ -20,8 +20,8 @@ import java.sql.Timestamp;
 @NamedQueries({ @NamedQuery(name = "Pivot.findAll", query = "SELECT p FROM Pivot p"),
 		@NamedQuery(name = "Pivot.findByMaxId", query = "SELECT p FROM Pivot p WHERE p.id <= :maxId AND "
 				+ " p.codAgencia = :codAgencia AND p.codMoneda = :codMoneda"),
-		@NamedQuery(name="Pivot.findByMaxDateBranchAndCurrency", query="FROM Pivot p where p.fecha <= current_date AND"
-				+ " (codAgencia = :branchId OR :branchId = -1) AND (codMoneda = :currId OR :currId = -1)")})
+		@NamedQuery(name="Pivot.findByMaxDateBranchAndCurrency", query="FROM Pivot p where p.fecha <= :maxDate AND"
+				+ " (codAgencia = :branchId OR :branchId = -1) AND (codMoneda = :currId OR :currId = -1) order by fecha asc")})
 public class Pivot implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -30,10 +30,10 @@ public class Pivot implements Serializable {
 	private long id;
 
 	@Column(name = "COD_AGENCIA")
-	private BigDecimal codAgencia;
+	private int codAgencia;
 
 	@Column(name = "COD_MONEDA")
-	private BigDecimal codMoneda;
+	private int codMoneda;
 
 	private Timestamp fecha;
 
@@ -81,19 +81,19 @@ public class Pivot implements Serializable {
 		this.id = id;
 	}
 
-	public BigDecimal getCodAgencia() {
-		return this.codAgencia != null ? this.codAgencia : BigDecimal.ZERO;
+	public int getCodAgencia() {
+		return this.codAgencia;
 	}
 
-	public void setCodAgencia(BigDecimal codAgencia) {
+	public void setCodAgencia(int codAgencia) {
 		this.codAgencia = codAgencia;
 	}
 
-	public BigDecimal getCodMoneda() {
+	public int getCodMoneda() {
 		return this.codMoneda;
 	}
 
-	public void setCodMoneda(BigDecimal codMoneda) {
+	public void setCodMoneda(int codMoneda) {
 		this.codMoneda = codMoneda;
 	}
 

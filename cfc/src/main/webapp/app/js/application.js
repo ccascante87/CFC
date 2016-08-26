@@ -6,7 +6,7 @@ $(document).ready(function() {
 	//loadTableMovimientos();
 	//loadTableHistoricos();
 	//loadTableSucursales();
-	loadTableSucursal();
+	//loadTableSucursal();
 	
 });
 
@@ -95,7 +95,7 @@ function loadTableMovimientos() {
 }
 
 function loadTableSucursales() {
-	var url = '/cfc/efectivo/getSucursales';
+	var url = '/cfc/branches/getSucursales';
 	alert(url);
 	$('#mainTableBody').empty();
 	$.ajax({
@@ -124,7 +124,7 @@ function loadTableSucursales() {
 }
 
 function loadTableSucursal() {
-	var url = '/cfc/efectivo/getSucursales';
+	var url = '/cfc/branches/getSucursales';
 	$('#mainTableBody').empty();
 	$.ajax({
 		method : 'GET',

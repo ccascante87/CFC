@@ -15,7 +15,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.cfc.*")
+@ComponentScan(basePackages = "com.cfc.**")
 public class CFCSpringConfiguration extends WebMvcConfigurerAdapter {
 	
 	@Bean

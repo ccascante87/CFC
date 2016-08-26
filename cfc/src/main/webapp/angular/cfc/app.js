@@ -8,6 +8,8 @@ function($routeProvider) {
 		
 	}).when('/detalles', {
 		templateUrl : 'app/snippets/detalles.html'
+	}).when('/sucursales', {
+		templateUrl : 'app/snippets/branches.html'
 	});
 	$routeProvider.otherwise({
 		redirectTo : '/index'

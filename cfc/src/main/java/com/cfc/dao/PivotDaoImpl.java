@@ -4,6 +4,8 @@
 package com.cfc.dao;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -97,6 +99,7 @@ public class PivotDaoImpl extends AbstractDao<Integer, Pivot> implements IPivotD
 	public List<Pivot> getDetailsByBranchAndCurrency(int branchId, int currencyId) {
 		List<Pivot> detalles;
 		Query query = getSession().getNamedQuery("Pivot.findByMaxDateBranchAndCurrency")
+				.setTimestamp("maxDate", Timestamp.valueOf(LocalDateTime.now() ))
 				.setInteger("branchId", branchId)
 				.setInteger("currId", currencyId);
 		detalles = query.list();

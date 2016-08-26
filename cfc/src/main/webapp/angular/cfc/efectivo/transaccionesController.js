@@ -6,7 +6,6 @@ angular.module('appCFC').controller('transaccionesController',['$scope','httpSer
 	 * Call the service to get the updated transaction data and populates the table with it
 	 */
 	function loadData(branchId, currencyId){
-//		console.log(branchId );
 		var promise = httpService.getTransactions(branchId, currencyId);
 		promise.then(function (result){
 			$scope.transacciones = result;
@@ -18,14 +17,17 @@ angular.module('appCFC').controller('transaccionesController',['$scope','httpSer
 	 */
 	function init(){
 		$scope.dtOptions = cfcConfigurationService.tableOptionsConfig();
-		loadData(1, 2);
+		var brach = $scope.selectedBranch == undefined ? '1' : $scope.selectedBranch.idSucursal;
+		var currency = $scope.selectedCurrency == undefined ? '1': $scope.selectedCurrency.id;
+		loadData(brach, currency);
 	}	
 	
 	/**
 	 * Captures the broadcasted event to update the page data with the new selected data.
 	 */
-	 $scope.$on('someEvent', function(e) {
-		 console.log('Broadcasted evente caoruted by transacciones');
+	 $scope.$on('parametersChange', function(e) {
+		 var brach = $scope.selectedBranch == undefined ? '1' : $scope.selectedBranch.idSucursal;
+		 var currency = $scope.selectedCurrency == undefined ? '1': $scope.selectedCurrency.id;
 		 loadData($scope.selectedBranch.idSucursal, $scope.selectedCurrency.id);
 	 });	 
 	init();

@@ -2,6 +2,7 @@ package com.cfc.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -23,14 +24,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-	  http.authorizeRequests()
-	  	.antMatchers("/", "/home").access("hasRole('USER')")
+	  http.httpBasic().and()
+	  .authorizeRequests()
+	  	.antMatchers("/", "/home").access("true")
+	  	.antMatchers(HttpMethod.POST, "/efectivo/**").access("true")
 	  	.antMatchers("/admin/**").access("hasRole('ADMIN')")
 	  	.antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')")
 	  	.and().formLogin().loginPage("/login").successHandler(customSuccessHandler)
 	  	.usernameParameter("ssoId").passwordParameter("password")
-	  	.and().csrf()
-	  	.and().exceptionHandling().accessDeniedPage("/Access_Denied");
+	  	.and().csrf().disable();
+	  	//.and().exceptionHandling().accessDeniedPage("/Access_Denied");
 	}
 
 }

@@ -13,10 +13,12 @@ import com.cfc.model.Transaccion;
  */
 public interface ITransaccionService {
 	Transaccion findById(int id);
-	
+
 	void saveTransaccion(Transaccion transaccion);
-	
+
 	void updateTransaccion(Transaccion transaccion);
 
-	List<Transaccion> findAllTransacciones(); 
+	List<Transaccion> findAllTransacciones();
+
+	List<Transaccion> findByCurrencyAndBranch(int currencyId, int branchId);
 }
