@@ -29,7 +29,11 @@ angular.module('appCFC').controller('branchesController',['$scope', 'cfcConfigur
 					
 				$scope.saveOrUpdate = function() {
 					console.log($scope.selectedBranch)
-
+						var promise = branchHttpServices.saveOrUpdateBranch($scope.selectedBranch);
+						promise.then(function(results) {
+							$scope.branches = results;
+							$scope.showForm = false;
+						});
 				}
 				
 				$scope.addNew = function() {
@@ -44,10 +48,13 @@ angular.module('appCFC').controller('branchesController',['$scope', 'cfcConfigur
 				}
 				
 				$scope.confirmDelete = function(branch){
-					var deleteUser = $window.confirm('Are you absolutely sure you want to delete?');
+					var deleteUser = $window.confirm('Está seguro de eliminar la surcursal seleccionada?');
 
 				    if (deleteUser) {
-				      $window.alert('Going to delete the user');
+				      var promise = branchHttpServices.deleteBranch(branch.idSucursal);
+				      promise.then(function(results){
+				    	  $scope.branches = results;
+				      });
 				    }
 				}
 	init();

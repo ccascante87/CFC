@@ -9,7 +9,7 @@
 
 					<div class="box box-primary">
 						<div class="box-body">
-							<div class="table-responsive  animate-show"  ng-hide="showForm">
+							<div class="table-responsive  animate-show" ng-hide="showForm">
 								<table datatable="ng" class="table table-hover  row-border hover" dt-options="brachesOptionGraph">
 									<thead>
 										<tr>
@@ -50,7 +50,11 @@
 								</table>
 							</div>
 							<div ng-show="showForm" class=" animate-show">
-								<div class="form-group">
+
+								
+
+
+								<div class="form-group" >
 									<label for="nomAgencia" class="col-sm-4 control-label">Nombre</label>
 									<div class="col-sm-8">
 										<input type="text" ng-model="selectedBranch.nomAgencia" class="form-control" id="nomAgencia"
@@ -60,32 +64,32 @@
 								<div class="form-group">
 									<label for="codAgencia" class="col-sm-4 control-label">C&oacute;digo</label>
 									<div class="col-sm-8">
-										<input type="text" ng-model="selectedBranch.codigoAgencia" class="form-control" id="codAgencia"
+										<input type="number" ng-model="selectedBranch.codigoAgencia" class="form-control" id="codAgencia"
 											placeholder="C&oacute;digo" />
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="horaApertura" class="col-sm-4 control-label">Hora de apertura</label>
 									<div class="col-sm-8">
-										<input type="text" ng-model="selectedBranch.horaApertura" class="form-control" id="horaApertura"
+										<input type="time" ng-model="selectedBranch.horaApertura" class="form-control" id="horaApertura"
 											placeholder="Hora de apertura" />
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="horaCierre" class="col-sm-4 control-label">Hora de cierre</label>
 									<div class="col-sm-8">
-										<input type="text" ng-model="selectedBranch.horaCierre" class="form-control" id="horaCierre"
+										<input type="time" ng-model="selectedBranch.horaCierre" class="form-control" id="horaCierre"
 											placeholder="Hora de cierre" />
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="montoAsegurado" class="col-sm-4	 control-label">Monto asegurado</label>
 									<div class="col-sm-8">
-										<input type="text" ng-model="selectedBranch.montoAsegurado" class="form-control" id="montoAsegurado"
+										<input type="number" ng-model="selectedBranch.montoAsegurado" class="form-control" id="montoAsegurado"
 											placeholder="Monto asegurado" />
 									</div>
 								</div>
-								<div class="col-sm-12" >
+								<div class="col-sm-12">
 									<button type="button" class="btn btn-default" ng-click="cancel()">
 										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> <span>Cancel</span>
 									</button>

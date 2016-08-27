@@ -2,12 +2,16 @@ package com.cfc.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+
 import java.math.BigDecimal;
 
 /**
  * The persistent class for the SUCURSALES database table.
  * 
  */
+@JsonAutoDetect
 @Entity
 @Table(name = "SUCURSALES")
 @NamedQuery(name = "Sucursal.findAll", query = "SELECT s FROM Sucursal s")
