@@ -1,6 +1,5 @@
 package com.cfc.controller;
 
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collections;
@@ -19,11 +18,8 @@ import com.cfc.domain.GraphData;
 import com.cfc.domain.GraphicItem;
 import com.cfc.domain.Item;
 import com.cfc.domain.MainData;
-import com.cfc.model.Moneda;
 import com.cfc.model.Pivot;
-import com.cfc.model.Sucursal;
 import com.cfc.model.Transaccion;
-import com.cfc.service.IMonedaService;
 import com.cfc.service.IPivotService;
 import com.cfc.service.ISucursalService;
 import com.cfc.service.ITransaccionService;
@@ -40,8 +36,6 @@ public class CFCSpringController {
 	ISucursalService iSucursalService;
 	@Autowired
 	IPivotService iPivotService;
-	@Autowired
-	IMonedaService iMonedaService;
 	@Autowired
 	ITransaccionService iTransaccionService;
 
@@ -173,16 +167,6 @@ this.comportamientoEfectivo.getxAxisValues().clear();
 		return mda;
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "/getMonedas", method = RequestMethod.GET, produces = "application/json")
-	public List<Moneda> getMonedas() {
-		List<Moneda> moneda = iMonedaService.findAll();
-		logger.debug("getMonedas.");
-		if (moneda.isEmpty())
-			return Collections.emptyList();
-		else
-			return moneda;
-	}
 
 	@ResponseBody
 	@RequestMapping(value = "/getTransacciones/{branchId}/{currencyId}", method = RequestMethod.GET, produces = "application/json")

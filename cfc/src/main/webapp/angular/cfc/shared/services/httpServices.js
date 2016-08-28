@@ -17,7 +17,7 @@ angular.module('appCFC').factory('httpService', function($http, $q) {
 			var deferred = $q.defer();
 			$http({
 		        method: 'GET',
-		        url: '/cfc/efectivo/getMonedas',
+		        url: '/cfc/currency/getMonedas',
 		    }).success(function (resultMoneda) {
 		    	deferred.resolve(resultMoneda);
 		    }).error(function(msg, code){
