@@ -13,18 +13,6 @@ angular.module('appCFC').factory('httpService', function($http, $q) {
 			});
 			return deferred.promise;
 		},
-		getCurrencies : function() {
-			var deferred = $q.defer();
-			$http({
-		        method: 'GET',
-		        url: '/cfc/currency/getMonedas',
-		    }).success(function (resultMoneda) {
-		    	deferred.resolve(resultMoneda);
-		    }).error(function(msg, code){
-		    	deferred.reject(msg);
-		    });
-			return deferred.promise;		    
-		},
 		getTransactions : function(branch, currency){
 			var deferred = $q.defer();
 			$http({
