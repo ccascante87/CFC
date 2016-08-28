@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.cfc.service;
+package com.cfc.service.impl;
 
 import java.util.List;
 
@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cfc.dao.ITransaccionDao;
 import com.cfc.model.Transaccion;
+import com.cfc.service.ITransaccionService;
 
 /**
  * @author JIO

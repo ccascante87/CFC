@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.cfc.dao;
+package com.cfc.dao.impl;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -12,6 +12,8 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
+import com.cfc.dao.AbstractDao;
+import com.cfc.dao.IPivotDao;
 import com.cfc.model.Pivot;
 
 /**

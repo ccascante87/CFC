@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.cfc.dao;
+package com.cfc.dao.impl;
 
 import java.util.List;
 
@@ -11,6 +11,8 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import com.cfc.dao.AbstractDao;
+import com.cfc.dao.ISaldoDao;
 import com.cfc.model.Saldo;
 
 /**

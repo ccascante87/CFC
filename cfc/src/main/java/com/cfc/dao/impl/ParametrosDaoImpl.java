@@ -1,9 +1,11 @@
-package com.cfc.dao;
+package com.cfc.dao.impl;
 
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.cfc.dao.AbstractDao;
+import com.cfc.dao.IParametrosDao;
 import com.cfc.model.Parametros;
 
 /**

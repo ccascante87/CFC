@@ -1,13 +1,15 @@
 /**
  * 
  */
-package com.cfc.dao;
+package com.cfc.dao.impl;
 
 import java.util.List;
 
 import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;
 
+import com.cfc.dao.AbstractDao;
+import com.cfc.dao.IMonedaDao;
 import com.cfc.model.Moneda;
 
 /**

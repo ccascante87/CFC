@@ -1,4 +1,4 @@
-package com.cfc.service;
+package com.cfc.service.impl;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.cfc.dao.IParametrosDao;
 import com.cfc.model.Parametros;
+import com.cfc.service.IParametersService;
 /**
  * Implements the Parameters methods, defined by the interface;
  * @author Admind
