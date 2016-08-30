@@ -16,6 +16,8 @@ public interface ISucursalDao {
 	Sucursal findById(int id);
 
 	void save(Sucursal sucursal);
+	
+	void update(Sucursal sucursal);
 
 	void deleteById(int id);
 

@@ -15,6 +15,8 @@ public interface IMonedaDao {
 	Moneda findById(int id);
 
 	void save(Moneda moneda);
+	
+	void update(Moneda moneda);
 
 	void deleteById(int id);
 

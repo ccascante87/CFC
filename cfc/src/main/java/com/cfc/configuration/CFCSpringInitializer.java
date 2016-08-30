@@ -1,6 +1,10 @@
 package com.cfc.configuration;
 
+import javax.servlet.Filter;
+
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import com.cfc.controller.CORSFilter;
 
 public class CFCSpringInitializer extends AbstractAnnotationConfigDispatcherServletInitializer  {
 	
@@ -19,6 +23,11 @@ public class CFCSpringInitializer extends AbstractAnnotationConfigDispatcherServ
 		return new String[] { "/" };
 	}
 
+	 @Override
+	    protected Filter[] getServletFilters() {
+	    	Filter [] singleton = { new CORSFilter() };
+	    	return singleton;
+		}	
 	/*public void onStartup(ServletContext container) throws ServletException {
 
 		AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();

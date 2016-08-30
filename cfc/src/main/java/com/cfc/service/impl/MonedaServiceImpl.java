@@ -39,6 +39,7 @@ public class MonedaServiceImpl implements IMonedaService {
 	 */
 	@Override
 	public void saveMoneda(Moneda moneda) {
+		monedaDao.save(moneda);
 		// TODO Auto-generated method stub
 
 	}
