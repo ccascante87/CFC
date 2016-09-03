@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,8 +19,10 @@ import com.cfc.domain.GraphData;
 import com.cfc.domain.GraphicItem;
 import com.cfc.domain.Item;
 import com.cfc.domain.MainData;
+import com.cfc.model.Moneda;
 import com.cfc.model.Pivot;
 import com.cfc.model.Transaccion;
+import com.cfc.service.IMonedaService;
 import com.cfc.service.IPivotService;
 import com.cfc.service.ISucursalService;
 import com.cfc.service.ITransaccionService;
@@ -38,6 +41,8 @@ public class CFCSpringController {
 	IPivotService iPivotService;
 	@Autowired
 	ITransaccionService iTransaccionService;
+	@Autowired
+	IMonedaService iMonedaService;
 
 	@ResponseBody
 	@RequestMapping(value = "/getGraphData/{branch}/{currency}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -189,4 +194,12 @@ this.comportamientoEfectivo.getxAxisValues().clear();
 		else
 			return detalle;
 	}
+	
+
+	//@RequestMapping(value="/saveMoneda" , method = RequestMethod.GET, RequestMethod.POST)  
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+    public @ResponseBody String save(@ModelAttribute("Moneda") Moneda moneda){  
+        iMonedaService.saveMoneda(moneda);  
+        return "save";  
+    } 
 }
