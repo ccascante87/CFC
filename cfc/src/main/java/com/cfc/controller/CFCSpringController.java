@@ -89,10 +89,10 @@ this.comportamientoEfectivo.getxAxisValues().clear();
 			Calendar valor = Calendar.getInstance();
 			valor.setTimeInMillis(pivot.getFecha().getTime() );
 			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-			System.err.println(sdf.format(valor.getTime()));
+			System.err.println(pivot.getFecha().getTime()+ (pivot.getFecha().getNanos() / 1000000));
 			variacionesEfectivo.getxAxisValues().add(String.valueOf(pivot.getFecha().getTime()+ (pivot.getFecha().getNanos() / 1000000)));
-//			comportamientoEfectivo.getxAxisValues().add(String.valueOf(pivot.getFecha().getTime()+ (pivot.getFecha().getNanos() / 1000000)));
-			comportamientoEfectivo.getxAxisValues().add(sdf.format(valor.getTime()));
+			comportamientoEfectivo.getxAxisValues().add(String.valueOf(pivot.getFecha().getTime()+ (pivot.getFecha().getNanos() / 1000000)));
+//			comportamientoEfectivo.getxAxisValues().add(sdf.format(valor.getTime()));
 //	
 		}
 

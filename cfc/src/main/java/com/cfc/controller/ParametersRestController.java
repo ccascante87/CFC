@@ -27,4 +27,6 @@ public class ParametersRestController {
 		logger.debug(".getAll");
 		return iParamsSrvc.findAll();
 	}
+	
+	
 }

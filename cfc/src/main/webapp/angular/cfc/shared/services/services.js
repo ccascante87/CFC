@@ -20,6 +20,7 @@ angular.module('appCFC').factory('cfcConfigurationService', function() {
 				duration : 0,
 				xAxis : {
 					tickFormat : function(d) {
+						console.log(d);
 						return d;//3.time.format('%X')(new Date(d));
 					}
 				},
@@ -31,7 +32,7 @@ angular.module('appCFC').factory('cfcConfigurationService', function() {
 				interactiveLayer : {
 					tooltip : {
 						headerFormatter : function(d) {
-							return d;//3.time.format('%H:%M')(new Date(Number(d)));
+							return d3.time.format('%H:%M')(new Date(Number(d)));
 						}
 					}
 				},

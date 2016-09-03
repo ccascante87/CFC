@@ -1,7 +1,14 @@
 'use strict'
-angular.module('appCFC').controller('cfcController',[ '$scope', 'httpService', 'branchHttpServices','currencyHttpServices',
-				function($scope, httpService, branchHttpServices, currencyHttpServices) {
+angular.module('appCFC').controller('cfcController',[ '$scope', 'httpService', '$rootScope', 'branchHttpServices','currencyHttpServices',
+				function($scope, httpService, $rootScope, branchHttpServices, currencyHttpServices) {
 	
+	$rootScope.$on('$stateChangeStart', function () {
+		console.log('$stateChangeStart');
+//	      if(!authFactory.isAuthed()){
+//	        $state.go('login')
+//	      }
+	    })
+	    
 	var init = function() {
 		var promise = currencyHttpServices.getCurrencies();
 		promise.then(function(result) {

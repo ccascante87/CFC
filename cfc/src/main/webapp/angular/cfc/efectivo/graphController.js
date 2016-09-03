@@ -62,7 +62,7 @@ angular.module('appCFC').controller('graphController', ['$scope','$interval', 'c
 	 		 		originalKey: item.label,  seriesIndex: x });
 
 	 			for(var index = 0; index < xAxisValues.length;index++){
-	 				console.log(xAxisValues[index]);
+	 				//console.log(xAxisValues[index]);
 	 				$scope.data[x].values.push({x: xAxisValues[index], y: Number( item.itemValues[index])});
 	 			}
 	 		    x++;
