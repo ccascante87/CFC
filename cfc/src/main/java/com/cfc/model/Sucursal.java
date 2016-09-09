@@ -20,10 +20,10 @@ public class Sucursal implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
+	@Column(name = "ID_SUCURSAL")
 	private long idSucursal;
 
-	@Column(name = "COD_AGENCIA")
+	@Column(name = "CODIGO_AGENCIA")
 	private BigDecimal codigoAgencia;
 	
 	@Column(name = "NOM_AGENCIA")
