@@ -1,15 +1,17 @@
 'use strict'
-angular.module('appCFC').controller('cfcController',[ '$scope', 'httpService', '$rootScope', 'branchHttpServices','currencyHttpServices',
-				function($scope, httpService, $rootScope, branchHttpServices, currencyHttpServices) {
-	
-	$rootScope.$on('$stateChangeStart', function () {
-		console.log('$stateChangeStart');
-//	      if(!authFactory.isAuthed()){
-//	        $state.go('login')
-//	      }
-	    })
+angular.module('appCFC').controller('cfcController',[ '$scope', 'httpService', '$rootScope', 'branchHttpServices','currencyHttpServices','AuthService',
+				function($scope, httpService, $rootScope, branchHttpServices, currencyHttpServices,AuthService) {
+	$scope.userLoggedin = AuthService.isLoggedIn();
 	    
-	var init = function() {
+	$rootScope.loadInitData = function(){
+		loadData();
+		refreshUser();
+	}
+	$rootScope.refreshUser= function(){
+		$scope.userLoggedin = AuthService.isLoggedIn();
+	}
+	
+	var loadData = function() {
 		var promise = currencyHttpServices.getCurrencies();
 		promise.then(function(result) {
 			$scope.currency = result;
@@ -26,5 +28,4 @@ angular.module('appCFC').controller('cfcController',[ '$scope', 'httpService', '
 	$scope.updateModel = function() {
 		$scope.$broadcast('parametersChange');
 	}
-	init();
 }]);// End controller

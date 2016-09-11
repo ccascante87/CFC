@@ -34,11 +34,11 @@ public class BranchesRestController {
 		if (sucursales.isEmpty())
 			return Collections.emptyList();
 		else {
-			Sucursal all = new Sucursal();
-			all.setCodigoAgencia(new BigDecimal(-1));
-			all.setIdSucursal(-1);
-			all.setNomAgencia("TODAS");
-			sucursales.add(0, all);
+//			Sucursal all = new Sucursal();
+//			all.setCodigoAgencia(-1);
+//			all.setIdSucursal(-1);
+//			all.setNomAgencia("TODAS");
+//			sucursales.add(0, all);
 			return sucursales;
 		}
 	}

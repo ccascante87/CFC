@@ -20,11 +20,11 @@ public class Sucursal implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_SUCURSAL")
-	private long idSucursal;
+	@Column(name = "ID")
+	private int idSucursal;
 
-	@Column(name = "CODIGO_AGENCIA")
-	private BigDecimal codigoAgencia;
+	@Column(name = "COD_AGENCIA")
+	private int codigoAgencia;
 	
 	@Column(name = "NOM_AGENCIA")
 	private String nomAgencia;
@@ -44,19 +44,19 @@ public class Sucursal implements Serializable {
 	public Sucursal() {
 	}
 
-	public long getIdSucursal() {
+	public int getIdSucursal() {
 		return idSucursal;
 	}
 
-	public void setIdSucursal(long idSucursal) {
+	public void setIdSucursal(int idSucursal) {
 		this.idSucursal = idSucursal;
 	}
 
-	public BigDecimal getCodigoAgencia() {
+	public int getCodigoAgencia() {
 		return codigoAgencia;
 	}
 
-	public void setCodigoAgencia(BigDecimal codigoAgencia) {
+	public void setCodigoAgencia(int codigoAgencia) {
 		this.codigoAgencia = codigoAgencia;
 	}
 
