@@ -1,5 +1,6 @@
 package com.cfc.controller;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collections;
@@ -70,8 +71,8 @@ public class CFCSpringController {
 		GraphicItem lcr = new GraphicItem("Lcr", "line");
 		GraphicItem lcsr = new GraphicItem("Lcsr", "line");
 		GraphicItem varianza = new GraphicItem("Varianza", "area");
-this.variacionesEfectivo.getxAxisValues().clear();
-this.comportamientoEfectivo.getxAxisValues().clear();
+		this.variacionesEfectivo.getxAxisValues().clear();
+		this.comportamientoEfectivo.getxAxisValues().clear();
 		for (Pivot pivot : data) {
 			// Graph. 1
 			ocioso.getItemValues().add(pivot.getOcioso().toPlainString());
@@ -124,25 +125,46 @@ this.comportamientoEfectivo.getxAxisValues().clear();
 		variacionesEfectivo.getyAxisValues().add(lcsr);
 		variacionesEfectivo.getyAxisValues().add(lcr);
 		variacionesEfectivo.getyAxisValues().add(lcir);
+		if(data.size() == 0 ){
+			mda.setAutorizedBalance(BigDecimal.ZERO);
+			mda.setCurrentBalance(BigDecimal.ZERO);
+			mda.setInsuredAmount(BigDecimal.ZERO);
+			mda.setLazyAmount(BigDecimal.ZERO);
+			mda.setReorderPoint(BigDecimal.ZERO);
+			// variacionesEfectivo.
+			mda.getCashBehaviorDetail().add(new Item("Menudo", BigDecimal.ZERO, BigDecimal.ZERO));
+			mda.getCashBehaviorDetail().add(new Item("Reserva", BigDecimal.ZERO, BigDecimal.ZERO));
+			mda.getCashBehaviorDetail().add(new Item("LCSX",  BigDecimal.ZERO, BigDecimal.ZERO));
+			mda.getCashBehaviorDetail().add(new Item("Lcx",  BigDecimal.ZERO, BigDecimal.ZERO));
+			mda.getCashBehaviorDetail().add(new Item("Lcix", BigDecimal.ZERO, BigDecimal.ZERO));
 
-		mda.setAutorizedBalance(data.get(data.size() - 1).getSaldoAutorizado());
-		mda.setCurrentBalance(data.get(data.size() - 1).getSaldo());
-		mda.setInsuredAmount(data.get(data.size() - 1).getSeguroMax());
-		mda.setLazyAmount(data.get(data.size() - 1).getOcioso());
-		mda.setReorderPoint(data.get(data.size() - 1).getPuntoReorden());
+			mda.getCashVariations().add(new Item("Varianza",  BigDecimal.ZERO, BigDecimal.ZERO));
+			mda.getCashVariations().add(new Item("LCSr",  BigDecimal.ZERO, BigDecimal.ZERO));
+			mda.getCashVariations().add(new Item("LCr",  BigDecimal.ZERO, BigDecimal.ZERO));
+			mda.getCashVariations().add(new Item("LClr",  BigDecimal.ZERO, BigDecimal.ZERO));
+		}else{
+			if(data.size() > 1){		
+				mda.setAutorizedBalance(data.get(data.size() -1).getSaldoAutorizado());
+				mda.setCurrentBalance(data.get(data.size() - 1).getSaldo());
+				mda.setInsuredAmount(data.get(data.size() - 1).getSeguroMax());
+				mda.setLazyAmount(data.get(data.size() - 1).getOcioso());
+				mda.setReorderPoint(data.get(data.size() - 1).getPuntoReorden());
+				// variacionesEfectivo.
+				mda.getCashBehaviorDetail().add(new Item("Menudo", data.get(data.size() - 1).getMenudo(), data.get(data.size() - 2).getMenudo()));
+				mda.getCashBehaviorDetail().add(new Item("Reserva", data.get(data.size() - 1).getReserva(), data.get(data.size() - 2).getReserva()));
+				mda.getCashBehaviorDetail().add(new Item("LCSX", data.get(data.size() - 1).getLcsx(), data.get(data.size() - 2).getLcsx()));
+				mda.getCashBehaviorDetail().add(new Item("Lcx", data.get(data.size() - 1).getLcx(), data.get(data.size() - 2).getLcx()));
+				mda.getCashBehaviorDetail().add(new Item("Lcix", data.get(data.size() - 1).getLcix(), data.get(data.size() - 2).getLcix()));
+
+				mda.getCashVariations().add(new Item("Varianza", data.get(data.size() - 1).getReserva(), data.get(data.size() - 2).getReserva()));
+				mda.getCashVariations().add(new Item("LCSr", data.get(data.size() - 1).getLcsr(), data.get(data.size() - 2).getLcsr()));
+				mda.getCashVariations().add(new Item("LCr", data.get(data.size() - 1).getLcr(), data.get(data.size() - 2).getLcr()));
+				mda.getCashVariations().add(new Item("LClr", data.get(data.size() - 1).getLcir(), data.get(data.size() - 2).getLcir()));
+			}
+		}
 		mda.setUtilizationRate(10);
 
-		// variacionesEfectivo.
-		mda.getCashBehaviorDetail().add(new Item("Menudo", data.get(data.size() - 1).getMenudo(), data.get(data.size() - 2).getMenudo()));
-		mda.getCashBehaviorDetail().add(new Item("Reserva", data.get(data.size() - 1).getReserva(), data.get(data.size() - 2).getReserva()));
-		mda.getCashBehaviorDetail().add(new Item("LCSX", data.get(data.size() - 1).getLcsx(), data.get(data.size() - 2).getLcsx()));
-		mda.getCashBehaviorDetail().add(new Item("Lcx", data.get(data.size() - 1).getLcx(), data.get(data.size() - 2).getLcx()));
-		mda.getCashBehaviorDetail().add(new Item("Lcix", data.get(data.size() - 1).getLcix(), data.get(data.size() - 2).getLcix()));
-
-		mda.getCashVariations().add(new Item("Varianza", data.get(data.size() - 1).getReserva(), data.get(data.size() - 2).getReserva()));
-		mda.getCashVariations().add(new Item("LCSr", data.get(data.size() - 1).getLcsr(), data.get(data.size() - 2).getLcsr()));
-		mda.getCashVariations().add(new Item("LCr", data.get(data.size() - 1).getLcr(), data.get(data.size() - 2).getLcr()));
-		mda.getCashVariations().add(new Item("LClr", data.get(data.size() - 1).getLcir(), data.get(data.size() - 2).getLcir()));
+		
 
 		Collections.reverse(data);
 		int index = 0;
