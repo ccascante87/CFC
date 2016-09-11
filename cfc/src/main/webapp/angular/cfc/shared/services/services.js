@@ -20,8 +20,7 @@ angular.module('appCFC').factory('cfcConfigurationService', function() {
 				duration : 0,
 				xAxis : {
 					tickFormat : function(d) {
-						console.log(d);
-						return d;//3.time.format('%X')(new Date(d));
+						return d3.time.format('%H:%M')(new Date(new Number(d)));
 					}
 				},
 				yAxis1 : {
@@ -63,7 +62,7 @@ angular.module('appCFC').factory('cfcConfigurationService', function() {
 				duration : 0,
 				xAxis : {
 					tickFormat : function(d) {
-						return d3.time.format('%H:%M')(new Date(d));
+						return d3.time.format('%H:%M')(new Date(new Date(new Number(d))));
 					}
 				},
 				yAxis1 : {

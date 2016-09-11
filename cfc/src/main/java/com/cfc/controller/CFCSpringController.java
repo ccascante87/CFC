@@ -3,6 +3,7 @@ package com.cfc.controller;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -94,13 +95,20 @@ this.comportamientoEfectivo.getxAxisValues().clear();
 			Calendar valor = Calendar.getInstance();
 			valor.setTimeInMillis(pivot.getFecha().getTime() );
 			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-			System.err.println(pivot.getFecha().getTime()+ (pivot.getFecha().getNanos() / 1000000));
-			variacionesEfectivo.getxAxisValues().add(String.valueOf(pivot.getFecha().getTime()+ (pivot.getFecha().getNanos() / 1000000)));
+			
+			Calendar today = Calendar.getInstance();
+			Calendar pivotCal =  Calendar.getInstance();
+			pivotCal.setTime(pivot.getFecha());
+			today.set(Calendar.HOUR_OF_DAY, pivotCal.get(Calendar.HOUR));
+			today.set(Calendar.MINUTE, pivotCal.get(Calendar.MINUTE));
+			//System.err.println(today);
+			variacionesEfectivo.getxAxisValues().add(String.valueOf(today.getTimeInMillis()));
 			comportamientoEfectivo.getxAxisValues().add(String.valueOf(pivot.getFecha().getTime()+ (pivot.getFecha().getNanos() / 1000000)));
 //			comportamientoEfectivo.getxAxisValues().add(sdf.format(valor.getTime()));
 //	
 		}
 
+		System.err.println("Size: " + variacionesEfectivo.getxAxisValues().size());
 		comportamientoEfectivo.getyAxisValues().add(ocioso);
 		comportamientoEfectivo.getyAxisValues().add(rm);
 		comportamientoEfectivo.getyAxisValues().add(menudo);

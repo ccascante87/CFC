@@ -1,5 +1,4 @@
-﻿﻿
-<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 
 <html ng-app="appCFC">
 <head>
@@ -135,12 +134,13 @@
 				<ul class="sidebar-menu">
 					<!-- <li class="side-menu-item" data-htmlfile="graphColones"><a
 						href="#"><i class="fa fa-area-chart"></i><span>Dashboard</span></a></li> -->
-					<li class="side-menu-item" data-htmlfile="graphColones"><a href="#"><i class="fa fa-area-chart"></i><span>Gráfico</span></a></li>
+					<li class="side-menu-item" data-htmlfile="graphColones"><a href="#/index"><i class="fa fa-area-chart"></i><span>Gráfico</span></a></li>
 					<!-- <li class="side-menu-item" data-htmlfile="graphColones"><a
 						href="#"><i class="fa fa-area-chart"></i><span>Detalles</span></a></li>-->
 					<li class="side-menu-item"><a href="#/transac"><i class="fa fa-area-chart"></i><span>Transacciones</span></a></li>
 					<li class="side-menu-item"><a href="#/detalles"><i class="fa fa-area-chart"></i><span>Detalles</span></a></li>
 					<li class="side-menu-item"><a href="#/sucursales"><i class="fa fa-area-chart"></i><span>Sucursales</span></a></li>
+					<li class="side-menu-item"><a href="#/parameters"><i class="fa fa-area-chart"></i><span>Parametros</span></a></li>
 					<!-- <li class="side-menu-item" data-htmlfile="graphColones"><a
 					<li class="side-menu-item"><a href="#/transac"><i
 							class="fa fa-area-chart"></i><span>Transacciones</span></a></li>
@@ -207,7 +207,8 @@
 	<script src="angular/cfc/efectivo/cfcFilters.js"></script>
 	<script src="angular/cfc/admin/branchesController.js"></script>
 	<script src="angular/cfc/shared/services/currencyHttpServices.js"></script>
-	
+	<script src="angular/cfc/admin/parametersController.js"></script>
+	<script src="angular/cfc/shared/services/paramsHttpServices.js"></script>
 	
 	<script type="text/javascript"
 		src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.5.4/angular-datatables.js"></script>
