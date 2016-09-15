@@ -5,7 +5,7 @@ angular.module('appCFC').controller('cfcController',[ '$scope', 'httpService', '
 	    
 	$rootScope.loadInitData = function(){
 		loadData();
-		refreshUser();
+		//refreshUser();
 	}
 	$rootScope.refreshUser= function(){
 		$scope.userLoggedin = AuthService.isLoggedIn();

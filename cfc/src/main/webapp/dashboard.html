@@ -27,10 +27,10 @@
 <body class="hold-transition skin-cfc sidebar-mini">
 	<div class="wrapper" ng-controller="cfcController">
 		<!-- Main Header -->
-		<header class="main-header">
+		<header class="main-header"  ng-show="userLoggedin">
 
 			<!-- Logo -->
-			<a href="#" class="logo" ng-show="userLoggedin"> <!-- mini logo for sidebar mini 50x50 pixels --> <span class="logo-mini">CFC</span> <!-- logo for regular state and mobile devices -->
+			<a href="#" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels --> <span class="logo-mini">CFC</span> <!-- logo for regular state and mobile devices -->
 				<span class="logo-lg">Manejo de Efectivo </span>
 			</a>
 
@@ -116,7 +116,7 @@
 		<aside class="main-sidebar" ng-show="userLoggedin" >
 
 			<!-- sidebar: style can be found in sidebar.less -->
-			<section class="sidebar">
+			<section class="sidebar" ng-show="userLoggedin" 	>
 
 				<!-- Sidebar user panel (optional) -->
 				<div class="user-panel">

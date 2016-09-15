@@ -6,6 +6,8 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The persistent class for the SUCURSALES database table.
@@ -25,7 +27,7 @@ public class Sucursal implements Serializable {
 
 	@Column(name = "COD_AGENCIA")
 	private int codigoAgencia;
-	
+
 	@Column(name = "NOM_AGENCIA")
 	private String nomAgencia;
 
@@ -41,7 +43,12 @@ public class Sucursal implements Serializable {
 	@Column(name = "MONTO_AUTORIZADO")
 	private BigDecimal montoAutorizado;
 
+	//TODO Quitar @Transient y agregar las anotaciones corretas para realizar el mapeo con la BD
+	@Transient
+	private List<SucursalMonedaDetalle> detalleMontos;
+
 	public Sucursal() {
+		this.detalleMontos = new ArrayList<SucursalMonedaDetalle>();
 	}
 
 	public int getIdSucursal() {
