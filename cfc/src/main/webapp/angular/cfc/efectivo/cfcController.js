@@ -5,10 +5,10 @@ angular.module('appCFC').controller('cfcController',[ '$scope', 'httpService', '
 	    
 	$rootScope.loadInitData = function(){
 		loadData();
-		//refreshUser();
 	}
-	$rootScope.refreshUser= function(){
+	$rootScope.refreshUser = function(){
 		$scope.userLoggedin = AuthService.isLoggedIn();
+		console.log('en el cfc controeller........................ ' + $scope.userLoggedin  )
 	}
 	
 	var loadData = function() {

@@ -2,7 +2,7 @@
 angular.module('appCFC').controller('loginController', ['$scope', '$rootScope','$location', 'AuthService', function($scope,$rootScope, $location, AuthService){
 	$scope.loginName;
 	$scope.loginPass;
-	$scope.invalidLogin = false;
+	$scope.showError = false;
 	$scope.login = function(){
 		// TODO Real login...
 		// Test login values:
@@ -17,19 +17,25 @@ angular.module('appCFC').controller('loginController', ['$scope', '$rootScope','
 				isadmin: false,
 				defaultBranch: 1,
 				defaultCurrency : 1
-			}
+			};
+		
+		console.log('algo de texto aqui............' + $scope.userLoggedin)
 			if ($scope.loginName == 'admin' && $scope.loginPass == 'admin') {
 				user.isadmin = true;
 				AuthService.setUser(user);
-				$scope.invalidLogin = false;
+				$scope.userLoggedIn = true;
+				$scope.showError = false;
 				$rootScope.loadInitData();
+				$rootScope.refreshUser();
 				$location.path('/graph');
 			} else if ($scope.loginName == 'user' && $scope.loginPass == 'user') {
 				AuthService.setUser(user);
-				$scope.invalidLogin = false;
+				$scope.userLoggedIn = true;
+				$scope.showError = false;
 			} else {
 				$scope.loginPass = '';
-				$scope.invalidLogin = true;
+				$scope.userLoggedIn = false;
+				$scope.showError = true;
 			}
 	}
 

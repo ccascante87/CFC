@@ -31,7 +31,7 @@ angular.module('appCFC').controller('graphController', ['$scope','$interval', 'c
     	y++;
     	var brach = $scope.selectedBranch == undefined ? '1' : $scope.selectedBranch.idSucursal;
     	var currency = $scope.selectedCurrency == undefined ? '1' : $scope.selectedCurrency.id;
-    	console.log($scope.selectedBranch );
+//    	console.log($scope.selectedBranch );
      	//TODO get this data from dropdown
 //    	var promise = httpService.getGraphData($scope.selectedBranch.idSucursal, $scope.selectedCurrency.id);
     	var promise = httpService.getGraphData(brach,currency);
@@ -83,9 +83,7 @@ angular.module('appCFC').controller('graphController', ['$scope','$interval', 'c
 	 		    x++;
 	 		});
           });
-	
 	};
-    
 	
 	var datos = new MainData({
 		

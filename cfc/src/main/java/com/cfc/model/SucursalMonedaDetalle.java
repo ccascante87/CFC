@@ -10,12 +10,16 @@ public class SucursalMonedaDetalle implements Serializable {
 	private Moneda moneda;
 	private BigDecimal montoAsegurado;
 	private BigDecimal montoAutorizado;
+	private BigDecimal reserva;
+	private BigDecimal menudo;
 
 	public SucursalMonedaDetalle() {
 		sucursal = new Sucursal();
 		moneda = new Moneda();
 		montoAsegurado = BigDecimal.ZERO;
 		montoAutorizado = BigDecimal.ZERO;
+		reserva = BigDecimal.ZERO;
+		menudo = BigDecimal.ZERO;
 	}
 
 	public Sucursal getSucursal() {
@@ -50,4 +54,19 @@ public class SucursalMonedaDetalle implements Serializable {
 		this.montoAutorizado = montoAutorizado;
 	}
 
+	public BigDecimal getReserva() {
+		return reserva;
+	}
+
+	public void setReserva(BigDecimal reserva) {
+		this.reserva = reserva;
+	}
+
+	public BigDecimal getMenudo() {
+		return menudo;
+	}
+
+	public void setMenudo(BigDecimal menudo) {
+		this.menudo = menudo;
+	}
 }
