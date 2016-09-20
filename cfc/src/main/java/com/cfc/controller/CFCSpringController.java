@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -36,7 +35,7 @@ public class CFCSpringController {
 	private GraphData comportamientoEfectivo = new GraphData();
 	private GraphData variacionesEfectivo = new GraphData();
 	private MainData mda = new MainData();
-	private int maxId = 0;
+	//private int maxId = 0;
 	@Autowired
 	ISucursalService iSucursalService;
 	@Autowired
@@ -95,7 +94,7 @@ public class CFCSpringController {
 			//pivot.getFecha().getTime() + (pivot.getFecha().getNanos() / 1000000)
 			Calendar valor = Calendar.getInstance();
 			valor.setTimeInMillis(pivot.getFecha().getTime() );
-			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+			//SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 			
 			Calendar today = Calendar.getInstance();
 			Calendar pivotCal =  Calendar.getInstance();
