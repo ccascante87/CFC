@@ -17,8 +17,6 @@ angular.module('appCFC').controller('graphController', ['$scope','$interval', 'c
         this.byDateTomorrow = args.byDateTomorrow;
         this.byDayToday = args.byDayToday;
         this.byDayTomorrow = args.byDayTomorrow;
-        
-        this.loggedUserName = args.loggedUserName;
 
         this.cashVariations = {};
         this.cashValHistory = {};
@@ -31,8 +29,6 @@ angular.module('appCFC').controller('graphController', ['$scope','$interval', 'c
     	y++;
     	var brach = $scope.selectedBranch == undefined ? '1' : $scope.selectedBranch.idSucursal;
     	var currency = $scope.selectedCurrency == undefined ? '1' : $scope.selectedCurrency.id;
-//    	console.log($scope.selectedBranch );
-     	//TODO get this data from dropdown
 //    	var promise = httpService.getGraphData($scope.selectedBranch.idSucursal, $scope.selectedCurrency.id);
     	var promise = httpService.getGraphData(brach,currency);
 	    promise.then(function(result) { 
@@ -90,7 +86,7 @@ angular.module('appCFC').controller('graphController', ['$scope','$interval', 'c
 	});
 	/*Utility function to create the currency format for the graphs*/	
 	var currencyFormat = function(d){
-		return $scope.selectedCurrency.simbolo + d3.format(',.2f')(new Number(d));
+		return $scope.user.defaultCurrency.simbolo + d3.format(',.2f')(new Number(d));
 	}
 	
 	 $scope.$on('parametersChange', function(e) {
@@ -129,7 +125,7 @@ angular.module('appCFC').controller('graphController', ['$scope','$interval', 'c
 					loadData();
 				}, 300000);
 		//TODO Pull this from active directory
-		$scope.mainData.loggedUserName = 'Bruce Wayne';
+		//$scope.mainData.loggedUserName = 'Bruce Wayne';
 	};
     init();
 }]);//End controller

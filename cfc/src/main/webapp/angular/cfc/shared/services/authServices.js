@@ -9,6 +9,9 @@ angular.module('appCFC').factory('AuthService', function() {
 		isLoggedIn : function() {
 			// TODO Check for the user data
 			return (currentUser) ? true: false;
+		},
+		getCurrentUser : function(){
+			return currentUser;
 		}
 	}
 })

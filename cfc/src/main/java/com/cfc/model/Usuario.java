@@ -16,5 +16,52 @@ public class Usuario implements Serializable{
 	public Usuario() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getLoginName() {
+		return loginName;
+	}
+
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
+	}
+
+	public Sucursal getDefaultBranch() {
+		return defaultBranch;
+	}
+
+	public void setDefaultBranch(Sucursal defaultBranch) {
+		this.defaultBranch = defaultBranch;
+	}
+
+	public Moneda getDefaultCurrency() {
+		return defaultCurrency;
+	}
+
+	public void setDefaultCurrency(Moneda defaultCurrency) {
+		this.defaultCurrency = defaultCurrency;
+	}
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
 }

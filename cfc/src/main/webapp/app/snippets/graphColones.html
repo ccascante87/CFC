@@ -12,7 +12,7 @@
 							<table class="table">
 								<tr>
 									<th scope="row">Usuario</th>
-									<td>{{mainData.loggedUserName}}</td>
+									<td>{{user.name}}</td>
 									<th scope="row">Monto Asegurado</th>
 									<td>{{mainData.montoAsegurado | currency : selectedCurrency.simbolo : 2 }}</td>
 									<th scope="row">Saldo Actual</th>
@@ -22,7 +22,7 @@
 								</tr>
 								<tr>
 									<th scope="row">C&oacute;digo</th>
-									<td>{{selectedBranch.codigoAgencia}}</td>
+									<td>{{user.defaultBranch.codigoAgencia}}</td>
 									<th scope="row">Saldo Autorizado</th>
 									<td>{{mainData.saldoAutorizado | currency : selectedCurrency.simbolo : 2 }}</td>
 									<th scope="row">Punto Reorden</th>

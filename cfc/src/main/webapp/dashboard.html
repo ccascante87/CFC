@@ -45,13 +45,13 @@
 
 					<ul class="nav navbar-nav">
 						<!-- Sucursales Dropdown -->
-						<li class="dropdown notifications-menu"><select ng-model="selectedBranch" ng-change="updateModel()"
-							style="margin-top: 11px;" data-ng-options="branch as branch.nomAgencia for branch in sucursales">
+						<li class="dropdown notifications-menu"><select ng-model="user.defaultBranch" ng-change="updateModel()"
+							style="margin-top: 11px;" data-ng-options="branch as branch.nomAgencia for branch in sucursales track by branch.idSucursal">
 						</select></li>
 
 						<!-- Currency Dropdown -->
-						<li class="dropdown notifications-menu"><select ng-model="selectedCurrency" ng-change="updateModel()"
-							data-ng-options="currency as currency.simbolo for currency in currency" style="margin-top: 11px;">
+						<li class="dropdown notifications-menu"><select ng-model="user.defaultCurrency" ng-change="updateModel()"
+							data-ng-options="currency as currency.simbolo for currency in currency track by currency.id" style="margin-top: 11px;">
 						</select></li>
 						<!-- Messages: style can be found in dropdown.less-->
 						<li class="dropdown messages-menu"style="display: none;">
@@ -77,13 +77,13 @@
 						<li class="dropdown user user-menu">
 							<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <!-- The user image in the navbar-->
 								<img src="app/img/test.jpg" class="user-image" alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
-								<span class="hidden-xs">{{mainData.loggedUserName}}</span>
+								<span class="hidden-xs">{{user.name}}</span>
 						</a>
 							<ul class="dropdown-menu">
 								<!-- The user image in the menu -->
 								<li class="user-header"><img src="app/img/test.jpg" class="img-circle" alt="User Image">
 									<p>
-										{{mainData.loggedUserName}} <small>Other info...</small>
+										{{user.name}} <small>Other info...</small>
 									</p></li>
 								<!-- Menu Body -->
 								<li class="user-body">
@@ -124,7 +124,7 @@
 						<img src="app/img/test.jpg" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
-						<p>{{mainData.loggedUserName}}</p>
+						<p>{{user.name}}</p>
 						<!-- Status -->
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 					</div>
@@ -210,6 +210,7 @@
 	<script src="angular/cfc/shared/services/paramsHttpServices.js"></script>
 	<script src="angular/cfc/shared/services/authServices.js" ></script>
 	<script src="angular/cfc/admin/loginController.js"></script>
+	<script src="angular/cfc/shared/services/userHttpServices.js"></script>
 	<script type="text/javascript"
 		src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.5.4/angular-datatables.js"></script>
 	<script src="plugins/dataTables.bootstrap.min.js"></script>
