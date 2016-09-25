@@ -1,7 +1,7 @@
-
 package com.cfc.model;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 public class Usuario implements Serializable{
 
@@ -12,6 +12,7 @@ public class Usuario implements Serializable{
 	private Sucursal defaultBranch;
 	private Moneda defaultCurrency;
 	private boolean admin;
+	private HashMap<String, String> applicationParameters = new HashMap<>();
 	
 	public Usuario() {
 		// TODO Auto-generated constructor stub
@@ -64,4 +65,14 @@ public class Usuario implements Serializable{
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
 	}
+
+	public HashMap<String, String> getApplicationParameters() {
+		return applicationParameters;
+	}
+
+	public void setApplicationParameters(HashMap<String, String> applicationParameters) {
+		this.applicationParameters = applicationParameters;
+	}
+	
+	
 }

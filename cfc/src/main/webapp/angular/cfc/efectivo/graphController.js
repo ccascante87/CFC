@@ -1,6 +1,6 @@
 'use strict'
-angular.module('appCFC').controller('graphController', ['$scope','$interval', 'cfcConfigurationService', 'httpService', 
-                                                        function($scope,$interval,cfcConfigurationService,httpService){
+angular.module('appCFC').controller('graphController', ['$scope','$interval', 'cfcConfigurationService', 'httpService', 'AuthService',
+                                                        function($scope,$interval,cfcConfigurationService,httpService, AuthService){
 	function MainData(args) {
 		this.usuario = args.usuario;;
 		this.montoAsegurado = args.montoAsegurado;
@@ -112,6 +112,8 @@ angular.module('appCFC').controller('graphController', ['$scope','$interval', 'c
 	var y = 0;
 	var init = function () {	
 		$scope.mainData = datos;
+		var user = AuthService.getCurrentUser().applicationParameters;
+		console.log(user.graphUpdateInterval);
 		$scope.cashFlowOptions = cfcConfigurationService.cashFlowOptionsConfig();
 		$scope.cashVarOptions = cfcConfigurationService.cashVarOptionsConfig();		
 		 
@@ -123,7 +125,7 @@ angular.module('appCFC').controller('graphController', ['$scope','$interval', 'c
 		intervalPromise = $interval(
 				function (){
 					loadData();
-				}, 300000);
+				}, new Number(user.graphUpdateInterval));
 		//TODO Pull this from active directory
 		//$scope.mainData.loggedUserName = 'Bruce Wayne';
 	};

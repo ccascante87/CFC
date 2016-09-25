@@ -37,10 +37,13 @@ public class Sucursal implements Serializable {
 	@Column(name = "HORA_CIERRE")
 	private String horaCierre;
 
-	@Column(name = "MONTO_ASEGURADO")
+	//TODO Remove this variables from this class, as they are in the details
+//	@Column(name = "MONTO_ASEGURADO")
+	@Transient
 	private BigDecimal montoAsegurado;
 
-	@Column(name = "MONTO_AUTORIZADO")
+//	@Column(name = "MONTO_AUTORIZADO")
+	@Transient
 	private BigDecimal montoAutorizado;
 
 	//TODO Quitar @Transient y agregar las anotaciones corretas para realizar el mapeo con la BD
