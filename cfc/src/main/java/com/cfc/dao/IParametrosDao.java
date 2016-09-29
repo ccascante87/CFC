@@ -16,4 +16,12 @@ public interface IParametrosDao {
 
 	void save(Parametros param);
 
+	void deleteById(int id);
+
+	List<Parametros> findAllParametros();
+
+	Parametros findById(int id);
+
+	Parametros findParametroByName(String name);
+
 }
