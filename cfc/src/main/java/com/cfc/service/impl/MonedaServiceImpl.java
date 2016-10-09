@@ -30,8 +30,7 @@ public class MonedaServiceImpl implements IMonedaService {
 	
 	@Override
 	public Moneda findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return monedaDao.findById(id);
 	}
 
 	/* (non-Javadoc)
@@ -40,8 +39,6 @@ public class MonedaServiceImpl implements IMonedaService {
 	@Override
 	public void saveMoneda(Moneda moneda) {
 		monedaDao.save(moneda);
-		// TODO Auto-generated method stub
-
 	}
 
 	/* (non-Javadoc)
@@ -49,8 +46,7 @@ public class MonedaServiceImpl implements IMonedaService {
 	 */
 	@Override
 	public void updateMoneda(Moneda moneda) {
-		// TODO Auto-generated method stub
-
+		monedaDao.update(moneda);
 	}
 
 	/* (non-Javadoc)

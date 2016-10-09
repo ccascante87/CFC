@@ -11,7 +11,15 @@ import com.cfc.model.Parametros;
  *
  */
 public interface IParametersService {
-	public List<Parametros> findAll();
+	List<Parametros> findAll();
 
-	public void save(Parametros param);
+	void save(Parametros param);
+
+	void deleteById(int id);
+
+	List<Parametros> findAllParametros();
+
+	Parametros findById(int id);
+
+	Parametros findParametroByName(String name);
 }

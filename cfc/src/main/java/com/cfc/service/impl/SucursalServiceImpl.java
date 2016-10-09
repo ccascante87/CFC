@@ -30,8 +30,7 @@ public class SucursalServiceImpl implements ISucursalService {
 	 */
 	@Override
 	public Sucursal findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return sucursalDAO.findById(id);
 	}
 
 	/* (non-Javadoc)
@@ -39,8 +38,7 @@ public class SucursalServiceImpl implements ISucursalService {
 	 */
 	@Override
 	public void saveSucursal(Sucursal sucursal) {
-		// TODO Auto-generated method stub
-
+		sucursalDAO.save(sucursal);
 	}
 
 	/* (non-Javadoc)
@@ -48,8 +46,7 @@ public class SucursalServiceImpl implements ISucursalService {
 	 */
 	@Override
 	public void updateSucursal(Sucursal sucursal) {
-		// TODO Auto-generated method stub
-
+		sucursalDAO.update(sucursal);
 	}
 
 	/* (non-Javadoc)
