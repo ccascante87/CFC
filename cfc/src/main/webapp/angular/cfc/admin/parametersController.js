@@ -1,9 +1,11 @@
 'use strict'
 angular.module('appCFC').controller('parametersController',['$scope','cfcConfigurationService','paramsHttpServices',
-				function($scope,cfcConfigurationService, paramsHttpServices) {
-					$scope.paramsTableConfig = cfcConfigurationService.tableOptionsConfig();
+				function($scope, cfcConfigurationService, paramsHttpServices) {
+					
 
 					var init = function() {
+						$scope.paramsTableConfig = cfcConfigurationService
+						.tableOptionsConfig();
 						console.log($scope.paramsTableConfig);
 						var promise = paramsHttpServices.getParameters();
 						promise.then(function(results) {
@@ -25,7 +27,8 @@ angular.module('appCFC').controller('parametersController',['$scope','cfcConfigu
 						$scope.showForm = false;
 					}
 					$scope.saveParam = function() {
-						var promise = paramsHttpServices.updateParam($scope.selectedParam);
+						var promise = paramsHttpServices
+								.updateParam($scope.selectedParam);
 						promise.then(function(results) {
 							$scope.parameters = results;
 							$scope.showForm = false;
@@ -36,4 +39,4 @@ angular.module('appCFC').controller('parametersController',['$scope','cfcConfigu
 						$scope.showForm = true;
 					}
 					init();
-				}])
+				} ])
