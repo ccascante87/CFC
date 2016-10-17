@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
 @JsonAutoDetect
 public class User implements Serializable {
+
+	private static final long serialVersionUID = -8233824246090230539L;
 	private long id;
 	private String name;
 	private long defaultBranchId;

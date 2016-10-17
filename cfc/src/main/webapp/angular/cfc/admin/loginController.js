@@ -13,7 +13,7 @@ angular.module('appCFC').controller('loginController',
 			var promise = userHttpController.getUser($scope.loginName);
 			promise.then(function(result){
 				var user =result;
-					AuthService.setUser(user);
+				AuthService.setUser(user);
 				$scope.userLoggedIn = true;
 				$scope.showError = false;
 				$rootScope.loadInitData();

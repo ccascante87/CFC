@@ -103,12 +103,9 @@ public class CFCSpringController {
 			today.set(Calendar.MINUTE, pivotCal.get(Calendar.MINUTE));
 			//System.err.println(today);
 			variacionesEfectivo.getxAxisValues().add(String.valueOf(today.getTimeInMillis()));
-			comportamientoEfectivo.getxAxisValues().add(String.valueOf(today.getTimeInMillis()));
-//			comportamientoEfectivo.getxAxisValues().add(sdf.format(valor.getTime()));
-//	
+			comportamientoEfectivo.getxAxisValues().add(String.valueOf(today.getTimeInMillis()));	
 		}
 
-		System.err.println("Size: " + variacionesEfectivo.getxAxisValues().size());
 		comportamientoEfectivo.getyAxisValues().add(ocioso);
 		comportamientoEfectivo.getyAxisValues().add(rm);
 		comportamientoEfectivo.getyAxisValues().add(menudo);

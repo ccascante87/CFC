@@ -24,7 +24,7 @@ angular.module('appCFC').controller('graphController', ['$scope','$interval', 'c
 	
 	/** Variable used to hold the promise returned by the $interval service*/
 	var intervalPromise;
-    function loadData(){    	 
+    function loadData(){    
     	x++;
     	y++;
     	var brach = $scope.selectedBranch == undefined ? '1' : $scope.selectedBranch.idSucursal;
@@ -90,8 +90,7 @@ angular.module('appCFC').controller('graphController', ['$scope','$interval', 'c
 	}
 	
 	 $scope.$on('parametersChange', function(e) {
-	        //loadData();
-		 console.log('Broadcasted evente caoruted by graphdcongtoller');
+	     loadData();
 	    });
 	 
 	    
@@ -126,8 +125,6 @@ angular.module('appCFC').controller('graphController', ['$scope','$interval', 'c
 				function (){
 					loadData();
 				}, new Number(user.graphUpdateInterval));
-		//TODO Pull this from active directory
-		//$scope.mainData.loggedUserName = 'Bruce Wayne';
 	};
     init();
 }]);//End controller

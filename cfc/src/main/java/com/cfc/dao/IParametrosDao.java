@@ -12,8 +12,6 @@ import com.cfc.model.Parametros;
  */
 public interface IParametrosDao {
 
-	List<Parametros> findAll();
-
 	void save(Parametros param);
 
 	void deleteById(int id);

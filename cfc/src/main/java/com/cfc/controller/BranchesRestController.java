@@ -33,11 +33,11 @@ public class BranchesRestController {
 		if (sucursales.isEmpty())
 			return Collections.emptyList();
 		else {
-//			Sucursal all = new Sucursal();
-//			all.setCodigoAgencia(-1);
-//			all.setIdSucursal(-1);
-//			all.setNomAgencia("TODAS");
-//			sucursales.add(0, all);
+			// Sucursal all = new Sucursal();
+			// all.setCodigoAgencia(-1);
+			// all.setIdSucursal(-1);
+			// all.setNomAgencia("TODAS");
+			// sucursales.add(0, all);
 			return sucursales;
 		}
 	}
@@ -49,13 +49,12 @@ public class BranchesRestController {
 		List<Sucursal> branchesList = null;
 		try {
 			Sucursal s = mapper.readValue(branch.toString(), Sucursal.class);
-			branchesList = iBranchesService.findAllSucursales();
-			if(s.getIdSucursal()>0)
-				branchesList.add(s);
-			else{
-				//Update the values
-				
+			if (s.getIdSucursal() > 0) {
+				iBranchesService.updateSucursal(s);
+			} else {
+				iBranchesService.saveSucursal(s);
 			}
+			branchesList = iBranchesService.findAllSucursales();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -67,19 +66,20 @@ public class BranchesRestController {
 	@RequestMapping(value = "/deleteBranch", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Sucursal> deleteBranch(@RequestBody String branchId) {
 		List<Sucursal> branchesList = null;
-		try{
-			//TODO Call the real service method
-			branchesList = iBranchesService.findAllSucursales();
+		try {
+			// iBranchesService.
 			long idSucursal = Long.parseLong(branchId);
 			Iterator<Sucursal> itSuc = branchesList.iterator();
 			while (itSuc.hasNext()) {
 				Sucursal temp = itSuc.next();
-				if(temp.getIdSucursal()== idSucursal){
+				if (temp.getIdSucursal() == idSucursal) {
 					itSuc.remove();
 					break;
 				}
-			}
-		}catch(Exception ex){
+			}	
+			branchesList = iBranchesService.findAllSucursales();
+			
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 		return branchesList;

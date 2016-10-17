@@ -31,7 +31,7 @@ public class ParametersServiceImpl implements IParametersService{
 
 	@Override
 	public List<Parametros> findAll() {
-		return parametrosDAO.findAll();
+		return parametrosDAO.findAllParametros();
 	}
 
 

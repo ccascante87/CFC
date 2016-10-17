@@ -138,10 +138,4 @@ public class ParametrosDaoImpl extends AbstractDao<Integer, Parametros> implemen
 		session.update(parametro);
 		logger.info("Parametros updated successfully, Parametros Details="+ parametro);
 	}
-
-	@Override
-	public List<Parametros> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

@@ -7,10 +7,16 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
+/**
+ * Represents all the data displayed in the main screen e.g. Grapth Data, Forecast, etc.
+ * @author Jorge Delgado 
+ *
+ */
 @JsonAutoDetect
 public class MainData implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	//TODO This data should be on the selected branch.
 	private BigDecimal insuredAmount = BigDecimal.ZERO;
 	private BigDecimal currentBalance = BigDecimal.ZERO;
 	private BigDecimal lazyAmount = BigDecimal.ZERO;
@@ -18,6 +24,7 @@ public class MainData implements Serializable {
 	private BigDecimal reorderPoint = BigDecimal.ZERO;
 	private int utilizationRate;
 
+	//Comportamiento del efectivo
 	private List<Item> cashBehaviorDetail = new ArrayList<Item>();
 	private List<Item> currentBalanceHistory = new ArrayList<Item>();
 	private Forecast forecast = new Forecast();
