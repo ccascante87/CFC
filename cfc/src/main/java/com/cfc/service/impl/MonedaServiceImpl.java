@@ -57,4 +57,12 @@ public class MonedaServiceImpl implements IMonedaService {
 		return monedaDao.findAll();
 	}
 
+	@Override
+	public void delete(int idMoneda) {
+		monedaDao.deleteById(idMoneda);
+		
+	}
+	
+	
+
 }

@@ -12,26 +12,38 @@ angular.module('appCFC', [ 'ngRoute', 'nvd3', 'datatables', 'ngMessages' ])
 				templateUrl : 'app/snippets/branches.html'
 			}).when('/parameters', {
 				templateUrl : 'app/snippets/parameters.html'
+			}).when('/sucursales', {
+				templateUrl : 'app/snippets/branches.html'
+			}).when('/monedas', {
+				templateUrl : 'app/snippets/currencies.html'
 			});
 			$routeProvider.otherwise({
 				redirectTo : '/login'
 			});
 		});
-angular.module('appCFC').run(['$rootScope', '$location', 'AuthService', function($rootScope, $location, AuthService){
-	$rootScope.$on('$routeChangeStart', function(event, newPath){
-		//Chech whether the user is logged in
-		if(AuthService.isLoggedIn() || newPath.originalPath == '/login'){
-			//TODO Redirect to correct Page
-		}else if(AuthService.isLoggedIn() && newPath.originalPath == '/logout'){
-			//Real logout
-			event.preventDefault();
-	        AuthService.setUser(undefined);
-            $location.path('/login');
-		}
-		else{
-			//When the user is not logged in, redirect to the login view
-			event.preventDefault();
-            $location.path('/login');
-		}
-	})
-}])
+angular.module('appCFC').run(
+		[
+				'$rootScope',
+				'$location',
+				'AuthService',
+				function($rootScope, $location, AuthService) {
+					$rootScope.$on('$routeChangeStart',
+							function(event, newPath) {
+								// Chech whether the user is logged in
+								if (AuthService.isLoggedIn()
+										|| newPath.originalPath == '/login') {
+									// TODO Redirect to correct Page
+								} else if (AuthService.isLoggedIn()
+										&& newPath.originalPath == '/logout') {
+									// Real logout
+									event.preventDefault();
+									AuthService.setUser(undefined);
+									$location.path('/login');
+								} else {
+									// When the user is not logged in, redirect
+									// to the login view
+									event.preventDefault();
+									$location.path('/login');
+								}
+							})
+				} ])

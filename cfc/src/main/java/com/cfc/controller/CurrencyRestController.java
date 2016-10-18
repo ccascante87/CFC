@@ -1,6 +1,7 @@
 package com.cfc.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -44,7 +45,12 @@ public class CurrencyRestController {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			Moneda temp = mapper.readValue(currency, Moneda.class);
-			currencies.add(temp);
+			if(temp.getId() <= 0){
+				iMoneda.saveMoneda(temp);
+			}else{
+				iMoneda.updateMoneda(temp);
+			}
+			currencies = iMoneda.findAll();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,20 +65,14 @@ public class CurrencyRestController {
 	@RequestMapping(value ="/delete", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Moneda> deleteCurrency(@RequestBody String currencyId) {
 		logger.debug("saveOrUpdate");
-		List<Moneda> currencies = iMoneda.findAll();
+		List<Moneda> currencies = new ArrayList<>();
 
+		iMoneda.delete(Integer.parseInt(currencyId));
+		currencies = iMoneda.findAll();
 		if (currencies.isEmpty())
 			return Collections.emptyList();
-		else {
-			long lnCrcyId = Long.parseLong(currencyId);
-			Iterator<Moneda> iter = currencies.iterator();
-			while (iter.hasNext()) {
-				Moneda temp = (Moneda) iter.next();
-				if(temp.getId()== lnCrcyId)
-					iter.remove();
-			}
+		else
 			return currencies;
-		}
 	}
 
 }

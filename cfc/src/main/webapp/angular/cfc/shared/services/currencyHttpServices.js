@@ -39,7 +39,7 @@ angular.module('appCFC').factory('currencyHttpServices', function($http, $q) {
 			var deferred = $q.defer();
 			$http({
 				method: 'POST',
-				url: '/cfc/currency/deleteBranch',
+				url: '/cfc/currency/delete',
 				data:
 					currencyId				
 			}).success(function(result){

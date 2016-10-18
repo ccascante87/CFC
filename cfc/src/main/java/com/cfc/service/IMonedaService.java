@@ -20,5 +20,7 @@ public interface IMonedaService {
 	void updateMoneda(Moneda moneda);
 
 	List<Moneda> findAll();
+	
+	void delete(int idMoneda);
 
 }
