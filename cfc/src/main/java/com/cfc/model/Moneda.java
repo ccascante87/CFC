@@ -21,7 +21,9 @@ public class Moneda implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "ID")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERMASTER_ID_SEQ")
+	@SequenceGenerator(name = "USERMASTER_ID_SEQ", sequenceName = "USERMASTER_ID_SEQ", allocationSize = 1, initialValue = 1)
 	private long id;
 	@Column(name="DESCRIPCION")
 	private String descripcion;
