@@ -14,6 +14,8 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.cfc.dao.AbstractDao;
@@ -63,6 +65,14 @@ public class SucursalDaoImpl extends AbstractDao<Integer, Sucursal> implements I
 		return sessionFactory;
 	}
 
+	@Autowired
+	@Qualifier("sessionFactory")
+	private SessionFactory sessionFactory;
+
+	public Session getSession() {
+	    return sessionFactory.getCurrentSession();
+	}
+	
 	public Session getCurrentSession() {
 		return currentSession;
 	}
@@ -94,7 +104,7 @@ public class SucursalDaoImpl extends AbstractDao<Integer, Sucursal> implements I
 	 */
 	@Override
 	public void save(Sucursal sucursal) {
-		Session session = getCurrentSession();
+		Session session = getSession();
 		session.persist(sucursal);
 		logger.info("Sucursal saved successfully, Sucursal Details="+ sucursal);
 	}
@@ -104,7 +114,7 @@ public class SucursalDaoImpl extends AbstractDao<Integer, Sucursal> implements I
 	 */
 	@Override
 	public void deleteById(int id) {
-		Session session = getCurrentSession();
+		Session session = getSession();
 		Sucursal sucursal = (Sucursal) session.load(Sucursal.class, new Integer(id));
 		if(null != sucursal){
 			session.delete(sucursal);
@@ -137,7 +147,7 @@ public class SucursalDaoImpl extends AbstractDao<Integer, Sucursal> implements I
 	}
 	
 	public void update(Sucursal sucursal){
-		Session session = getCurrentSession();
+		Session session = getSession();
 		session.update(sucursal);
 		logger.info("Sucursal updated successfully, Sucursal Details="+ sucursal);
 	}

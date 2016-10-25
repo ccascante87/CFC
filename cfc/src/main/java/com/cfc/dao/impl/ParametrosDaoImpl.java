@@ -11,6 +11,8 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.cfc.dao.AbstractDao;
@@ -35,6 +37,14 @@ public class ParametrosDaoImpl extends AbstractDao<Integer, Parametros> implemen
 
 	  }
 
+	@Autowired
+	@Qualifier("sessionFactory")
+	private SessionFactory sessionFactory;
+
+	public Session getSession() {
+	    return sessionFactory.getCurrentSession();
+	}
+	
 	public Session openCurrentSession() {
 		currentSession = getSessionFactory().openSession();
 		return currentSession;
@@ -94,7 +104,7 @@ public class ParametrosDaoImpl extends AbstractDao<Integer, Parametros> implemen
 	 */
 	@Override
 	public void save(Parametros parametro) {
-		Session session = getCurrentSession();
+		Session session = getSession();
 		session.persist(parametro);
 		logger.info("Parametros saved successfully, Parametros Details="+ parametro);
 	}
@@ -104,7 +114,7 @@ public class ParametrosDaoImpl extends AbstractDao<Integer, Parametros> implemen
 	 */
 	@Override
 	public void deleteById(int id) {
-		Session session = getCurrentSession();
+		Session session = getSession();
 		Parametros parametro = (Parametros) session.load(Parametros.class, new Integer(id));
 		if(null != parametro){
 			session.delete(parametro);
@@ -134,7 +144,7 @@ public class ParametrosDaoImpl extends AbstractDao<Integer, Parametros> implemen
 	}
 	
 	public void update(Parametros parametro){
-		Session session = getCurrentSession();
+		Session session = getSession();
 		session.update(parametro);
 		logger.info("Parametros updated successfully, Parametros Details="+ parametro);
 	}

@@ -13,6 +13,8 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.cfc.dao.AbstractDao;
@@ -61,6 +63,15 @@ public class MonedaDaoImpl extends AbstractDao<Integer, Moneda> implements IMone
 		return sessionFactory;
 	}
 
+	
+	@Autowired
+	@Qualifier("sessionFactory")
+	private SessionFactory sessionFactory;
+
+	public Session getSession() {
+	    return sessionFactory.getCurrentSession();
+	}
+		
 	public Session getCurrentSession() {
 		return currentSession;
 	}
@@ -82,7 +93,7 @@ public class MonedaDaoImpl extends AbstractDao<Integer, Moneda> implements IMone
 	 */
 	@Override
 	public Moneda findById(int id) {
-		Session session = getCurrentSession();
+		Session session = getSession();
 		Moneda moneda = (Moneda) session.load(Moneda.class, new Integer(id));
 		logger.info("Moneda loaded successfully, Moneda details="+moneda);
 		return moneda;
@@ -93,7 +104,7 @@ public class MonedaDaoImpl extends AbstractDao<Integer, Moneda> implements IMone
 	 */
 	@Override
 	public void save(Moneda moneda) {
-		Session session = getCurrentSession();
+		Session session = getSession();
 		session.persist(moneda);
 		logger.info("Moneda saved successfully, Moneda Details="+ moneda);
 	}
@@ -103,7 +114,7 @@ public class MonedaDaoImpl extends AbstractDao<Integer, Moneda> implements IMone
 	 */
 	@Override
 	public void deleteById(int id) {
-		Session session = getCurrentSession();
+		Session session = getSession();
 		Moneda moneda = (Moneda) session.load(Moneda.class, new Integer(id));
 		if(null != moneda){
 			session.delete(moneda);
@@ -128,7 +139,7 @@ public class MonedaDaoImpl extends AbstractDao<Integer, Moneda> implements IMone
 
 	@Override
 	public void update(Moneda moneda) {
-		Session session = getCurrentSession();
+		Session session = getSession();
 		session.update(moneda);
 		logger.info("Moneda updated successfully, Moneda Details="+ moneda);
 		
