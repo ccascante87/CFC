@@ -1,6 +1,8 @@
 package com.cfc.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +20,10 @@ import com.cfc.service.IParametersService;
 import com.cfc.service.ISucursalService;
 
 @RestController
-@RequestMapping(value="/user")
+@RequestMapping(value = "/user")
 public class UserRestController {
 	private final Logger logger = Logger.getLogger(this.getClass().getName());
-	
+
 	@Autowired
 	private ISucursalService iSucursalService;
 	@Autowired
@@ -30,31 +32,31 @@ public class UserRestController {
 	private IParametersService iParameters;
 
 	@ResponseBody
-	@RequestMapping(value="/getUser/{loginName}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public Usuario getUser(@PathVariable String loginName){
-		
-		//1. Check if the user exists in Active directory
-		
-		//2. It exists then check if it exists also in our database
-		
-		//3. If true then load it.
-		
-		//4. If it doesn't exists then create a new user with the default values and return it
-		
+	@RequestMapping(value = "/getUser/{loginName}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Usuario getUser(@PathVariable String loginName) {
+
+		// 1. Check if the user exists in Active directory
+
+		// 2. It exists then check if it exists also in our database
+
+		// 3. If true then load it.
+
+		// 4. If it doesn't exists then create a new user with the default
+		// values and return it
+
 		Usuario user = new Usuario();
 		user.setDefaultBranch(iSucursalService.findAllSucursales().get(0));
 		user.setDefaultCurrency(iMonedaservice.findAll().get(0));
 		HashMap<String, String> parameters = new HashMap<>();
-		for (Parametros	 param: iParameters.findAll()) {
+		for (Parametros param : iParameters.findAll()) {
 			parameters.put(param.getParamKey(), param.getParamValue());
 		}
-		if(loginName.equals("admin")){
+		if (loginName.equals("admin")) {
 			user.setAdmin(true);
 			user.setLoginName("Carlos Admin");
 			user.setName("Carlos Admin");
-			
-		}
-		else if(loginName.equals("user")){
+
+		} else if (loginName.equals("user")) {
 			user.setAdmin(false);
 			user.setLoginName("Carlos User");
 			user.setName("Carlos User");
@@ -63,5 +65,13 @@ public class UserRestController {
 		return user;
 	}
 
-	
+	@ResponseBody
+	@RequestMapping(value = "/getUser/all", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+	public List<Usuario> getAllUsers() {
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+		usuarios.add(new Usuario(1, "Carlos Admin", "admin", true));
+		usuarios.add(new Usuario(1, "Carlos User", "user", false));
+		return usuarios;
+	}
+
 }

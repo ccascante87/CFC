@@ -16,6 +16,8 @@ angular.module('appCFC', [ 'ngRoute', 'nvd3', 'datatables', 'ngMessages' ])
 				templateUrl : 'app/snippets/branches.html'
 			}).when('/monedas', {
 				templateUrl : 'app/snippets/currencies.html'
+			}).when('/usuarios', {
+				templateUrl : 'app/snippets/users.html'
 			});
 			$routeProvider.otherwise({
 				redirectTo : '/login'

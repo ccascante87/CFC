@@ -17,6 +17,18 @@ public class Usuario implements Serializable{
 	public Usuario() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public Usuario(int id, String name, String loginName, boolean admin) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.loginName = loginName;
+		this.admin = admin;
+	}
+
+
 
 	public int getId() {
 		return id;
