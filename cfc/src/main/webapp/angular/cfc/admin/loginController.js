@@ -4,7 +4,8 @@ angular.module('appCFC').controller('loginController',
 				function($scope, $rootScope, $location, AuthService, userHttpServices) {
 	$scope.loginName;
 	$scope.loginPass;
-	$scope.showError = false;	
+	$scope.showError = false;
+	$rootScope.hideMenu = false;
 	
 	$scope.login = function(){
 		if ( ($scope.loginName == 'admin' && $scope.loginPass == 'admin') ||

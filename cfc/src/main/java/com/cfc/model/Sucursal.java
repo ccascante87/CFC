@@ -4,110 +4,108 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
+import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 
 /**
  * The persistent class for the SUCURSALES database table.
  * 
  */
-@JsonAutoDetect
 @Entity
-@Table(name = "SUCURSALES")
-@NamedQuery(name = "Sucursal.findAll", query = "SELECT s FROM Sucursal s")
+@Table(name="SUCURSALES")
+@NamedQuery(name="Sucursal.findAll", query="SELECT s FROM Sucursal s")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Sucursal implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
-	private int idSucursal;
+	private long id;
 
-	@Column(name = "COD_AGENCIA")
-	private int codigoAgencia;
+	@Column(name="CODIGO_SUCURSAL")
+	private BigDecimal codigoSucursal;
 
-	@Column(name = "NOM_AGENCIA")
-	private String nomAgencia;
+	@Column(name="HORA_APERTURA")
+	private Timestamp horaApertura;
 
-	@Column(name = "HORA_APERTURA")
-	private String horaApertura;
+	@Column(name="HORA_CIERRE")
+	private Timestamp horaCierre;
 
-	@Column(name = "HORA_CIERRE")
-	private String horaCierre;
+	@Column(name="NOM_SUCURSAL")
+	private String nomSucursal;
 
-	//TODO Remove this variables from this class, as they are in the details
-//	@Column(name = "MONTO_ASEGURADO")
-	@Transient
-	private BigDecimal montoAsegurado;
+	//bi-directional many-to-one association to SucursalMontoMoneda
+	@OneToMany(mappedBy="sucursal", fetch=FetchType.EAGER, targetEntity=SucursalMontoMoneda.class)
+	private Set<SucursalMontoMoneda> sucursalMontoMonedas=new HashSet<>();
 
-//	@Column(name = "MONTO_AUTORIZADO")
-	@Transient
-	private BigDecimal montoAutorizado;
-
-	//TODO Quitar @Transient y agregar las anotaciones corretas para realizar el mapeo con la BD
-	@Transient
-	private List<SucursalMonedaDetalle> detalleMontos;
+	//bi-directional many-to-one association to SucursalPorcent
+	@OneToMany(mappedBy="sucursal", fetch=FetchType.EAGER)
+	private Set<SucursalPorcent> sucursalPorcents =new HashSet<>();
 
 	public Sucursal() {
-		this.detalleMontos = new ArrayList<SucursalMonedaDetalle>();
 	}
 
-	public int getIdSucursal() {
-		return idSucursal;
+	public long getId() {
+		return this.id;
 	}
 
-	public void setIdSucursal(int idSucursal) {
-		this.idSucursal = idSucursal;
+	public void setId(long id) {
+		this.id = id;
 	}
 
-	public int getCodigoAgencia() {
-		return codigoAgencia;
+	public BigDecimal getCodigoSucursal() {
+		return this.codigoSucursal;
 	}
 
-	public void setCodigoAgencia(int codigoAgencia) {
-		this.codigoAgencia = codigoAgencia;
+	public void setCodigoSucursal(BigDecimal codigoSucursal) {
+		this.codigoSucursal = codigoSucursal;
 	}
 
-	public String getNomAgencia() {
-		return nomAgencia;
+	public Timestamp getHoraApertura() {
+		return this.horaApertura;
 	}
 
-	public void setNomAgencia(String nomAgencia) {
-		this.nomAgencia = nomAgencia;
-	}
-
-	public String getHoraApertura() {
-		return horaApertura;
-	}
-
-	public void setHoraApertura(String horaApertura) {
+	public void setHoraApertura(Timestamp horaApertura) {
 		this.horaApertura = horaApertura;
 	}
 
-	public String getHoraCierre() {
-		return horaCierre;
+	public Timestamp getHoraCierre() {
+		return this.horaCierre;
 	}
 
-	public void setHoraCierre(String horaCierre) {
+	public void setHoraCierre(Timestamp horaCierre) {
 		this.horaCierre = horaCierre;
 	}
 
-	public BigDecimal getMontoAsegurado() {
-		return montoAsegurado;
+	public String getNomSucursal() {
+		return this.nomSucursal;
 	}
 
-	public void setMontoAsegurado(BigDecimal montoAsegurado) {
-		this.montoAsegurado = montoAsegurado;
+	public void setNomSucursal(String nomSucursal) {
+		this.nomSucursal = nomSucursal;
 	}
 
-	public BigDecimal getMontoAutorizado() {
-		return montoAutorizado;
+	public Set<SucursalMontoMoneda> getSucursalMontoMonedas() {
+		return this.sucursalMontoMonedas;
 	}
 
-	public void setMontoAutorizado(BigDecimal montoAutorizado) {
-		this.montoAutorizado = montoAutorizado;
+	public void setSucursalMontoMonedas(Set<SucursalMontoMoneda> sucursalMontoMonedas) {
+		this.sucursalMontoMonedas = sucursalMontoMonedas;
 	}
 
+	public Set<SucursalPorcent> getSucursalPorcents() {
+		return this.sucursalPorcents;
+	}
+
+	public void setSucursalPorcents(Set<SucursalPorcent> sucursalPorcents) {
+		this.sucursalPorcents = sucursalPorcents;
+	}
 }

@@ -12,13 +12,11 @@ angular.module('appCFC').controller('branchesController',['$scope', 'cfcConfigur
 
 				var resetBranch = function() {
 					$scope.selectedBranch = {
-						idSucursal : '',
-						codigoAgencia : '',
+						id: '',
+						codigoSucursal : '',
 						horaApertura : '',
 						horaCierre : '',
-						montoAsegurado : '',
-						montoAutorizado : '',
-						nomAgencia : ''
+						nomSucursal : ''
 					}
 				}
 
@@ -51,7 +49,7 @@ angular.module('appCFC').controller('branchesController',['$scope', 'cfcConfigur
 					var deleteUser = $window.confirm('Está seguro de eliminar la surcursal seleccionada?');
 
 				    if (deleteUser) {
-				      var promise = branchHttpServices.deleteBranch(branch.idSucursal);
+				      var promise = branchHttpServices.deleteBranch(branch.id);
 				      promise.then(function(results){
 				    	  $scope.branches = results;
 				      });

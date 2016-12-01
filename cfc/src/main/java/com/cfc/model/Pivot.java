@@ -1,16 +1,10 @@
-/**
- * 
- */
 package com.cfc.model;
 
-/**
- * @author JIO
- *
- */
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+
 
 /**
  * The persistent class for the PIVOT database table.
@@ -18,22 +12,22 @@ import java.sql.Timestamp;
  */
 @Entity
 @NamedQueries({ @NamedQuery(name = "Pivot.findAll", query = "SELECT p FROM Pivot p"),
-		@NamedQuery(name = "Pivot.findByMaxId", query = "SELECT p FROM Pivot p WHERE p.id <= :maxId AND "
-				+ " p.codAgencia = :codAgencia AND p.codMoneda = :codMoneda"),
-		@NamedQuery(name="Pivot.findByMaxDateBranchAndCurrency", query="FROM Pivot p where p.fecha <= :maxDate AND"
-				+ " (codAgencia = :branchId OR :branchId = -1) AND (codMoneda = :currId OR :currId = -1) order by fecha asc")})
+	@NamedQuery(name = "Pivot.findByMaxId", query = "SELECT p FROM Pivot p WHERE p.id <= :maxId AND "
+			+ " p.codAgencia = :codAgencia AND p.codMoneda = :codMoneda"),
+	@NamedQuery(name="Pivot.findByMaxDateBranchAndCurrency", query="FROM Pivot p where p.fecha <= :maxDate AND"
++ " (codAgencia = :branchId OR :branchId = -1) AND (codMoneda = :currId OR :currId = -1) order by fecha asc")})
+
 public class Pivot implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@Column(name = "COD_AGENCIA")
-	private int codAgencia;
+	@Column(name="COD_AGENCIA")
+	private BigDecimal codAgencia;
 
-	@Column(name = "COD_MONEDA")
-	private int codMoneda;
+	@Column(name="COD_MONEDA")
+	private BigDecimal codMoneda;
 
 	private Timestamp fecha;
 
@@ -53,7 +47,7 @@ public class Pivot implements Serializable {
 
 	private BigDecimal ocioso;
 
-	@Column(name = "PUNTO_REORDEN")
+	@Column(name="PUNTO_REORDEN")
 	private BigDecimal puntoReorden;
 
 	private BigDecimal reserva;
@@ -62,10 +56,10 @@ public class Pivot implements Serializable {
 
 	private BigDecimal saldo;
 
-	@Column(name = "SALDO_AUTORIZADO")
+	@Column(name="SALDO_AUTORIZADO")
 	private BigDecimal saldoAutorizado;
 
-	@Column(name = "SEGURO_MAX")
+	@Column(name="SEGURO_MAX")
 	private BigDecimal seguroMax;
 
 	private BigDecimal utilizacion;
@@ -81,19 +75,19 @@ public class Pivot implements Serializable {
 		this.id = id;
 	}
 
-	public int getCodAgencia() {
+	public BigDecimal getCodAgencia() {
 		return this.codAgencia;
 	}
 
-	public void setCodAgencia(int codAgencia) {
+	public void setCodAgencia(BigDecimal codAgencia) {
 		this.codAgencia = codAgencia;
 	}
 
-	public int getCodMoneda() {
+	public BigDecimal getCodMoneda() {
 		return this.codMoneda;
 	}
 
-	public void setCodMoneda(int codMoneda) {
+	public void setCodMoneda(BigDecimal codMoneda) {
 		this.codMoneda = codMoneda;
 	}
 
@@ -106,7 +100,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getLcir() {
-		return this.lcir != null ? this.lcir : BigDecimal.ZERO;
+		return this.lcir;
 	}
 
 	public void setLcir(BigDecimal lcir) {
@@ -114,7 +108,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getLcix() {
-		return this.lcix != null ? this.lcix : BigDecimal.ZERO;
+		return this.lcix;
 	}
 
 	public void setLcix(BigDecimal lcix) {
@@ -122,7 +116,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getLcr() {
-		return this.lcr != null ? this.lcr : BigDecimal.ZERO;
+		return this.lcr;
 	}
 
 	public void setLcr(BigDecimal lcr) {
@@ -130,7 +124,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getLcsr() {
-		return this.lcsr != null ? this.lcsr : BigDecimal.ZERO;
+		return this.lcsr;
 	}
 
 	public void setLcsr(BigDecimal lcsr) {
@@ -138,7 +132,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getLcsx() {
-		return this.lcsx != null ? this.lcsx : BigDecimal.ZERO;
+		return this.lcsx;
 	}
 
 	public void setLcsx(BigDecimal lcsx) {
@@ -146,7 +140,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getLcx() {
-		return this.lcx != null ? this.lcx : BigDecimal.ZERO;
+		return this.lcx;
 	}
 
 	public void setLcx(BigDecimal lcx) {
@@ -154,7 +148,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getMenudo() {
-		return this.menudo != null ? this.menudo : BigDecimal.ZERO;
+		return this.menudo;
 	}
 
 	public void setMenudo(BigDecimal menudo) {
@@ -162,7 +156,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getOcioso() {
-		return this.ocioso != null ? this.ocioso : BigDecimal.ZERO;
+		return this.ocioso;
 	}
 
 	public void setOcioso(BigDecimal ocioso) {
@@ -170,7 +164,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getPuntoReorden() {
-		return this.puntoReorden != null ? this.puntoReorden : BigDecimal.ZERO;
+		return this.puntoReorden;
 	}
 
 	public void setPuntoReorden(BigDecimal puntoReorden) {
@@ -178,7 +172,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getReserva() {
-		return this.reserva != null ? this.reserva : BigDecimal.ZERO;
+		return this.reserva;
 	}
 
 	public void setReserva(BigDecimal reserva) {
@@ -186,7 +180,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getRm() {
-		return this.rm != null ? this.rm : BigDecimal.ZERO;
+		return this.rm;
 	}
 
 	public void setRm(BigDecimal rm) {
@@ -194,7 +188,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getSaldo() {
-		return this.saldo != null ? this.saldo : BigDecimal.ZERO;
+		return this.saldo;
 	}
 
 	public void setSaldo(BigDecimal saldo) {
@@ -202,7 +196,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getSaldoAutorizado() {
-		return this.saldoAutorizado != null ? this.saldoAutorizado : BigDecimal.ZERO;
+		return this.saldoAutorizado;
 	}
 
 	public void setSaldoAutorizado(BigDecimal saldoAutorizado) {
@@ -210,7 +204,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getSeguroMax() {
-		return this.seguroMax != null ? this.seguroMax : BigDecimal.ZERO;
+		return this.seguroMax;
 	}
 
 	public void setSeguroMax(BigDecimal seguroMax) {
@@ -218,7 +212,7 @@ public class Pivot implements Serializable {
 	}
 
 	public BigDecimal getUtilizacion() {
-		return this.utilizacion != null ? this.utilizacion : BigDecimal.ZERO;
+		return this.utilizacion;
 	}
 
 	public void setUtilizacion(BigDecimal utilizacion) {

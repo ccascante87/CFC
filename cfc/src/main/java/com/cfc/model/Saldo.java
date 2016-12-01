@@ -17,21 +17,22 @@ public class Saldo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID_SALDO")
 	private long idSaldo;
 
 	@Column(name="CODIGO_AGENCIA")
 	private BigDecimal codigoAgencia;
-  
+
 	@Column(name="CODIGO_MONEDA")
-	private String codigoMoneda;
+	private BigDecimal codigoMoneda;
 
 	@Column(name="CODIGO_USUARIO")
 	private String codigoUsuario;
 
 	private Timestamp fecha;
-	
+
+	private BigDecimal id;
+
 	private BigDecimal monto;
 
 	@Column(name="NOM_AGENCIA")
@@ -59,11 +60,11 @@ public class Saldo implements Serializable {
 		this.codigoAgencia = codigoAgencia;
 	}
 
-	public String getCodigoMoneda() {
+	public BigDecimal getCodigoMoneda() {
 		return this.codigoMoneda;
 	}
 
-	public void setCodigoMoneda(String codigoMoneda) {
+	public void setCodigoMoneda(BigDecimal codigoMoneda) {
 		this.codigoMoneda = codigoMoneda;
 	}
 
@@ -82,7 +83,15 @@ public class Saldo implements Serializable {
 	public void setFecha(Timestamp fecha) {
 		this.fecha = fecha;
 	}
-	
+
+	public BigDecimal getId() {
+		return this.id;
+	}
+
+	public void setId(BigDecimal id) {
+		this.id = id;
+	}
+
 	public BigDecimal getMonto() {
 		return this.monto;
 	}

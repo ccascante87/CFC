@@ -49,7 +49,7 @@ public class BranchesRestController {
 		List<Sucursal> branchesList = null;
 		try {
 			Sucursal s = mapper.readValue(branch.toString(), Sucursal.class);
-			if (s.getIdSucursal() > 0) {
+			if (s.getId() > 0) {
 				iBranchesService.updateSucursal(s);
 			} else {
 				iBranchesService.saveSucursal(s);
@@ -72,7 +72,7 @@ public class BranchesRestController {
 			Iterator<Sucursal> itSuc = branchesList.iterator();
 			while (itSuc.hasNext()) {
 				Sucursal temp = itSuc.next();
-				if (temp.getIdSucursal() == idSucursal) {
+				if (temp.getId() == idSucursal) {
 					itSuc.remove();
 					break;
 				}

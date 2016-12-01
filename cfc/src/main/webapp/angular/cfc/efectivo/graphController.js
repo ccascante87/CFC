@@ -27,7 +27,7 @@ angular.module('appCFC').controller('graphController', ['$scope','$interval', 'c
     function loadData(){    
     	x++;
     	y++;
-    	var brach = $scope.selectedBranch == undefined ? '1' : $scope.selectedBranch.idSucursal;
+    	var brach = $scope.selectedBranch == undefined ? '1' : $scope.selectedBranch.id;
     	var currency = $scope.selectedCurrency == undefined ? '1' : $scope.selectedCurrency.id;
 //    	var promise = httpService.getGraphData($scope.selectedBranch.idSucursal, $scope.selectedCurrency.id);
     	var promise = httpService.getGraphData(brach,currency);
@@ -123,7 +123,7 @@ angular.module('appCFC').controller('graphController', ['$scope','$interval', 'c
 		loadData();	
 		intervalPromise = $interval(
 				function (){
-					loadData();
+				//	/loadData();
 				}, new Number(user.graphUpdateInterval));
 	};
     init();

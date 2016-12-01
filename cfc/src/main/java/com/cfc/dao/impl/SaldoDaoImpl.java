@@ -4,6 +4,7 @@
 package com.cfc.dao.impl;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -13,8 +14,6 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.cfc.dao.AbstractDao;
@@ -29,7 +28,7 @@ import com.cfc.model.Saldo;
 public class SaldoDaoImpl extends AbstractDao<Integer, Saldo> implements ISaldoDao {
 	private Session currentSession;
 	private Transaction currentTransaction;
-	private static final Logger logger = LoggerFactory.getLogger(SaldoDaoImpl.class);
+	private static final Logger logger = Logger.getLogger(SaldoDaoImpl.class.getName());
 	
 	public SaldoDaoImpl() {
 

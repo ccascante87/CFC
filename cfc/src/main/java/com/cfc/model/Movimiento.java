@@ -17,9 +17,7 @@ public class Movimiento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID_MOVIMIENTO")
-	private long idMovimiento;
+	private long id;
 
 	@Column(name="CLIENTE_EMPRESA")
 	private String clienteEmpresa;
@@ -31,7 +29,7 @@ public class Movimiento implements Serializable {
 	private BigDecimal codigoEmpresa;
 
 	@Column(name="CODIGO_MONEDA")
-	private String codigoMoneda;
+	private BigDecimal codigoMoneda;
 
 	@Column(name="CODIGO_REGION")
 	private String codigoRegion;
@@ -69,12 +67,12 @@ public class Movimiento implements Serializable {
 	public Movimiento() {
 	}
 
-	public long getIdMovimiento() {
-		return this.idMovimiento;
+	public long getId() {
+		return this.id;
 	}
 
-	public void setIdMovimiento(long idMovimiento) {
-		this.idMovimiento = idMovimiento;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getClienteEmpresa() {
@@ -101,11 +99,11 @@ public class Movimiento implements Serializable {
 		this.codigoEmpresa = codigoEmpresa;
 	}
 
-	public String getCodigoMoneda() {
+	public BigDecimal getCodigoMoneda() {
 		return this.codigoMoneda;
 	}
 
-	public void setCodigoMoneda(String codigoMoneda) {
+	public void setCodigoMoneda(BigDecimal codigoMoneda) {
 		this.codigoMoneda = codigoMoneda;
 	}
 

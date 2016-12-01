@@ -44,10 +44,10 @@
 				<!-- Navbar Right Menu -->
 				<div class="navbar-custom-menu">
 
-					<ul class="nav navbar-nav">
+					<ul class="nav navbar-nav" ng-hide="hideMenu">
 						<!-- Sucursales Dropdown -->
 						<li class="dropdown notifications-menu"><select ng-model="selectedBranch" ng-change="updateModel()"
-							style="margin-top: 11px;" data-ng-options="branch as branch.nomAgencia for branch in sucursales">
+							style="margin-top: 11px;" data-ng-options="branch as branch.nomSucursal for branch in sucursales">
 						</select></li>
 
 						<!-- Currency Dropdown -->

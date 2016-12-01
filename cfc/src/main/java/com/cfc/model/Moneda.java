@@ -1,14 +1,17 @@
-/**
- * 
- */
 package com.cfc.model;
 
-/**
- * @author JIO
- *
- */
 import java.io.Serializable;
-import javax.persistence.*;
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
 /**
@@ -17,19 +20,26 @@ import javax.persistence.*;
  */
 @Entity
 @NamedQuery(name="Moneda.findAll", query="SELECT m FROM Moneda m")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Moneda implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "ID")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERMASTER_ID_SEQ")
-	@SequenceGenerator(name = "USERMASTER_ID_SEQ", sequenceName = "USERMASTER_ID_SEQ", allocationSize = 1, initialValue = 1)
 	private long id;
-	@Column(name="DESCRIPCION")
+
 	private String descripcion;
-	@Column(name="SIMBOLO")
+
 	private String simbolo;
 
+
+	@OneToMany(mappedBy="moneda", fetch=FetchType.EAGER)
+	@JsonIgnore
+	private Set<SucursalMontoMoneda> sucursalMontoMonedas;
+
+	@OneToMany(mappedBy="moneda", fetch=FetchType.EAGER)
+	@JsonIgnore
+	private Set<SucursalPorcent> sucursalPorcents;
+	
 	public Moneda() {
 	}
 
@@ -55,6 +65,22 @@ public class Moneda implements Serializable {
 
 	public void setSimbolo(String simbolo) {
 		this.simbolo = simbolo;
+	}
+
+	public Set<SucursalMontoMoneda> getSucursalMontoMonedas() {
+		return sucursalMontoMonedas;
+	}
+
+	public void setSucursalMontoMonedas(Set<SucursalMontoMoneda> sucursalMontoMonedas) {
+		this.sucursalMontoMonedas = sucursalMontoMonedas;
+	}
+
+	public Set<SucursalPorcent> getSucursalPorcents() {
+		return sucursalPorcents;
+	}
+
+	public void setSucursalPorcents(Set<SucursalPorcent> sucursalPorcents) {
+		this.sucursalPorcents = sucursalPorcents;
 	}
 
 }

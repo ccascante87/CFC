@@ -3,40 +3,35 @@ angular.module('appCFC', [ 'ngRoute', 'nvd3', 'datatables', 'ngMessages' ])
 			$routeProvider.when('/login', {
 				templateUrl : 'app/snippets/login.html'
 			}).when('/graph', {
-				templateUrl : 'app/snippets/graphColones.html'
+				templateUrl : 'app/snippets/data/graphColones.html'
 			}).when('/transac', {
-				templateUrl : 'app/snippets/transacciones.html'
+				templateUrl : 'app/snippets/data/transacciones.html'
 			}).when('/detalles', {
-				templateUrl : 'app/snippets/detalles.html'
+				templateUrl : 'app/snippets/data/detalles.html'
 			}).when('/sucursales', {
-				templateUrl : 'app/snippets/branches.html'
+				templateUrl : 'app/snippets/admin/branches.html'
 			}).when('/parameters', {
-				templateUrl : 'app/snippets/parameters.html'
+				templateUrl : 'app/snippets/admin/parameters.html'
 			}).when('/sucursales', {
-				templateUrl : 'app/snippets/branches.html'
+				templateUrl : 'app/snippets/admin/branches.html'
 			}).when('/monedas', {
-				templateUrl : 'app/snippets/currencies.html'
+				templateUrl : 'app/snippets/admin/currencies.html'
 			}).when('/usuarios', {
-				templateUrl : 'app/snippets/users.html'
+				templateUrl : 'app/snippets/admin/users.html'
 			});
 			$routeProvider.otherwise({
 				redirectTo : '/login'
 			});
 		});
-angular.module('appCFC').run(
-		[
-				'$rootScope',
-				'$location',
-				'AuthService',
+angular.module('appCFC').run(['$rootScope','$location', 'AuthService',
 				function($rootScope, $location, AuthService) {
 					$rootScope.$on('$routeChangeStart',
 							function(event, newPath) {
 								// Chech whether the user is logged in
-								if (AuthService.isLoggedIn()
-										|| newPath.originalPath == '/login') {
-									// TODO Redirect to correct Page
-								} else if (AuthService.isLoggedIn()
-										&& newPath.originalPath == '/logout') {
+								if (AuthService.isLoggedIn() || newPath.originalPath == '/login') {
+										//$rootScope.hideMenu = newPath.originalPath.includes ('/admin')
+										console.log(newPath);
+								} else if (AuthService.isLoggedIn() && newPath.originalPath == '/logout') {
 									// Real logout
 									event.preventDefault();
 									AuthService.setUser(undefined);

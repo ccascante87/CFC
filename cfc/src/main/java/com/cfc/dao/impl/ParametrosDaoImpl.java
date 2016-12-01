@@ -1,6 +1,7 @@
 package com.cfc.dao.impl;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -9,8 +10,6 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -31,7 +30,7 @@ public class ParametrosDaoImpl extends AbstractDao<Integer, Parametros> implemen
 
 	private Session currentSession;
 	private Transaction currentTransaction;
-	private static final Logger logger = LoggerFactory.getLogger(ParametrosDaoImpl.class);
+	private static final Logger logger = Logger.getLogger(ParametrosDaoImpl.class.getName());
 
 	public ParametrosDaoImpl() {
 

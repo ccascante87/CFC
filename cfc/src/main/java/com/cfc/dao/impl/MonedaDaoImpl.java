@@ -4,6 +4,7 @@
 package com.cfc.dao.impl;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -11,8 +12,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -29,7 +28,7 @@ import com.cfc.model.Moneda;
 public class MonedaDaoImpl extends AbstractDao<Integer, Moneda> implements IMonedaDao {
 	private Session currentSession;
 	private Transaction currentTransaction;
-	private static final Logger logger = LoggerFactory.getLogger(MonedaDaoImpl.class);
+	private static final Logger logger = Logger.getLogger(MonedaDaoImpl.class.getName());
 
 	public MonedaDaoImpl() {
 

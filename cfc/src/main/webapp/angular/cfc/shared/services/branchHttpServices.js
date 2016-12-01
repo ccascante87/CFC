@@ -19,13 +19,11 @@ angular.module('appCFC').factory('branchHttpServices', function($http, $q) {
 				method : 'POST',
 				url : '/cfc/branches/saveOrUpdate',
 				data : {
-					"idSucursal" : branch.idSucursal,
-					"codigoAgencia" : branch.codigoAgencia,
+					"id" : branch.id,
+					"codigoSucursal" : branch.codigoSucursal,
 					"horaApertura" : branch.horaApertura,
 					"horaCierre" : branch.horaCierre,
-					"montoAsegurado" : branch.montoAsegurado,
-					"montoAutorizado" : branch.montoAutorizado,
-					"nomAgencia" : branch.nomAgencia
+					"nomSucursal" : branch.nomSucursal
 				},
 				headers : {
 					'Content-Type' : 'application/json'
