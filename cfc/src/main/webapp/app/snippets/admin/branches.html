@@ -62,8 +62,11 @@
 													</thead>
 													<tbody>
 														<tr ng-repeat="smm in branch.sucursalMontoMonedas">
-														<td>{{ smm.montoAsegurado}}</td>
-														<td>{{ smm.montoAutorizado}}</td>
+															<td></td>
+															<td>{{ smm.montoAsegurado | currency : smm.montoAsegurado.moneda.simbolo : 2 }}</td>
+															<td>{{ smm.montoAutorizado | currency : smm.montoAutorizado.moneda.simbolo : 2 }}</td>
+															<td>{{ branch.sucursalPorcents[$index].porcenMenudo }}</td>
+															<td>{{ branch.sucursalPorcents[$index].porcenReserva}}</td>
 														<tr>
 													</tbody>
 												</table>
@@ -73,10 +76,6 @@
 								</table>
 							</div>
 							<div ng-show="showForm" class=" animate-show">
-
-
-
-
 								<div class="form-group">
 									<label for="nomAgencia" class="col-sm-4 control-label">Nombre</label>
 									<div class="col-sm-8">
@@ -108,23 +107,41 @@
 
 								<div class="panel panel-default">
 									<div class="panel-body">
-										<table class="table">
+										<table style="margin: 20px;">
 											<thead>
 												<tr>
-													<th>
-													<td>
-													<th>Dolares
-													<td>
-													<th>Colones
-													<td>
+													<th scope="row" class="text-center">Moneda</th>
+													<th scope="row" class="text-center">Monto asegurado</th>
+													<th scope="row" class="text-center">Monto autorizado</th>
+													<th scope="row" class="text-center">Porcentaje Menudo</th>
+													<th scope="row" class="text-center">Porcentaje Reserva</th>
 												</tr>
 											</thead>
 											<tbody>
+												<tr ng-repeat="smm in selectedBranch.sucursalMontoMonedas">
+													<td>{{smm.moneda.descripcion}}</td>
+													<td>
+
+														<div class="input-group">
+															<span class="input-group-addon">{{smm.moneda.simbolo}}</span> <input type="number"
+																ng-model="smm.montoAutorizado" class="form-control" id="horaCierre" placeholder="montoAutorizado" />
+														</div>
+													</td>
+													<td>
+														<div class="input-group" style="margin: 10px!important"> 
+															<span class="input-group-addon">{{smm.moneda.simbolo}}</span> <input type="number"
+																ng-model="smm.montoAsegurado" class="form-control" style=" text-align: right;" id="horaCierre" placeholder="montoAsegurado" />
+														</div>
+													</td>
+													<td><div class="input-group">
+															<input type="number" ng-model="selectedBranch.sucursalPorcents[$index].porcenMenudo" class="form-control"
+																id="horaCierre" placeholder="porcenMenudo" /> <span class="input-group-addon">%</span>
+														</div></td>
+													<td><div class="input-group">
+															<input type="number" ng-model="selectedBranch.sucursalPorcents[$index].porcenReserva"
+																class="form-control" id="horaCierre" placeholder="porcenReserva" /><span class="input-group-addon">%</span>
+														</div></td>
 												<tr>
-													<td>Monto A</td>
-													<td></input></td>
-													<td></td>
-												</tr>
 											</tbody>
 										</table>
 									</div>
