@@ -74,41 +74,43 @@
 								class="fa fa-comment-o"></i> <span class="label label-danger"></span>
 						</a>
 						</li>
+						<li class="dropdown tasks-menu" style="display: none;"><i class="fa fa-comment-o"></i> <span
+							class="label label-danger">{{user.name}}</span></li>
 						<!-- User Account Menu -->
-						<li class="dropdown user user-menu">
-							<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <!-- The user image in the navbar-->
-								<img src="app/img/test.jpg" class="user-image" alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
-								<span class="hidden-xs">{{user.name}}</span>
-						</a>
-							<ul class="dropdown-menu">
-								<!-- The user image in the menu -->
-								<li class="user-header"><img src="app/img/test.jpg" class="img-circle" alt="User Image">
-									<p>
-										{{user.name}} <small>Other info...</small>
-									</p></li>
-								<!-- Menu Body -->
-								<li class="user-body">
-									<div class="col-xs-4 text-center">
-										<a href="#">Info</a>
-									</div>
-									<div class="col-xs-4 text-center">
-										<a href="#">Info</a>
-									</div>
-									<div class="col-xs-4 text-center">
-										<a href="#">Info</a>
-									</div>
-								</li>
-								<!-- Menu Footer-->
-								<li class="user-footer">
-									<div class="pull-left">
-										<a href="#" class="btn btn-default btn-flat">Profile</a>
-									</div>
-									<div class="pull-right">
-										<a id="sign-out-button" href="#" class="btn btn-default btn-flat">Sign out</a>
-									</div>
-								</li>
-							</ul>
-						</li>
+						<!-- 						<li class="dropdown user user-menu"> -->
+						<!-- 							Menu Toggle Button <a href="#" class="dropdown-toggle" data-toggle="dropdown"> The user image in the navbar -->
+						<!-- 								<img src="app/img/test.jpg" class="user-image" alt="User Image"> hidden-xs hides the username on small devices so only the image appears. -->
+						<!-- 								<span class="hidden-xs">{{user.name}}</span> -->
+						<!-- 						</a> -->
+						<!-- 							<ul class="dropdown-menu"> -->
+						<!-- 								The user image in the menu -->
+						<!-- 								<li class="user-header"><img src="app/img/test.jpg" class="img-circle" alt="User Image"> -->
+						<!-- 									<p> -->
+						<!-- 										{{user.name}} <small>Other info...</small> -->
+						<!-- 									</p></li> -->
+						<!-- 								Menu Body -->
+						<!-- 								<li class="user-body"> -->
+						<!-- 									<div class="col-xs-4 text-center"> -->
+						<!-- 										<a href="#">Info</a> -->
+						<!-- 									</div> -->
+						<!-- 									<div class="col-xs-4 text-center"> -->
+						<!-- 										<a href="#">Info</a> -->
+						<!-- 									</div> -->
+						<!-- 									<div class="col-xs-4 text-center"> -->
+						<!-- 										<a href="#">Info</a> -->
+						<!-- 									</div> -->
+						<!-- 								</li> -->
+						<!-- 								Menu Footer -->
+						<!-- 								<li class="user-footer"> -->
+						<!-- 									<div class="pull-left"> -->
+						<!-- 										<a href="#" class="btn btn-default btn-flat">Profile</a> -->
+						<!-- 									</div> -->
+						<!-- 									<div class="pull-right"> -->
+						<!-- 										<a id="sign-out-button" href="#" class="btn btn-default btn-flat">Sign out</a> -->
+						<!-- 									</div> -->
+						<!-- 								</li> -->
+						<!-- 							</ul> -->
+						<!-- 						</li> -->
 					</ul>
 				</div>
 			</nav>
@@ -120,34 +122,32 @@
 			<section class="sidebar" ng-show="userLoggedin">
 
 				<!-- Sidebar user panel (optional) -->
-				<div class="user-panel">
-					<div class="pull-left image">
-						<img src="app/img/test.jpg" class="img-circle" alt="User Image">
-					</div>
-					<div class="pull-left info">
-						<p>{{user.name}}</p>
-						<!-- Status -->
-						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-					</div>
-				</div>
+<!-- 				<div class="user-panel"> -->
+<!-- 					<div class="pull-left image"> -->
+<!-- 						<img src="app/img/test.jpg" class="img-circle" alt="User Image"> -->
+<!-- 					</div> -->
+<!-- 					<div class="pull-left info"> -->
+<!-- 						<p>{{user.name}}</p> -->
+<!-- 						Status -->
+<!-- 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 
 				<!-- Sidebar Menu -->
 				<ul class="sidebar-menu">
 
-
+<li class="side-menu-item"><span>{{user.name}}</span></a></li>
 					<li class="side-menu-item"><a href="#/graph"><i class="fa fa-area-chart"></i><span>Gráfico</span></a></li>
 					<li class="side-menu-item"><a href="#/transac"><i class="fa fa-bars"></i><span>Transacciones</span></a></li>
 					<li class="side-menu-item"><a href="#/detalles"><i class="fa fa-bars"></i><span>Detalles</span></a></li>
 
-					<li class="treeview">
-					<a href="javascript:void(0)"><i class="fa fa-cogs"></i><span>Mantenimientos</span></a>
+					<li class="treeview"><a href="javascript:void(0)"><i class="fa fa-cogs"></i><span>Mantenimientos</span></a>
 						<ul class="nav treeview-menu ">
 							<li class="side-menu-item"><a href="#/sucursales"><i class="fa fa-cog"></i><span>Sucursales</span></a></li>
 							<li class="side-menu-item"><a href="#/parameters"><i class="fa fa-cog"></i><span>Parametros</span></a></li>
 							<li class="side-menu-item"><a href="#/monedas"><i class="fa fa-cog"></i><span>Monedas</span></a></li>
 							<li class="side-menu-item"><a href="#/usuarios"><i class="fa fa-cog"></i><span>Usuarios</span></a></li>
-						</ul>
-					</li>
+						</ul></li>
 					<li class="side-menu-item"><a href="#/logout"><i class="fa fa-sign-out"></i><span>Salir</span></a></li>
 				</ul>
 				<!-- /.sidebar-menu -->

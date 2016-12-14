@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+
 /**
  * The persistent class for the SUCURSAL_MONTO_MONEDA database table.
  * 
@@ -18,6 +20,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "SUCURSAL_MONTO_MONEDA")
 @NamedQuery(name = "SucursalMontoMoneda.findAll", query = "SELECT s FROM SucursalMontoMoneda s")
+@JsonAutoDetect
 public class SucursalMontoMoneda implements Serializable {
 	private static final long serialVersionUID = 1L;
 

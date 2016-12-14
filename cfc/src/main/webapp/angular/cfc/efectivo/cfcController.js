@@ -17,6 +17,7 @@ angular.module('appCFC').controller('cfcController',[ '$scope', 'httpService', '
 		promise.then(function(result) {
 			$scope.currency = result;
 			$scope.selectedCurrency = result[0];
+			$rootScope.currencies = result;
 		});
 
 		var promiseBranch = branchHttpServices.getBranches();
@@ -27,6 +28,6 @@ angular.module('appCFC').controller('cfcController',[ '$scope', 'httpService', '
 	};
 
 	$scope.updateModel = function() {
-		console.log($scope.selectedCurrency);
+		$scope.$broadcast('parametersChange');
 	}
 }]);// End controller

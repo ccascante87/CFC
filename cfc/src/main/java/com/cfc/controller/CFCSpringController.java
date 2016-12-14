@@ -1,6 +1,8 @@
 package com.cfc.controller;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collections;
@@ -35,7 +37,9 @@ public class CFCSpringController {
 	private GraphData comportamientoEfectivo = new GraphData();
 	private GraphData variacionesEfectivo = new GraphData();
 	private MainData mda = new MainData();
-	//private int maxId = 0;
+	private BigDecimal maxFlowData = BigDecimal.ZERO;
+	private BigDecimal maxVarData = BigDecimal.ZERO;
+	// private int maxId = 0;
 	@Autowired
 	ISucursalService iSucursalService;
 	@Autowired
@@ -48,7 +52,8 @@ public class CFCSpringController {
 	@ResponseBody
 	@RequestMapping(value = "/getGraphData/{branch}/{currency}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public MainData getGraphData(@PathVariable String branch, @PathVariable String currency) {
-		List<Pivot> data = iPivotService.getDetailsByBranchAndCurrency(Integer.parseInt(branch), Integer.parseInt(currency));
+		List<Pivot> data = iPivotService.getDetailsByBranchAndCurrency(Integer.parseInt(branch),
+				Integer.parseInt(currency));
 		variacionesEfectivo.getyAxisValues().clear();
 		comportamientoEfectivo.getyAxisValues().clear();
 		mda = new MainData();
@@ -73,9 +78,10 @@ public class CFCSpringController {
 		this.variacionesEfectivo.getxAxisValues().clear();
 		this.comportamientoEfectivo.getxAxisValues().clear();
 		for (Pivot pivot : data) {
+			System.out.println(pivot.getFecha());
 			// Graph. 1
 			ocioso.getItemValues().add(pivot.getOcioso().toPlainString());
-			rm.getItemValues().add(pivot.getLcix().toPlainString());
+			rm.getItemValues().add(pivot.getRm().toPlainString());
 			menudo.getItemValues().add(pivot.getMenudo().toPlainString());
 			reserva.getItemValues().add(pivot.getReserva().toPlainString());
 			seguro.getItemValues().add(pivot.getSeguroMax().toPlainString());
@@ -85,25 +91,33 @@ public class CFCSpringController {
 			lcsx.getItemValues().add(pivot.getLcsx().toPlainString());
 			ptoReorden.getItemValues().add(pivot.getPuntoReorden().toPlainString());
 
+			BigDecimal temp = pivot.getOcioso().add(pivot.getRm()).add(pivot.getMenudo()).add(pivot.getReserva());
+			if (maxFlowData.compareTo(temp) < 1)
+				maxFlowData = temp;
+
 			// Graph. 2
 			varianza.getItemValues().add(pivot.getReserva().toPlainString());
 			lcsr.getItemValues().add(pivot.getLcsr().toPlainString());
 			lcr.getItemValues().add(pivot.getLcr().toPlainString());
 			lcir.getItemValues().add(pivot.getLcir().toPlainString());
-			
-			//pivot.getFecha().getTime() + (pivot.getFecha().getNanos() / 1000000)
+
+			if (maxVarData.compareTo(pivot.getReserva()) < 1)
+				maxVarData = pivot.getReserva();
+
+			// pivot.getFecha().getTime() + (pivot.getFecha().getNanos() /
+			// 1000000)
 			Calendar valor = Calendar.getInstance();
-			valor.setTimeInMillis(pivot.getFecha().getTime() );
-			//SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-			
+			valor.setTimeInMillis(pivot.getFecha().getTime());
+			// SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+
 			Calendar today = Calendar.getInstance();
-			Calendar pivotCal =  Calendar.getInstance();
+			Calendar pivotCal = Calendar.getInstance();
 			pivotCal.setTime(pivot.getFecha());
-			today.set(Calendar.HOUR_OF_DAY, pivotCal.get(Calendar.HOUR));
+			today.set(Calendar.HOUR_OF_DAY, pivotCal.get(Calendar.HOUR_OF_DAY));
 			today.set(Calendar.MINUTE, pivotCal.get(Calendar.MINUTE));
-			//System.err.println(today);
+			// System.err.println(today);
 			variacionesEfectivo.getxAxisValues().add(String.valueOf(today.getTimeInMillis()));
-			comportamientoEfectivo.getxAxisValues().add(String.valueOf(today.getTimeInMillis()));	
+			comportamientoEfectivo.getxAxisValues().add(String.valueOf(today.getTimeInMillis()));
 		}
 
 		comportamientoEfectivo.getyAxisValues().add(ocioso);
@@ -121,7 +135,7 @@ public class CFCSpringController {
 		variacionesEfectivo.getyAxisValues().add(lcsr);
 		variacionesEfectivo.getyAxisValues().add(lcr);
 		variacionesEfectivo.getyAxisValues().add(lcir);
-		if(data.size() == 0 ){
+		if (data.size() == 0) {
 			mda.setAutorizedBalance(BigDecimal.ZERO);
 			mda.setCurrentBalance(BigDecimal.ZERO);
 			mda.setInsuredAmount(BigDecimal.ZERO);
@@ -130,74 +144,68 @@ public class CFCSpringController {
 			// variacionesEfectivo.
 			mda.getCashBehaviorDetail().add(new Item("Menudo", BigDecimal.ZERO, BigDecimal.ZERO));
 			mda.getCashBehaviorDetail().add(new Item("Reserva", BigDecimal.ZERO, BigDecimal.ZERO));
-			mda.getCashBehaviorDetail().add(new Item("LCSX",  BigDecimal.ZERO, BigDecimal.ZERO));
-			mda.getCashBehaviorDetail().add(new Item("Lcx",  BigDecimal.ZERO, BigDecimal.ZERO));
+			mda.getCashBehaviorDetail().add(new Item("LCSX", BigDecimal.ZERO, BigDecimal.ZERO));
+			mda.getCashBehaviorDetail().add(new Item("Lcx", BigDecimal.ZERO, BigDecimal.ZERO));
 			mda.getCashBehaviorDetail().add(new Item("Lcix", BigDecimal.ZERO, BigDecimal.ZERO));
 
-			mda.getCashVariations().add(new Item("Varianza",  BigDecimal.ZERO, BigDecimal.ZERO));
-			mda.getCashVariations().add(new Item("LCSr",  BigDecimal.ZERO, BigDecimal.ZERO));
-			mda.getCashVariations().add(new Item("LCr",  BigDecimal.ZERO, BigDecimal.ZERO));
-			mda.getCashVariations().add(new Item("LClr",  BigDecimal.ZERO, BigDecimal.ZERO));
-		}else{
-			if(data.size() > 1){		
-				mda.setAutorizedBalance(data.get(data.size() -1).getSaldoAutorizado());
+			mda.getCashVariations().add(new Item("Varianza", BigDecimal.ZERO, BigDecimal.ZERO));
+			mda.getCashVariations().add(new Item("LCSr", BigDecimal.ZERO, BigDecimal.ZERO));
+			mda.getCashVariations().add(new Item("LCr", BigDecimal.ZERO, BigDecimal.ZERO));
+			mda.getCashVariations().add(new Item("LClr", BigDecimal.ZERO, BigDecimal.ZERO));
+		} else {
+			if (data.size() > 1) {
+				mda.setAutorizedBalance(data.get(data.size() - 1).getSaldoAutorizado());
 				mda.setCurrentBalance(data.get(data.size() - 1).getSaldo());
 				mda.setInsuredAmount(data.get(data.size() - 1).getSeguroMax());
 				mda.setLazyAmount(data.get(data.size() - 1).getOcioso());
 				mda.setReorderPoint(data.get(data.size() - 1).getPuntoReorden());
 				// variacionesEfectivo.
-				mda.getCashBehaviorDetail().add(new Item("Menudo", data.get(data.size() - 1).getMenudo(), data.get(data.size() - 2).getMenudo()));
-				mda.getCashBehaviorDetail().add(new Item("Reserva", data.get(data.size() - 1).getReserva(), data.get(data.size() - 2).getReserva()));
-				mda.getCashBehaviorDetail().add(new Item("LCSX", data.get(data.size() - 1).getLcsx(), data.get(data.size() - 2).getLcsx()));
-				mda.getCashBehaviorDetail().add(new Item("Lcx", data.get(data.size() - 1).getLcx(), data.get(data.size() - 2).getLcx()));
-				mda.getCashBehaviorDetail().add(new Item("Lcix", data.get(data.size() - 1).getLcix(), data.get(data.size() - 2).getLcix()));
+				mda.getCashBehaviorDetail().add(new Item("Menudo", data.get(data.size() - 1).getMenudo(),
+						data.get(data.size() - 2).getMenudo()));
+				mda.getCashBehaviorDetail().add(new Item("Reserva", data.get(data.size() - 1).getReserva(),
+						data.get(data.size() - 2).getReserva()));
+				mda.getCashBehaviorDetail().add(
+						new Item("LCSX", data.get(data.size() - 1).getLcsx(), data.get(data.size() - 2).getLcsx()));
+				mda.getCashBehaviorDetail()
+						.add(new Item("Lcx", data.get(data.size() - 1).getLcx(), data.get(data.size() - 2).getLcx()));
+				mda.getCashBehaviorDetail().add(
+						new Item("Lcix", data.get(data.size() - 1).getLcix(), data.get(data.size() - 2).getLcix()));
 
-				mda.getCashVariations().add(new Item("Varianza", data.get(data.size() - 1).getReserva(), data.get(data.size() - 2).getReserva()));
-				mda.getCashVariations().add(new Item("LCSr", data.get(data.size() - 1).getLcsr(), data.get(data.size() - 2).getLcsr()));
-				mda.getCashVariations().add(new Item("LCr", data.get(data.size() - 1).getLcr(), data.get(data.size() - 2).getLcr()));
-				mda.getCashVariations().add(new Item("LClr", data.get(data.size() - 1).getLcir(), data.get(data.size() - 2).getLcir()));
+				mda.getCashVariations().add(new Item("Varianza", data.get(data.size() - 1).getReserva(),
+						data.get(data.size() - 2).getReserva()));
+				mda.getCashVariations().add(
+						new Item("LCSr", data.get(data.size() - 1).getLcsr(), data.get(data.size() - 2).getLcsr()));
+				mda.getCashVariations()
+						.add(new Item("LCr", data.get(data.size() - 1).getLcr(), data.get(data.size() - 2).getLcr()));
+				mda.getCashVariations().add(
+						new Item("LClr", data.get(data.size() - 1).getLcir(), data.get(data.size() - 2).getLcir()));
 			}
 		}
 		mda.setUtilizationRate(10);
-
-		
 
 		Collections.reverse(data);
 		int index = 0;
 		mda.getCurrentBalanceHistory().clear();
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-		while (mda.getCurrentBalanceHistory().size()<4) {
-			try{
-				mda.getCurrentBalanceHistory().add(new Item(sdf.format(data.get(index).getFecha()), data.get(index).getSaldo(), data.get(index+1).getSaldo()));
-				mda.getCashValHistory().add(new Item(sdf.format(data.get(index).getFecha()), data.get(index).getRm(), data.get(index+1).getRm()));
-				index++;				
-			}catch(IndexOutOfBoundsException iob){
+		while (mda.getCurrentBalanceHistory().size() < 4) {
+			try {
+				mda.getCurrentBalanceHistory().add(new Item(sdf.format(data.get(index).getFecha()),
+						data.get(index).getSaldo(), data.get(index + 1).getSaldo()));
+				mda.getCashValHistory().add(new Item(sdf.format(data.get(index).getFecha()), data.get(index).getRm(),
+						data.get(index + 1).getRm()));
+				index++;
+			} catch (IndexOutOfBoundsException iob) {
 				break;
 			}
 		}
+
+		mda.setVarEfectivoGraph(variacionesEfectivo);
+		mda.setCompEfectivoGraph(comportamientoEfectivo);
 		
-//		index = 0;
-//		mda.getCashValHistory().clear();
-//		while (mda.getCashValHistory().size()<4) {
-//			try{
-//				index++;
-//			}catch(IndexOutOfBoundsException iob){
-//				break;
-//			}
-//		}
-		
-//		String stDate = String.valueOf(new java.util.Date().getTime());
-//		System.err.println(stDate);
-//		if(variacionesEfectivo.getxAxisValues().size() < data.size()){
-//			variacionesEfectivo.getxAxisValues().add(String.valueOf(Calendar.getInstance().getTime().getTime()));
-//			comportamientoEfectivo.getxAxisValues().add(String.valueOf(Calendar.getInstance().getTime().getTime()));
-//	
-			mda.setVarEfectivoGraph(variacionesEfectivo);
-			mda.setCompEfectivoGraph(comportamientoEfectivo);
-//		}
+		mda.setMaxFlowData(maxFlowData.setScale(-6, RoundingMode.CEILING).toPlainString());
+		mda.setMaxVarData(maxVarData.setScale(-6, RoundingMode.CEILING).toPlainString());
 		return mda;
 	}
-
 
 	@ResponseBody
 	@RequestMapping(value = "/getTransacciones/{branchId}/{currencyId}", method = RequestMethod.GET, produces = "application/json")
@@ -220,12 +228,12 @@ public class CFCSpringController {
 		else
 			return detalle;
 	}
-	
 
-	//@RequestMapping(value="/saveMoneda" , method = RequestMethod.GET, RequestMethod.POST)  
+	// @RequestMapping(value="/saveMoneda" , method = RequestMethod.GET,
+	// RequestMethod.POST)
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-    public @ResponseBody String save(@ModelAttribute("Moneda") Moneda moneda){  
-        iMonedaService.saveMoneda(moneda);  
-        return "save";  
-    } 
+	public @ResponseBody String save(@ModelAttribute("Moneda") Moneda moneda) {
+		iMonedaService.saveMoneda(moneda);
+		return "save";
+	}
 }

@@ -1,19 +1,28 @@
 package com.cfc.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
 /**
@@ -28,6 +37,8 @@ public class Sucursal implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SUCURSAL_ID_SEQ")
+	@SequenceGenerator(name = "SUCURSAL_ID_SEQ", sequenceName = "SUCURSAL_ID_SEQ", allocationSize = 1, initialValue = 1)
 	private long id;
 
 	@Column(name="CODIGO_SUCURSAL")
@@ -49,7 +60,7 @@ public class Sucursal implements Serializable {
 	//bi-directional many-to-one association to SucursalPorcent
 	@OneToMany(mappedBy="sucursal", fetch=FetchType.EAGER)
 	private Set<SucursalPorcent> sucursalPorcents =new HashSet<>();
-
+	
 	public Sucursal() {
 	}
 
@@ -108,4 +119,6 @@ public class Sucursal implements Serializable {
 	public void setSucursalPorcents(Set<SucursalPorcent> sucursalPorcents) {
 		this.sucursalPorcents = sucursalPorcents;
 	}
+
+
 }

@@ -27,7 +27,7 @@ angular.module('appCFC').controller('graphController', ['$scope','$interval', 'c
     function loadData(){    
     	x++;
     	y++;
-    	var brach = $scope.selectedBranch == undefined ? '1' : $scope.selectedBranch.id;
+    	var brach = $scope.selectedBranch == undefined ? '11' : $scope.selectedBranch.id;
     	var currency = $scope.selectedCurrency == undefined ? '1' : $scope.selectedCurrency.id;
 //    	var promise = httpService.getGraphData($scope.selectedBranch.idSucursal, $scope.selectedCurrency.id);
     	var promise = httpService.getGraphData(brach,currency);
@@ -78,6 +78,12 @@ angular.module('appCFC').controller('graphController', ['$scope','$interval', 'c
 	 			}
 	 		    x++;
 	 		});
+	 	
+	 		//Set the max values for the yAxis
+	 		console.log(result.maxFlowData );
+	 		$scope.cashFlowOptions.chart.yDomain1 = [ 0, Number(result.maxFlowData) ]
+	 		$scope.cashVarOptions.chart.yDomain1 = [ 0, Number(result.maxVarData) ]
+	 		
           });
 	};
 	
@@ -118,6 +124,8 @@ angular.module('appCFC').controller('graphController', ['$scope','$interval', 'c
 		 
 		$scope.cashFlowOptions.chart.yAxis1.tickFormat = currencyFormat;
 		$scope.cashVarOptions.chart.yAxis1.tickFormat = currencyFormat;
+		
+		//$scope.cashFlowOptions.chart.yDomain1 = [ 0, 11111111111 ]
 		
 		var jsonData = {};
 		loadData();	

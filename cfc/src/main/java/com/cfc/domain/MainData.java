@@ -34,6 +34,9 @@ public class MainData implements Serializable {
 	private List<Item> cashVariations = new ArrayList<Item>();
 	private List<Item> cashValHistory = new ArrayList<Item>();
 	
+	private String maxFlowData = ""; // BigDecimal.ZERO;
+	private String maxVarData = ""; //BigDecimal.ZERO; 
+	
 	public MainData() {
 		// Linked
 		compEfectivoGraph = new GraphData();
@@ -140,5 +143,19 @@ public class MainData implements Serializable {
 	}
 	public void setCashValHistory(List<Item> cashValHistory) {
 		this.cashValHistory = cashValHistory;
+	}
+	
+	public String getMaxFlowData() {
+		return maxFlowData;
+	}
+	public void setMaxFlowData(String maxFlowData) {
+		this.maxFlowData = maxFlowData;
+	}
+
+	public String getMaxVarData() {
+		return maxVarData;
+	}
+	public void setMaxVarData(String maxVarData) {
+		this.maxVarData = maxVarData;
 	}
 }

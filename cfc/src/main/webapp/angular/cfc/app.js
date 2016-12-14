@@ -44,3 +44,15 @@ angular.module('appCFC').run(['$rootScope','$location', 'AuthService',
 								}
 							})
 				} ])
+//Formatter for timestamp to time
+angular.module('appCFC').directive('bindTimestamp', function () {
+  return {
+    restrict: 'A',
+    require: 'ngModel',
+    link: function (scope, element, attrs, ngModel) {
+      ngModel.$formatters.push(function (value) { console.log(value);
+        return new Date(value);
+      });
+    }
+  };
+});

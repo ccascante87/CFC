@@ -61,4 +61,10 @@ public class SucursalServiceImpl implements ISucursalService {
 		return sucursalDAO.findSucursalByName(nameSucursal);
 	}
 
+	@Override
+	public List<Sucursal> deleteSucucursal(long sucursalId) {
+		sucursalDAO.deleteById(sucursalId);
+		return sucursalDAO.findAllSucursales();
+	}
+
 }

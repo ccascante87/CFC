@@ -20,4 +20,6 @@ public interface ISucursalService {
 	List<Sucursal> findAllSucursales(); 
 	
 	Sucursal findSucursalByName(String nameSucursal);
+	
+	List<Sucursal> deleteSucucursal(long sucursalId);
 }

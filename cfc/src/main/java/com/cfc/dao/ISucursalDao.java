@@ -19,7 +19,7 @@ public interface ISucursalDao {
 	
 	void update(Sucursal sucursal);
 
-	void deleteById(int id);
+	void deleteById(long id);
 
 	List<Sucursal> findAllSucursales();
 	

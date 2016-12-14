@@ -26,7 +26,7 @@ public class BranchesRestController {
 	private ISucursalService iBranchesService;
 
 	@ResponseBody
-	@RequestMapping(value = "/getSucursales", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/getSucursales", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Sucursal> getSucursales() {
 		List<Sucursal> sucursales = iBranchesService.findAllSucursales();
 		logger.debug("getSucursales.");
@@ -67,16 +67,16 @@ public class BranchesRestController {
 	public List<Sucursal> deleteBranch(@RequestBody String branchId) {
 		List<Sucursal> branchesList = null;
 		try {
-			// iBranchesService.
-			long idSucursal = Long.parseLong(branchId);
-			Iterator<Sucursal> itSuc = branchesList.iterator();
-			while (itSuc.hasNext()) {
-				Sucursal temp = itSuc.next();
-				if (temp.getId() == idSucursal) {
-					itSuc.remove();
-					break;
-				}
-			}	
+			iBranchesService.deleteSucucursal(Integer.parseInt(branchId));
+//			long idSucursal = Long.parseLong(branchId);
+//			Iterator<Sucursal> itSuc = branchesList.iterator();
+//			while (itSuc.hasNext()) {
+//				Sucursal temp = itSuc.next();
+//				if (temp.getId() == idSucursal) {
+//					itSuc.remove();
+//					break;
+//				}
+//			}	
 			branchesList = iBranchesService.findAllSucursales();
 			
 		} catch (Exception ex) {

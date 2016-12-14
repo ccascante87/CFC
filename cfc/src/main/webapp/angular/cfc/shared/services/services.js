@@ -20,6 +20,7 @@ angular.module('appCFC').factory('cfcConfigurationService', function() {
 				duration : 0,
 				xAxis : {
 					tickFormat : function(d) {
+						console.log((new Date(new Number(d))));
 						return d3.time.format('%H:%M')(new Date(new Number(d)));
 					}
 				},
@@ -31,7 +32,7 @@ angular.module('appCFC').factory('cfcConfigurationService', function() {
 				interactiveLayer : {
 					tooltip : {
 						headerFormatter : function(d) {
-							return d3.time.format('%H:%M')(new Date(Number(d)));
+							return d3.time.format('%H:%M')(new Date(new Number(d)));
 						}
 					}
 				},
@@ -62,7 +63,7 @@ angular.module('appCFC').factory('cfcConfigurationService', function() {
 				duration : 0,
 				xAxis : {
 					tickFormat : function(d) {
-						return d3.time.format('%H:%M')(new Date(new Date(new Number(d))));
+						return d3.time.format('%H:%M')(new Date(new Number(d)));
 					}
 				},
 				yAxis1 : {
@@ -73,7 +74,7 @@ angular.module('appCFC').factory('cfcConfigurationService', function() {
 				interactiveLayer : {
 					tooltip : {
 						headerFormatter : function(d) {
-							return d3.time.format('%H:%M')(new Date(Number(d)));
+							return d3.time.format('%H:%M')(new Date(new Number(d)));
 						}
 					}
 				},

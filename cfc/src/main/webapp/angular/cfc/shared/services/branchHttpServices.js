@@ -23,7 +23,9 @@ angular.module('appCFC').factory('branchHttpServices', function($http, $q) {
 					"codigoSucursal" : branch.codigoSucursal,
 					"horaApertura" : branch.horaApertura,
 					"horaCierre" : branch.horaCierre,
-					"nomSucursal" : branch.nomSucursal
+					"nomSucursal" : branch.nomSucursal,
+					"sucursalMontoMonedas" : branch.sucursalMontoMonedas,
+					"sucursalPorcents" : branch.sucursalPorcents
 				},
 				headers : {
 					'Content-Type' : 'application/json'

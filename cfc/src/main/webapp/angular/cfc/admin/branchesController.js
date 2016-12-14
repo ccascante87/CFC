@@ -1,8 +1,9 @@
 'use strict'
-angular.module('appCFC').controller('branchesController',['$scope', 'cfcConfigurationService', 'branchHttpServices', '$window',
-			function($scope, cfcConfigurationService, branchHttpServices,$window) {
-				$scope.brachesOptionGraph = cfcConfigurationService.tableOptionsConfig();
+angular.module('appCFC').controller('branchesController',['$scope', 'cfcConfigurationService', 'branchHttpServices', '$window', '$rootScope',
+			function($scope, cfcConfigurationService, branchHttpServices,$window, $rootScope) {
+				
 				var init = function() {
+					$scope.brachesOptionGraph = cfcConfigurationService.tableOptionsConfig();
 					var promise = branchHttpServices.getBranches();
 					promise.then(function(results) {
 						$scope.branches = results;
@@ -16,7 +17,9 @@ angular.module('appCFC').controller('branchesController',['$scope', 'cfcConfigur
 						codigoSucursal : '',
 						horaApertura : '',
 						horaCierre : '',
-						nomSucursal : ''
+						nomSucursal : '',
+						sucursalMontoMonedas:[],
+						sucursalPorcents : []						
 					}
 				}
 
@@ -30,12 +33,35 @@ angular.module('appCFC').controller('branchesController',['$scope', 'cfcConfigur
 						var promise = branchHttpServices.saveOrUpdateBranch($scope.selectedBranch);
 						promise.then(function(results) {
 							$scope.branches = results;
+							resetBranch();
 							$scope.showForm = false;
 						});
 				}
 				
 				$scope.addNew = function() {
 					resetBranch();
+					
+
+								for ( var currency in $rootScope.currencies) {
+									$scope.selectedBranch.sucursalMontoMonedas
+											.push({
+												id : '',
+												montoAsegurado : '',
+												montoAutorizado : '',
+												sucursal : null,
+												moneda : currency
+											});
+									$scope.selectedBranch.sucursalPorcents
+										.push({
+											
+											id:'',
+											porcenMenudo:'',
+											porcenReserva:'',
+											sucursal:null,
+											moneda:currency
+										});
+								}
+					
 					$scope.showForm = true;
 				}
 

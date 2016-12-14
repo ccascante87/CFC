@@ -114,9 +114,9 @@ public class SucursalDaoImpl extends AbstractDao<Integer, Sucursal> implements I
 	 * @see com.cfc.dao.ISucursalDao#deleteById(int)
 	 */
 	@Override
-	public void deleteById(int id) {
+	public void deleteById(long id) {
 		Session session = getSession();
-		Sucursal sucursal = (Sucursal) session.load(Sucursal.class, new Integer(id));
+		Sucursal sucursal = (Sucursal) session.load(Sucursal.class, id);
 		if(null != sucursal){
 			session.delete(sucursal);
 		}

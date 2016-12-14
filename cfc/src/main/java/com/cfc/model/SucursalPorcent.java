@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -23,6 +24,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Table(name="SUCURSAL_PORCENT")
 @NamedQuery(name="SucursalPorcent.findAll", query="SELECT s FROM SucursalPorcent s")
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+@JsonAutoDetect
 public class SucursalPorcent implements Serializable {
 	private static final long serialVersionUID = 1L;
 
